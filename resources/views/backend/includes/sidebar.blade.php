@@ -6,7 +6,12 @@
     <section class="sidebar">
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('menus.backend.sidebar.general') }}</li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/pages*')) }}">
+                <a href="{{ route('admin.pages.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>{{ trans('labels.backend.pages.title') }}</span>
+                </a>
+            </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/dashboard')) }}">
                 <a href="{{ route('admin.dashboard') }}">
