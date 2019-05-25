@@ -5,20 +5,14 @@
 <html lang="{{ config('app.locale') }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Stones by Rander</title>
+        <title>@yield('title', app_name())</title>
 
-
-        
-        <link rel="stylesheet" href="{{ URL::asset('css/project/css/bootstrap.css') }}" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ URL::asset('css/project/css/all.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('css/project/css/style.css') }}" />
-     
-
+        <!-- Meta -->
+        <meta name="description" content="@yield('meta_description', 'Laravel AdminPanel')">
+        <meta name="author" content="@yield('meta_author', 'Viral Solani')">
         @yield('meta')
 
         <!-- Styles -->
@@ -26,27 +20,36 @@
 
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
-       
+        @langRTL
+            {{ Html::style(getRtlCss(mix('css/frontend.css'))) }}
+        @else
+            {{ Html::style(mix('css/frontend.css')) }}
+        @endif
+        {!! Html::style('js/select2/select2.css') !!}
         @yield('after-styles')
 
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([
-		'csrfToken' => csrf_token(),
-	       ]);?>
-        </script>
-
+        'csrfToken' => csrf_token(),
+    ]);?>
+</script>
+<?php
+if (!empty($google_analytics)) {
+    echo $google_analytics;
+}
+?>
     </head>
-    <body id="page-top">
-        @include('frontend.includes.header')
-   
+    <body id="app-layout">
+        <div id="app">
+            @include('includes.partials.logged-in-as')
+            @include('frontend.includes.nav')
+
+            <div class="container">
                 @include('includes.partials.messages')
                 @yield('content')
-            
-        @include('frontend.includes.footer')
-
-
-
+            </div><!-- container -->
+        </div><!--#app-->
 
         <!-- Scripts -->
         @yield('before-scripts')
@@ -56,19 +59,12 @@
         {{ Html::script('js/frontend/frontend.js') }}
         {!! Html::script('js/select2/select2.js') !!}
 
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
-
-
-
         <script type="text/javascript">
             if("{{Route::currentRouteName()}}" !== "frontend.user.account")
             {
                 $.session.clear();
             }
         </script>
-        
+        @include('includes.partials.ga')
     </body>
 </html>

@@ -34,15 +34,6 @@ class DashboardController extends Controller {
 	 * @return \Illuminate\View\View
 	 */
 	public function index() {
-		if (getRoles()->id == env('CLIENT_ROLE_ID')) {
-			$user           = access()->user();
-			$client         = \DB::table('clients')->where('user_id', $user->id)->first();
-			$pages          = Page::get()->toArray();
-			$customquestion = \DB::table(config('module.custom_question.table'))->select('question_name', 'is_submited_by')->where('client_id', $client->id)->where('is_submited_by', 1)->get()->toArray();
-			$questions      = \DB::table(config('module.custom_question.table'))->select('question_name', 'is_submited_by')->where('client_id', $client->id)->get()->toArray();
-
-			return view('backend.dashboard', compact('user', 'client', 'pages', 'customquestion', 'questions'));
-		}
 		return view('backend.dashboard');
 	}
 

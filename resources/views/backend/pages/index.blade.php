@@ -22,9 +22,7 @@
                     <thead>
                         <tr>
                             <th>{{ trans('labels.backend.pages.table.title') }}</th>
-                            <th>{{ trans('labels.backend.pages.table.status') }}</th>
                             <th>{{ trans('labels.backend.pages.table.createdat') }}</th>
-                            <th>{{ trans('labels.backend.pages.table.createdby') }}</th>
                             <th>{{ trans('labels.general.actions') }}</th>
                         </tr>
                     </thead>
@@ -34,10 +32,6 @@
                                 {!! Form::text('first_name', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.pages.table.title')]) !!}
                                     <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                             </th>
-                            <th>
-                                {!! Form::select('status', [0 => "InActive", 1 => "Active"], null, ["class" => "search-input-select form-control", "data-column" => 1, "placeholder" => trans('labels.backend.pages.table.all')]) !!}
-                            </th>
-                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -75,9 +69,7 @@
                 },
                 columns: [
                     {data: 'title', name: '{{config('module.pages.table')}}.title'},
-                    {data: 'status', name: '{{config('module.pages.table')}}.status'},
                     {data: 'created_at', name: '{{config('module.pages.table')}}.created_at'},
-                    {data: 'created_by', name: '{{config('access.users_table')}}.first_name'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
                 ],
                 order: [[1, "asc"]],

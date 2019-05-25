@@ -15,7 +15,7 @@ class FrontendController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {
+    { 
         $settingData = Setting::first();
         $google_analytics = $settingData->google_analytics;
 

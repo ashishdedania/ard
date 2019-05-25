@@ -1,5 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    {!! $page->description !!}                    
+	<div style="min-height:800px;">
+    {!! $page->description !!}     
+    </div>               
 @endsection
