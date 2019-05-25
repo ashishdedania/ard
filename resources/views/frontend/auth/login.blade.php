@@ -26,16 +26,7 @@
                             {{ Form::input('password', 'password', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.register-user.password')]) }}
                         </div><!--col-md-6-->
                     </div><!--form-group-->
-
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <div class="checkbox">
-                                <label>
-                                    {{ Form::checkbox('remember') }} {{ trans('labels.frontend.auth.remember_me') }}
-                                </label>
-                            </div>
-                        </div><!--col-md-6-->
-                    </div><!--form-group-->
+                    
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">

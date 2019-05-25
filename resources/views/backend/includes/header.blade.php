@@ -74,7 +74,7 @@
                     </ul>
                 </li>< -->
 
-                <li class="dropdown user user-menu">
+                <!-- <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ access()->user()->picture }}" class="user-image" alt="User Avatar"/>
                         <span class="hidden-xs">{{ access()->user()->first_name }}</span>
@@ -125,7 +125,7 @@
                             </div>
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </div><!-- /.navbar-custom-menu -->
     </nav>

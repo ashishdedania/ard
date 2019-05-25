@@ -12,17 +12,17 @@
                 </a>
             </li>
             
-            <li class="{{ active_class(Active::checkUriPattern('admin/profile/edit')) }}">
+            <!-- <li class="{{ active_class(Active::checkUriPattern('admin/profile/edit')) }}">
                 <a href="{{ route('admin.profile.edit') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Edit Profile</span>
                 </a>
-            </li>
+            </li> -->
 
             <li class="{{ active_class(Active::checkUriPattern('admin/client/change/password?1')) }}">
                 <a href="{{ route('admin.client.change.password',[access()->user()->id]) }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Edit Password</span>
+                    <i class="fa fa-book"></i>
+                    <span>Change Password</span>
                 </a>
             </li>
 
@@ -33,6 +33,12 @@
                 </a>
             </li>
 
+            <li class="{{ active_class(Active::checkUriPattern('logout')) }}">
+                <a href="{{ route('frontend.auth.logout') }}">
+                    <i class="fa fa-window-close"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
 
 
             
