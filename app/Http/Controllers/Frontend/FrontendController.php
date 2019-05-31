@@ -32,4 +32,15 @@ class FrontendController extends Controller
         return view('frontend.pages.index')
             ->withpage($result);
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function contactus()
+    { 
+        $settingData = Setting::first();
+        $google_analytics = $settingData->google_analytics;
+
+        return view('frontend.contactus', compact('google_analytics', $google_analytics));
+    }
 }

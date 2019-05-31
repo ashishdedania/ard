@@ -24,7 +24,7 @@
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.pages.show', ['slug' => 'stone-talk'])}}">Stone Talk</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.pages.show', ['slug' => 'contact'])}}">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="{{route('frontend.contact-us')}}">Contact</a>
           </li>
         </ul>
       </div>

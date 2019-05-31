@@ -17,6 +17,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/all.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('css/project/css/responsive.css') }}" />
+        
      
 
         @yield('meta')
