@@ -56,6 +56,9 @@ return [
 	"knowledgebases" => [
 	"table" => "knowledge_bases",
 	],
+	"stonecollection" => [
+	"table" => "stone_collection",
+	],
 	"client_knowledge" => [
 	"table" => "client_knowledge",
 	],

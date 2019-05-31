@@ -33,6 +33,13 @@
                 </a>
             </li>
 
+            <li class="{{ active_class(Active::checkUriPattern('admin/pages*')) }}">
+                <a href="{{ route('admin.stonecollection.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Stone Collection</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('logout')) }}">
                 <a href="{{ route('frontend.auth.logout') }}">
                     <i class="fa fa-window-close"></i>

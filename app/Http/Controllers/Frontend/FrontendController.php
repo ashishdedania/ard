@@ -38,9 +38,15 @@ class FrontendController extends Controller
      */
     public function contactus()
     { 
-        $settingData = Setting::first();
-        $google_analytics = $settingData->google_analytics;
+        return view('frontend.contactus');
+    }
 
-        return view('frontend.contactus', compact('google_analytics', $google_analytics));
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function stoneCollection()
+    { 
+        return view('frontend.stonecollection');
     }
 }
