@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 25, 2019 at 04:22 PM
+-- Generation Time: May 31, 2019 at 11:46 AM
 -- Server version: 5.7.26-0ubuntu0.16.04.1
 -- PHP Version: 7.2.12-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -1188,7 +1188,11 @@ INSERT INTO `notifications` (`id`, `message`, `user_id`, `type`, `is_read`, `cre
 (188, 'User Logged In: chirag', 1, 1, 0, '2019-05-25 03:36:38', NULL),
 (189, 'User Logged In: chirag', 1, 1, 0, '2019-05-25 04:07:24', NULL),
 (190, 'User Logged In: chirag', 1, 1, 0, '2019-05-25 04:24:30', NULL),
-(191, 'User Logged In: chirag', 1, 1, 0, '2019-05-25 04:46:44', NULL);
+(191, 'User Logged In: chirag', 1, 1, 0, '2019-05-25 04:46:44', NULL),
+(192, 'User Logged In: chirag', 1, 1, 0, '2019-05-29 21:20:20', NULL),
+(193, 'User Logged In: chirag', 1, 1, 0, '2019-05-29 23:56:15', NULL),
+(194, 'User Logged In: chirag', 1, 1, 0, '2019-05-30 19:48:42', NULL),
+(195, 'User Logged In: chirag', 1, 1, 0, '2019-05-31 00:43:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -3013,6 +3017,45 @@ CREATE TABLE `social_logins` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stone_collection`
+--
+
+CREATE TABLE `stone_collection` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` double(8,2) NOT NULL,
+  `average_rating` decimal(7,2) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'knowledge base status for 1:Active,0:Inactive',
+  `created_by` int(10) UNSIGNED NOT NULL COMMENT 'Record created by user',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stone_collection`
+--
+
+INSERT INTO `stone_collection` (`id`, `title`, `description`, `file`, `rating`, `average_rating`, `status`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Base study 1', 'Base study 1 is meant for anxiety disorder.', '["professional.jpg"]', 0.00, '5.00', 1, 1, '2018-09-05 08:06:32', '2018-10-09 08:12:46', '2018-10-09 08:12:46'),
+(2, 'Record 1', 'Record 1 with description', '["logo-p.png","book1.jpg"]', 0.00, '4.50', 1, 2, '2018-09-14 04:41:23', '2018-10-09 08:12:40', '2018-10-09 08:12:40'),
+(3, 'Pesky gNATs', 'Descriptions in here', '["000ad126-642.jpg"]', 0.00, '3.50', 1, 2, '2018-09-28 09:33:36', '2018-10-09 08:12:36', '2018-10-09 08:12:36'),
+(4, 'Pre-consultation Pack', 'Dear Actualise Client,\r\n\r\nWe are looking forward to seeing you at the clinic. Before you come, here are some useful documents which you should look at, including:\r\n- A map of the campus, with information on parking\r\n- Our policies \r\n- Informed consent\r\n\r\nSee you soon!\r\nThe Actualise Team', '["DCU Alpha Campus Information.pdf","Goal Sheets - Adult.pdf","Informed consent form.docx","Policies 2018.pdf"]', 0.00, '5.00', 1, 2, '2018-10-09 08:08:10', '2018-10-09 08:21:45', '2018-10-09 08:21:45'),
+(5, 'Map and Policies (A)', 'Dear Actualise Client,\r\n\r\nWe are looking forward to welcoming you to the Actualise Clinic. In advance of that, please find attached:\r\n\r\n- A map of the DCU Alpha campus. Please note, we are NOT in the DCU Main Campus, but in the DCU Alpha campus. This link will get you close to our clinic: https://goo.gl/maps/ms9kThQcAxB2. From here, just use the attached map to find parking\r\n\r\n- Our policies. Please read our policies ahead of your visit.\r\n\r\n- A goal sheet. This is a sample sheet which we will discuss with you at your consultation. It helps us think about goals you have in mind for your time with us.\r\n\r\nWe look forward to welcoming you to our clinic.\r\nThe Actualise Team', '{"3":"DCU Alpha Campus Information.pdf","4":"Goal Sheets - Adult.pdf","5":"Policies 2018.pdf"}', 0.00, '3.00', 1, 2, '2018-10-09 08:34:21', '2018-12-14 04:01:05', NULL),
+(6, 'Map and Policies (C)', 'Dear Actualise Client,\r\n\r\nWe are looking forward to welcoming you to the Actualise Clinic. In advance of that, please find attached:\r\n\r\n- A map of the DCU Alpha campus. Please note, we are NOT in the DCU Main Campus, but in the DCU Alpha campus. This link will get you close to our clinic: https://goo.gl/maps/ms9kThQcAxB2. From here, just use the attached map to find parking\r\n\r\n- Our policies. Please read our policies ahead of your visit.\r\n\r\n- A goal sheet. This is a sample sheet which we will discuss with you at your consultation. It helps us think about goals you have in mind for your time with us.\r\n\r\nWe look forward to welcoming you to our clinic.\r\nThe Actualise Team', '["DCU Alpha Campus Information.pdf","Goal Sheets - Child.pdf","Policies 2018.pdf"]', 0.00, '4.00', 1, 2, '2018-10-09 08:35:12', '2018-11-27 07:54:43', NULL),
+(7, 'Teachers Resources 1', 'r', '["Ikigai.jpeg"]', 0.00, '0.00', 1, 2, '2018-11-02 07:31:01', '2018-11-02 07:31:11', '2018-11-02 07:31:11'),
+(8, 'Teachers Resources 3', 'Max Size File', '["Canada-17MB.jpg","Airbus_Pleiades_41MB.jpg","Actualise Academy Resources #3.pdf"]', 0.00, '0.00', 1, 1, '2018-12-03 02:07:12', '2018-12-10 03:57:56', NULL),
+(9, 'NFT presentation', 'arg', '["NFT info presentation.pptx"]', 0.00, '3.50', 1, 2, '2018-12-10 04:01:41', '2019-03-26 09:20:12', NULL),
+(10, 'User Manual', 'desc', '["download.jpg"]', 0.00, '0.00', 1, 1, '2019-01-17 02:47:54', '2019-01-17 02:48:14', NULL),
+(11, 'ooo', 'ooooo', '["Shayona Shikhar.pdf"]', 0.00, '0.00', 1, 1, '2019-01-21 08:25:34', '2019-01-21 08:25:35', NULL),
+(12, 'asd', 'asd', '', 0.00, '0.00', 1, 1, '2019-05-30 22:33:16', '2019-05-30 22:33:16', NULL),
+(13, 'asd', 'asd', '["1.png"]', 0.00, '0.00', 1, 1, '2019-05-30 22:34:07', '2019-05-30 22:34:07', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subjective_question_save`
 --
 
@@ -3128,7 +3171,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `confirmation_code`, `confirmed`, `is_term_accept`, `remember_token`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'chirag', 'khatri', 'sadmin-actualise@yopmail.com', '$2y$10$iQRk4W8HYx95ryOpW39hFegtB32esfZEjpyJkwxvKvjFO5zWbCJp2', 1, 'ffcfa3d58b37f80b150c90e7373a2841', 1, 0, 'SPMNS9OJvVTQwnnhyzqWNUN4Hvfbaj5uAOGOeSKwo2tMMxnlAzRgceF2KbQY', 1, 1, '2018-09-05 03:10:44', '2019-05-22 21:26:09', NULL),
+(1, 'chirag', 'khatri', 'admin@yopmail.com', '$2y$10$iQRk4W8HYx95ryOpW39hFegtB32esfZEjpyJkwxvKvjFO5zWbCJp2', 1, 'ffcfa3d58b37f80b150c90e7373a2841', 1, 0, '4RdD0gajxW7ZKIkDfKGRgKdeU7mfHQxCNUqfj4G93Oa4Qk46H6UrcVU7ZQTq', 1, 1, '2018-09-05 03:10:44', '2019-05-22 21:26:09', NULL),
 (2, 'Admin', 'Actualise', 'admin-actualise@yopmail.com', '$2y$10$1H8RDjuD9kd6/eJ0HroBu.Nktr4fCMB0ZcBpSmLnFMszNMsU75Om.', 1, '56e2d40e371fc7ddcc5491c8e166810e', 1, 0, 'lTagSscWGYU4iAWwuiRBG268C8hbYdZURPRLkeXBxFLo6BvopRAPdT8FSCVA', 1, NULL, '2018-09-05 03:10:44', '2018-09-05 03:10:44', NULL),
 (3, 'Subadmin', 'Actualise', 'subadmin-actualise@yopmail.com', '$2y$10$wCNQOQK86TS0buTLOBRmHeBdilNbZJ3FEG6EwQol7WttrY5VTVhKa', 1, '5ccc6cae0af816dc99c34c9e1376f56f', 1, 0, NULL, 1, NULL, '2018-09-05 03:10:44', '2018-10-11 01:09:42', NULL),
 (4, 'Jane', 'Doe', 'jane.doe@yopmail.com', '$2y$10$/ISkt7gMxbfJe7LgMlf0Vei40I55PgBgpL9ugCuLgjFaXPf835.gq', 0, NULL, 1, 0, 'ktSZHxUiq947TCjdWrRloy6eh8kd0pjICjT9aFhbNP6ypN4IDvLx2rdBu9Ih', 1, NULL, '2018-09-05 08:05:23', '2018-10-17 02:50:30', NULL),
@@ -3461,6 +3504,13 @@ ALTER TABLE `social_logins`
   ADD KEY `social_logins_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `stone_collection`
+--
+ALTER TABLE `stone_collection`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `knowledge_bases_created_by_index` (`created_by`);
+
+--
 -- Indexes for table `subjective_question_save`
 --
 ALTER TABLE `subjective_question_save`
@@ -3617,7 +3667,7 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 --
 -- AUTO_INCREMENT for table `pages`
 --
@@ -3698,6 +3748,11 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `social_logins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `stone_collection`
+--
+ALTER TABLE `stone_collection`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `subjective_question_save`
 --

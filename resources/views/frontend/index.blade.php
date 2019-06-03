@@ -9,13 +9,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/home-slider.jpg" alt="First slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/home-slider.jpg') }}" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/home-slider.jpg" alt="Second slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/home-slider.jpg') }}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/home-slider.jpg" alt="Third slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/home-slider.jpg') }}" alt="Third slide">
     </div>
 
   </div>
@@ -43,7 +43,7 @@
   <button class="btn btn-secondary">Know more</button>
         </div>
         <div class="col-md-6 text-center">
-            <img src="http://127.0.0.1:8000/css/project/images/about-pic.jpg">
+            <img src="{{ asset('css/project/images/about-pic.jpg') }}">
         </div>
       </div>
 
@@ -76,47 +76,47 @@
       <ul class="app-listening">
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-1.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-1.jpg') }}" alt="">
           </span>
           Countertops</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-2.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-2.jpg') }}" alt="">
           </span>
           Tables</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-3.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-3.jpg') }}" alt="">
           </span>
           Interior Walls</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-4.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-4.jpg') }}" alt="">
           </span>
           Facades</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-5.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-5.jpg') }}" alt="">
           </span>
           Interior Floors</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-6.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-6.jpg') }}" alt="">
           </span>
           Exterior Floors</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-7.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-7.jpg') }}" alt="">
           </span>
           Staircases</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-8.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-8.jpg') }}" alt="">
           </span>
           Bathroom Accessories</a></li>
         <li><a>
           <span class="icon-block">
-            <img src="http://127.0.0.1:8000/css/project/images/app-icon-9.jpg" alt="">
+            <img src="{{ asset('css/project/images/app-icon-9.jpg') }}" alt="">
           </span>
           Fire Places</a></li>
       </ul>
@@ -131,7 +131,7 @@
       <div class="row">
       <div class="col blocks">
         <div class="mission-img">
-          <img src="http://127.0.0.1:8000/css/project/images/mission-statement-icon.png">
+          <img src="{{ asset('css/project/images/mission-statement-icon.png') }}">
         </div>
 
         <h3>Mission Statement</h3>
@@ -145,7 +145,7 @@
       </div>
       <div class="col blocks">
         <div class="mission-img">
-          <img src="http://127.0.0.1:8000/css/project/images/values-icon.png">
+          <img src="{{ asset('css/project/images/values-icon.png') }}">
         </div>
         <h3>Mission Statement</h3>
         <p>
@@ -158,7 +158,7 @@
       </div>
       <div class="col blocks">
         <div class="mission-img">
-          <img src="http://127.0.0.1:8000/css/project/images/vision-icon.png">
+          <img src="{{ asset('css/project/images/vision-icon.png') }}">
         </div>
         <h3>Mission Statement</h3>
         <p>
@@ -189,35 +189,35 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block" src="http://127.0.0.1:8000/css/project/images/client-1.jpg" alt="First slide">
+            <img class="d-block" src="{{ asset('css/project/images/client-1.jpg') }}" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <h5>Ethan, USA</h5>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block" src="http://127.0.0.1:8000/css/project/images/client-1.jpg" alt="First slide">
+            <img class="d-block" src="{{ asset('css/project/images/client-1.jpg') }}" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <h5>Ethan, USA</h5>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block" src="http://127.0.0.1:8000/css/project/images/client-1.jpg" alt="First slide">
+            <img class="d-block" src="{{ asset('css/project/images/client-1.jpg') }}" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <h5>Ethan, USA</h5>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block" src="http://127.0.0.1:8000/css/project/images/client-1.jpg" alt="First slide">
+            <img class="d-block" src="{{ asset('css/project/images/client-1.jpg') }}" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <h5>Ethan, USA</h5>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block" src="http://127.0.0.1:8000/css/project/images/client-1.jpg" alt="First slide">
+            <img class="d-block" src="{{ asset('css/project/images/client-1.jpg') }}" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <h5>Ethan, USA</h5>

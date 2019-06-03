@@ -39,7 +39,7 @@
                     </li>
                     <li>
                       <i class="fas fa-chevron-right"></i>
-                      <span class="label"> find shop on the map <img src="http://127.0.0.1:8000/css/project/images/location.png" alt="location"></span>
+                      <span class="label"> find shop on the map <img src="{{ asset('css/project/images/location.png') }}" alt="location"></span>
 
                     </li>
                   </ul>
@@ -75,7 +75,7 @@
                     </li>
                     <li>
                       <i class="fas fa-chevron-right"></i>
-                      <span class="label"> find shop on the map <img src="http://127.0.0.1:8000/css/project/images/location1.png" alt="location"></span>
+                      <span class="label"> find shop on the map <img src="{{ asset('css/project/images/location1.png') }}" alt="location"></span>
 
                     </li>
                   </ul>
