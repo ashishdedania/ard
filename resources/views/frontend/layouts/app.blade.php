@@ -18,7 +18,9 @@
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/all.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/style.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/responsive.css') }}" />
-        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
      
 
         @yield('meta')
@@ -59,9 +61,7 @@
         {!! Html::script('js/select2/select2.js') !!} -->
 
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
+        
 
 
 
