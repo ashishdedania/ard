@@ -26,7 +26,6 @@
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "^3.0",
         "muhamadrezaar/highcharts": "dev-master",
-        "spatie/laravel-cors": "^1.2",
         "tymon/jwt-auth": "1.0.0-rc.2",
         "unisharp/laravel-filemanager": "~1.8",
         "yajra/laravel-datatables-oracle": "~8.0",

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+﻿@extends('frontend.layouts.app')
 
 @section('content')
 
@@ -11,13 +11,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/collection-slider-1.jpg" alt="First slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/collection-slider-1.jpg" alt="Second slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="http://127.0.0.1:8000/css/project/images/collection-slider-1.jpg" alt="Third slide">
+      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="Third slide">
     </div>
 
   </div>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="col-lg-7 text-center">
-            <img src="http://127.0.0.1:8000/css/project/images/product-front-view.png" alt="">
+            <img src="{{ asset('css/project/images/product-front-view.png') }}" alt="">
         </div>
     </div>
 
