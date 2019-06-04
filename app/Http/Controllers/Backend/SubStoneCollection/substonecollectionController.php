@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Backend\StoneCollection;
+namespace App\Http\Controllers\Backend\SubStoneCollection;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
 use Illuminate\Support\Facades\Storage;
-use App\Models\StoneCollection\StoneCollection;
-use App\Repositories\Backend\StoneCollection\StoneCollectionRepository;
+use App\Models\SubStoneCollection\SubStoneCollection;
+use App\Repositories\Backend\SubStoneCollection\SubStoneCollectionRepository;
 use Illuminate\Http\Request;
-
+use DB;
 
 
 /**
  * StonecollectionController
  */
 
-class StonecollectionController extends Controller {
+class SubStonecollectionController extends Controller {
 
 	/**
 	 * variable to store the repository object
@@ -29,7 +29,7 @@ class StonecollectionController extends Controller {
 	 * contructor to initialize repository object
 	 * @param StoneCollectionRepository $repository;
 	 */
-	public function __construct(StoneCollectionRepository $repository) {
+	public function __construct(SubStoneCollectionRepository $repository) {
 		$this->repository       = $repository;
 		
 	}
@@ -42,7 +42,7 @@ class StonecollectionController extends Controller {
 	 */
 	public function index(Request $request) {
 		
-		return new ViewResponse('backend.stonecollection.index');
+		return new ViewResponse('backend.substonecollection.index');
 	}
 
 	/**
@@ -52,11 +52,8 @@ class StonecollectionController extends Controller {
 	 * @return \App\Http\Responses\Backend\KnowledgeBase\CreateResponse
 	 */
 	public function create() {
-
-		
-
-        
-		return view('backend.stonecollection.create');
+		$collections = DB::table('stone_collection')->pluck('title', 'id');
+		return view('backend.substonecollection.create',compact('collections'));
 	}
 
 	/**
@@ -71,16 +68,12 @@ class StonecollectionController extends Controller {
 			'title'       => 'required',
 			'description' => 'required',
 			'image1' => 'required',
-			'image2' => 'required',
-			'image3' => 'required',
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required' => 'The Description field is required.',
 			'image1.required' => 'The Image-1 field is required.',
-			'image2.required' => 'The Image-2 field is required.',
-			'image3.required' => 'The Image-3 field is required.',
 			
 		];
 		$this->validate($request, $rules, $message);
@@ -91,7 +84,7 @@ class StonecollectionController extends Controller {
 		//Create the model using repository create method
 		$this->repository->create($request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection created']);
+		return new RedirectResponse(route('admin.substonecollection.index'), ['flash_success' => 'Sub Stone Collection created']);
 	}
 
 	/**
@@ -102,8 +95,9 @@ class StonecollectionController extends Controller {
 	 * @return \App\Http\Responses\Backend\KnowledgeBase\EditResponse
 	 */
 	public function edit($id) {
-		$stonecollection = StoneCollection::where('id', $id)->first();
-		return view('backend.stonecollection.edit', compact('stonecollection'));
+		$stonecollection = SubStoneCollection::where('id', $id)->first();
+		$collections = DB::table('stone_collection')->pluck('title', 'id');
+		return view('backend.substonecollection.edit', ['stonecollection' => $stonecollection,'collections' => $collections]);
 	}
 
 	/**
@@ -130,7 +124,7 @@ class StonecollectionController extends Controller {
 		//Update the model using repository update method
 		$this->repository->update($id, $request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection updated']);
+		return new RedirectResponse(route('admin.substonecollection.index'), ['flash_success' => 'Sub Stone Collection updated']);
 	}
 
 	/**
@@ -144,6 +138,6 @@ class StonecollectionController extends Controller {
 		//Calling the delete method on repository
 		$this->repository->delete($id);
 		//returning with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('Stone Collection Deleted')]);
+		return new RedirectResponse(route('admin.substonecollection.index'), ['flash_success' => trans('Sub Stone Collection Deleted')]);
 	}
 }

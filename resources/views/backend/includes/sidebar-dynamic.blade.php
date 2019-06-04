@@ -33,10 +33,31 @@
                 </a>
             </li>
 
-            <li class="{{ active_class(Active::checkUriPattern('admin/pages*')) }}">
+            <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
+                <a href="{{ route('admin.collectionimage.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Stone Collection Page Image</span>
+                </a>
+            </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/stonecollection*')) }}">
                 <a href="{{ route('admin.stonecollection.index') }}">
                     <i class="fa fa-file-text"></i>
                     <span>Stone Collection</span>
+                </a>
+            </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/substonecollection*')) }}">
+                <a href="{{ route('admin.substonecollection.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Sub Stone Collection</span>
+                </a>
+            </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/stoneproduct*')) }}">
+                <a href="{{ route('admin.stoneproduct.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Stone Product</span>
                 </a>
             </li>
 

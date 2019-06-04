@@ -8,6 +8,7 @@ use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use File;
+use DB;
 
 /**
  * Class KnowledgebaseRepository.
@@ -197,5 +198,71 @@ class StoneCollectionRepository extends BaseRepository {
 
 		
 	}
+
+
+	/**
+	 * For updating the respective Model in storage
+	 *
+	 * @param $id
+	 * @param  $request
+	 * @throws GeneralException
+	 * return bool
+	 */
+	public function updateimage($id, $request) {
+
+		$stonecollection = DB::table('stone_collection_image')->where('id', 1)->first();
+		
+		$input = []; 
+		
+		$image1 = $request->file('image1');
+
+		if (!empty($image1)) {
+
+			$filesNames = $this->fileUpload($image1, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image1'] = $filesNames;
+			$this->removeImage($stonecollection->image1);
+
+		}
+
+		$image2 = $request->file('image2');
+
+		if (!empty($image2)) {
+
+			$filesNames = $this->fileUpload($image2, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image2'] = $filesNames;
+			$this->removeImage($stonecollection->image2);
+
+		}
+
+		$image3 = $request->file('image3');
+
+		if (!empty($image3)) {
+
+			$filesNames = $this->fileUpload($image3, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image3'] = $filesNames;
+			$this->removeImage($stonecollection->image3);
+
+		}
+
+
+		if(count($input) == 0)
+		{
+			return true;
+
+		}
+
+		$response = DB::table('stone_collection_image')->where('id', 1)->update($input);
+
+		//update records.
+		if ($response) {
+			return true;
+		}
+
+		throw new GeneralException(trans('error in stone collection image update'));
+	}
+
 	
 }
