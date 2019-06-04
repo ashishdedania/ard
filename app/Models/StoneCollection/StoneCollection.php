@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StoneCollection extends Model {
 
 	use ModelTrait,
-    SoftDeletes,
-	StoneCollectionAttribute,
+    StoneCollectionAttribute,
 	StoneCollectionRelationship {
 		// StoneCollectionAttribute::getEditButtonAttribute insteadof ModelTrait;
 	}
@@ -49,8 +48,7 @@ class StoneCollection extends Model {
 	protected $dates = [
 		'created_at',
 		'updated_at',
-        'deleted_at'
-	];
+    ];
 
 	/**
 	 * Guarded fields of model

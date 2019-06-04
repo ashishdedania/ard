@@ -3,24 +3,14 @@
 namespace App\Http\Controllers\Backend\StoneCollection;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\KnowledgeBase\CreateKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\DeleteKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\EditKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\ManageKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\SendKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\StoreKnowledgebaseRequest;
-use App\Http\Requests\Backend\KnowledgeBase\UpdateKnowledgebaseRequest;
-use App\Http\Responses\Backend\KnowledgeBase\CreateResponse;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
-use App\Models\Clientknowledgebase\Clientknowledgebase;
-use App\Models\Client\Client;
-use App\Models\ClinicalService\Clinicalservice;
-use App\Models\KnowledgeBase\Knowledgebase;
-use App\Models\PsycologicalConditionType\Psycologicalconditiontype;
-use App\Repositories\Backend\Client\ClientRepository;
-use App\Repositories\Backend\StoneCollection\StoneCollectionRepository;
 use Illuminate\Support\Facades\Storage;
+use App\Models\StoneCollection\StoneCollection;
+use App\Repositories\Backend\StoneCollection\StoneCollectionRepository;
+use Illuminate\Http\Request;
+
+
 
 /**
  * StonecollectionController
@@ -30,27 +20,27 @@ class StonecollectionController extends Controller {
 
 	/**
 	 * variable to store the repository object
-	 * @var KnowledgebaseRepository
+	 * @var StoneCollectionRepository
 	 */
 	protected $repository;
-	protected $clientRepository;
+
 
 	/**
 	 * contructor to initialize repository object
-	 * @param KnowledgebaseRepository $repository;
+	 * @param StoneCollectionRepository $repository;
 	 */
-	public function __construct(StoneCollectionRepository $repository, ClientRepository $clientRepository) {
+	public function __construct(StoneCollectionRepository $repository) {
 		$this->repository       = $repository;
-		$this->clientRepository = $clientRepository;
+		
 	}
 
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  App\Http\Requests\Backend\KnowledgeBase\ManageKnowledgebaseRequest  $request
+	 * @param   Request  $request
 	 * @return \App\Http\Responses\ViewResponse
 	 */
-	public function index(ManageKnowledgebaseRequest $request) {
+	public function index(Request $request) {
 		
 		return new ViewResponse('backend.stonecollection.index');
 	}
@@ -58,88 +48,102 @@ class StonecollectionController extends Controller {
 	/**
 	 * Show the form for creating a new resource.
 	 *
-	 * @param  CreateKnowledgebaseRequestNamespace  $request
+	 * @param  Request  $request
 	 * @return \App\Http\Responses\Backend\KnowledgeBase\CreateResponse
 	 */
-	public function create(CreateKnowledgebaseRequest $request) {
+	public function create() {
+
+		
+
+        
 		return view('backend.stonecollection.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  StoreKnowledgebaseRequestNamespace  $request
+	 * @param   Request  $request
 	 * @return \App\Http\Responses\RedirectResponse
 	 */
-	public function store(StoreKnowledgebaseRequest $request) {
+	public function store(Request $request) {
+
+		$rules = [
+			'title'       => 'required',
+			'description' => 'required',
+			'image1' => 'required',
+			'image2' => 'required',
+			'image3' => 'required',
+			
+		];
+		$message = [
+			'title.required'       => 'The Title filed is required.',
+			'description.required' => 'The Description field is required.',
+			'image1.required' => 'The Image-1 field is required.',
+			'image2.required' => 'The Image-2 field is required.',
+			'image3.required' => 'The Image-3 field is required.',
+			
+		];
+		$this->validate($request, $rules, $message);
+		
+
 		//Input received from the request
 		$input = $request->except(['_token']);
 		//Create the model using repository create method
-		$this->repository->create($input);
+		$this->repository->create($request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('alerts.backend.stonecollection.created')]);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection created']);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  App\Models\KnowledgeBase\Knowledgebase  $knowledgebase
-	 * @param  EditKnowledgebaseRequestNamespace  $request
+	 * @param  $id
+	 * @param   Request  $request
 	 * @return \App\Http\Responses\Backend\KnowledgeBase\EditResponse
 	 */
-	public function edit(Knowledgebase $knowledgebase, EditKnowledgebaseRequest $request) {
-		return view('backend.stonecollection.edit', compact('knowledgebase'));
+	public function edit($id) {
+		$stonecollection = StoneCollection::where('id', $id)->first();
+		return view('backend.stonecollection.edit', compact('stonecollection'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  UpdateKnowledgebaseRequestNamespace  $request
-	 * @param  App\Models\KnowledgeBase\Knowledgebase  $knowledgebase
+	 * @param  $id
+	 * @param  $request
 	 * @return \App\Http\Responses\RedirectResponse
 	 */
-	public function update(UpdateKnowledgebaseRequest $request, Knowledgebase $knowledgebase) {
+	public function update($id,Request $request) {
 		//Input received from the request
-		$input = $request->except(['_token']);
-		if ($knowledgebase['file'] != "[]") {
-			$rules = [
-				'title'       => 'required',
-				'description' => 'required',
-			];
-			$message = [
-				'title.required'       => 'The Title filed is required.',
-				'description.required' => 'The Description field is required.',
-			];
-		} else {
-			$rules = [
-				'title'       => 'required',
-				'description' => 'required',
-				'file.0'      => 'required',
-			];
-			$message = [
-				'title.required'       => 'The Title filed is required.',
-				'description.required' => 'The Description field is required.',
-				'file.0.required'      => 'The Upload field is required.',
-			];
-		}
+		
+		$rules = [
+			'title'       => 'required',
+			'description' => 'required',
+			
+		];
+		$message = [
+			'title.required'       => 'The Title filed is required.',
+			'description.required' => 'The Description field is required.',
+			
+		];
 		$this->validate($request, $rules, $message);
 		//Update the model using repository update method
-		$this->repository->update($knowledgebase, $input);
+		$this->repository->update($id, $request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('alerts.backend.stonecollection.updated')]);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection updated']);
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  DeleteKnowledgebaseRequestNamespace  $request
-	 * @param  App\Models\KnowledgeBase\Knowledgebase  $knowledgebase
+	 * @param  $id
+	 * @param  $request
 	 * @return \App\Http\Responses\RedirectResponse
 	 */
-	public function destroy(Knowledgebase $knowledgebase, DeleteKnowledgebaseRequest $request) {
+	public function destroy($id, Request $request) {
 		//Calling the delete method on repository
-		$this->repository->delete($knowledgebase);
+		$this->repository->delete($id);
 		//returning with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('alerts.backend.stonecollection.deleted')]);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('Stone Collection Deleted')]);
 	}
 }

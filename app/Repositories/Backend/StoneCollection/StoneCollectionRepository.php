@@ -3,12 +3,12 @@
 namespace App\Repositories\Backend\StoneCollection;
 
 use App\Exceptions\GeneralException;
-use App\Models\Clientknowledgebase\Clientknowledgebase;
-use App\Models\Client\Client;
 use App\Models\StoneCollection\StoneCollection;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use File;
+use DB;
 
 /**
  * Class KnowledgebaseRepository.
@@ -33,10 +33,8 @@ class StoneCollectionRepository extends BaseRepository {
 				config('module.stonecollection.table').'.id',
 				config('module.stonecollection.table').'.title',
 				config('module.stonecollection.table').'.description',
-				config('module.stonecollection.table').'.file',
-				config('module.stonecollection.table').'.rating',
-				config('module.stonecollection.table').'.average_rating',
-				config('module.stonecollection.table').'.status',
+				config('module.stonecollection.table').'.image1',
+				
 				config('module.stonecollection.table').'.created_at',
 				config('module.stonecollection.table').'.created_by',
 				config('module.stonecollection.table').'.updated_at',
@@ -44,18 +42,7 @@ class StoneCollectionRepository extends BaseRepository {
 			]);
 	}
 
-	/*public function getForDataTable()
-    {
-        return $this->query()
-            ->select([
-                config('module.email_templates.table').'.id',
-                config('module.email_templates.table').'.title',
-                config('module.email_templates.table').'.subject',
-                config('module.email_templates.table').'.status',
-                config('module.email_templates.table').'.created_at',
-                config('module.email_templates.table').'.updated_at',
-            ]);
-    }*/
+	
 
 	/**
 	 * For Creating the respective model in storage
@@ -64,159 +51,229 @@ class StoneCollectionRepository extends BaseRepository {
 	 * @throws GeneralException
 	 * @return bool
 	 */
-	public function create(array $input) {
+	public function create($request) {
 
-		$knowledgebases              = self::MODEL;
-		$knowledgebases              = new $knowledgebases();
-		$knowledgebases->title       = $input['title'];
-		$knowledgebases->description = $input['description'];
-		$knowledgebases->status      = isset($input['status'])?$input['status']:0;
-		$knowledgebases->created_by  = access()->user()->id;
-		if ($knowledgebases->save()) {
-			$knowledgebasesId = $knowledgebases->id;
-			if (!empty($input['file'])) {
-				$filesNames = $this->uploadFiles($input['file'], $knowledgebasesId);
+		
+
+		$input = $request->except(['_token']);
+		$image1 = $request->file('image1');
+		$image2 = $request->file('image2');
+		$image3 = $request->file('image3');
+
+		$stonecollection              = self::MODEL;
+		$stonecollection              = new $stonecollection();
+		$stonecollection->title       = $input['title'];
+		$stonecollection->description = $input['description'];
+		$stonecollection->created_by  = access()->user()->id;
+		
+		if ($stonecollection->save()) {
+			$stonecollectionId = $stonecollection->id;
+			
+
+
+			if (!empty($image1)) {
+				$filesNames = $this->fileUpload($image1, $stonecollectionId);
 				//update filepath from datatabe.
-				StoneCollection::where('id', $knowledgebasesId)->update(['file' => $filesNames]);
+				StoneCollection::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
 			}
+
+			if (!empty($image2)) {
+				$filesNames = $this->fileUpload($image2, $stonecollectionId);
+				//update filepath from datatabe.
+				StoneCollection::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+			}
+
+			if (!empty($image3)) {
+				$filesNames = $this->fileUpload($image3, $stonecollectionId);
+				//update filepath from datatabe.
+				StoneCollection::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+			}
+
+
 		}
 		return true;
 		// throw new GeneralException(trans('exceptions.backend.knowledgebases.create_error'));
 	}
 
-	/**
-	 *
-	 * upload files.
-	 * @param $filepath,$fileObj.
-	 */
-	public function uploadFiles($fileObj, $knowledgebasesId) {
 
-		foreach ($fileObj as $key => $fileVal) {
-			$filesName     = $fileVal->getClientOriginalName();
-			$existFileName = $fileVal->getClientOriginalName();
-			$path          = 'public/Knowledgebase/'.$knowledgebasesId.'/'.$filesName;
-			$existPath     = 'public/Knowledgebase/'.$knowledgebasesId.'/'.$existFileName;
-			$move          = Storage::disk('local')->put($path, \File::get($fileVal));
-			$filesNames[]  = $filesName;
-		}
-		return json_encode($filesNames);
-	}
+
+	public function fileUpload($image,$id)
+    {
+               
+        $input['imagename'] = mt_rand(1,99999).time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $input['imagename']);
+
+
+        return $input['imagename'];
+    }
+
 
 	/**
 	 * For updating the respective Model in storage
 	 *
-	 * @param Knowledgebase $knowledgebase
-	 * @param  $input
+	 * @param $id
+	 * @param  $request
 	 * @throws GeneralException
 	 * return bool
 	 */
-	public function update(Knowledgebase $knowledgebase, array $input) {
+	public function update($id, $request) {
 
-		//upload files.
-		$oldFiles = json_decode($knowledgebase['file'], true);
+		$stonecollection = StoneCollection::where('id', $id)->first();
 
-		if (!empty($input['file'])) {
-			$uploadFile    = $this->uploadFiles($input['file'], $knowledgebase['id']);
-			$uploadedFiles = json_decode($uploadFile);
-			$mergeFiles    = (!empty($oldFiles))?json_encode(array_merge($oldFiles, $uploadedFiles), true):json_encode($uploadedFiles, true);
-			$input['file'] = $mergeFiles;
+		$input = $request->except(['_token']); 
+		$image1 = $request->file('image1');
+
+		if (!empty($image1)) {
+
+			$filesNames = $this->fileUpload($image1, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image1'] = $filesNames;
+			$this->removeImage($stonecollection->image1);
+
 		}
-		$input['status'] = isset($input['status'])?$input['status']:0;
+
+		$image2 = $request->file('image2');
+
+		if (!empty($image2)) {
+
+			$filesNames = $this->fileUpload($image2, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image2'] = $filesNames;
+			$this->removeImage($stonecollection->image2);
+
+		}
+
+		$image3 = $request->file('image3');
+
+		if (!empty($image3)) {
+
+			$filesNames = $this->fileUpload($image3, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image3'] = $filesNames;
+			$this->removeImage($stonecollection->image3);
+
+		}
 
 		//update records.
-		if ($knowledgebase->update($input)) {
+		if ($stonecollection->update($input)) {
 			return true;
 		}
 
-		throw new GeneralException(trans('exceptions.backend.knowledgebases.update_error'));
+		throw new GeneralException(trans('error in stone collection update'));
 	}
 
 	/**
 	 * For deleting the respective model from storage
 	 *
-	 * @param Knowledgebase $knowledgebase
+	 * @param $id
 	 * @throws GeneralException
 	 * @return bool
 	 */
-	public function delete(StoneCollection $knowledgebase) { dd($knowledgebase);
-		if ($knowledgebase->delete()) {
+	public function delete($id) {
+		$stonecollection = StoneCollection::where('id', $id)->first();
+		$this->removeImage($stonecollection->image1);
+		$this->removeImage($stonecollection->image2);
+		$this->removeImage($stonecollection->image3);
+		if ($stonecollection->delete()) {
 			return true;
 		}
 
-		throw new GeneralException(trans('exceptions.backend.knowledgebases.delete_error'));
+		throw new GeneralException(trans('error in stone collection delete'));
 	}
 
-	/**
-	 *
-	 * Send Knowlegebase to Customer.
-	 * @param $input.
-	 * @param $id.
-	 * @return $result.
-	 */
-	public function sendKnowledgeBase($input, $id) {
+	public function getDetail($id)
+	{
+		return StoneCollection::where('id', $id)->first();
+	}
 
-		$clientDetails = Client::with('users', 'getknowledgeBase', 'getknowledgeBase.knowledgebase')
-			->whereIn(config('module.clients.table').'.id', $input['client'])
-			->get()	->toArray();
-		$knowledgebase = Knowledgebase::where('id', $id)->first();
-		$knowledgeData = [];
-		foreach ($clientDetails as $key => $clientData) {
-			$clientData['knowledgebase_title'] = $knowledgebase['title'];
-			$resourceLink                      = \URL::to('/admin/knowledgebases');
-			$clientData['link']                = '<a href='.$resourceLink.'>Click here</a>';
-			//Exist check for resend knowledgebase.
-			$checkExist = Clientknowledgebase::where('client_id', $clientData['id'])->where('knowledge_bases_id', '=', $id)->exists();
+	
+	public function removeImage($image)
+	{
 
-			if ($checkExist == true) {
-				$options = [
-					'data'                => $clientData,
-					'email_template_type' => 10,
-				];
-				$mailSend = createNotification('', $id, 10, $options);
-			}
-			if ($checkExist == false) {
-				//send emails to customer for send knowledgebase.
-				$options = [
-					'data'                => $clientData,
-					'email_template_type' => 7,
-				];
-				$mailSend      = createNotification('', $id, 7, $options);
-				$knowledgeData = [
-					'client_id'          => $clientData['id'],
-					'knowledge_bases_id' => $id
-				];
-				$saveClientKnowledge = \DB::table(config('module.client_knowledge.table'))->insert($knowledgeData);
-			}
+		$image_path = public_path("/images/".$image);
+		if(File::exists($image_path)) {
+		    File::delete($image_path);
 		}
-		return true;
+
+		
 	}
+
 
 	/**
+	 * For updating the respective Model in storage
 	 *
-	 * Front End Client Knowledgebase.
-	 * @return $result.
+	 * @param $id
+	 * @param  $request
+	 * @throws GeneralException
+	 * return bool
 	 */
-	public function getClientKnowledgeBase() {
-		$clients          = Client::where('user_id', access()->user()->id)->first();
-		$getknowledgebase = Knowledgebase::
-		leftjoin(config('module.client_knowledge.table'), config('module.knowledgebases.table').'.id', "=", config('module.client_knowledge.table').'.knowledge_bases_id')
-			->leftjoin("clients", config('module.client_knowledge.table').'.client_id', "=", "clients.id")
-			->where("clients.id", "=", $clients['id'])
-			->where(config('module.knowledgebases.table').'.status', 1)
-			->select(
-			config('module.knowledgebases.table').'.id as knowledgebaseId',
-			config('module.knowledgebases.table').'.title',
-			config('module.knowledgebases.table').'.description',
-			config('module.knowledgebases.table').'.file',
-			config('module.knowledgebases.table').'.average_rating',
-			config('module.knowledgebases.table').'.status',
-			config('module.client_knowledge.table').'.id as client_knowledge_id',
-			config('module.client_knowledge.table').'.client_id',
-			config('module.client_knowledge.table').'.ratings'
-		)
-			->groupBy(config('module.knowledgebases.table').'.id')
-			->paginate(8);
-		return $getknowledgebase;
+	public function updateimage($id, $request) {
+
+		$stonecollection = DB::table('stone_collection_image')->where('id', 1)->first();
+		
+		$input = []; 
+		
+		$image1 = $request->file('image1');
+
+		if (!empty($image1)) {
+
+			$filesNames = $this->fileUpload($image1, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image1'] = $filesNames;
+			$this->removeImage($stonecollection->image1);
+
+		}
+
+		$image2 = $request->file('image2');
+
+		if (!empty($image2)) {
+
+			$filesNames = $this->fileUpload($image2, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image2'] = $filesNames;
+			$this->removeImage($stonecollection->image2);
+
+		}
+
+		$image3 = $request->file('image3');
+
+		if (!empty($image3)) {
+
+			$filesNames = $this->fileUpload($image3, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image3'] = $filesNames;
+			$this->removeImage($stonecollection->image3);
+
+		}
+
+
+		if(count($input) == 0)
+		{
+			return true;
+
+		}
+
+		$response = DB::table('stone_collection_image')->where('id', 1)->update($input);
+
+		//update records.
+		if ($response) {
+			return true;
+		}
+
+		throw new GeneralException(trans('error in stone collection image update'));
 	}
 
+	public function getData()
+	{
+		
+
+		return $stonecollections = StoneCollection::all();
+
+		
+
+		
+	}
+
+	
 }

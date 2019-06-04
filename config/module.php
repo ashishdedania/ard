@@ -59,6 +59,12 @@ return [
 	"stonecollection" => [
 	"table" => "stone_collection",
 	],
+	"substonecollection" => [
+	"table" => "sub_stone_collection",
+	],
+	"stoneproduct" => [
+	"table" => "stone_product",
+	],
 	"client_knowledge" => [
 	"table" => "client_knowledge",
 	],

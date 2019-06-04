@@ -29,8 +29,7 @@
                     <thead class="transparent-bg">
                         <tr>
                             <th>
-                                {!! Form::text('first_name', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.pages.table.title')]) !!}
-                                    <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
+                                
                             </th>
                             <th></th>
                             <th></th>
