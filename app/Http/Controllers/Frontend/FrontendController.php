@@ -21,7 +21,7 @@ class FrontendController extends Controller
     public function index()
     { 
       
-        $result = DB::table('pages')->where('id', 7)->first();
+        $result = DB::table('pages')->where('id', 12)->first();
 
         return view('frontend.index', ['html'=>$result->description]);
     }
