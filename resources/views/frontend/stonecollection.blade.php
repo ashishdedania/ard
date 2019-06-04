@@ -43,6 +43,7 @@
 
             <?php 
             $i=0;
+            $imgData = [];
             foreach($collectiodatas as $collectiodata)
             {
 
@@ -99,7 +100,9 @@
                          break;
 
                         }
-                        echo '<a href="#" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                        echo '<a class="list collection-list" rel="'.$product->id.'" href="JavaScript:void(0);" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+
+                        $imgData[] = ['id'=>$product->id,'image'=>$product->image1];
                         $j++;
                       }
 
@@ -125,12 +128,58 @@
           </div>
         </div>
         <div class="col-lg-7 text-center">
-            <img src="{{ asset('css/project/images/product-front-view.png') }}" alt="">
+            <img id='ImgCollection' src="{{ asset('css/project/images/product-front-view.png') }}" alt="">
         </div>
+        
     </div>
 
   </div>
 </section>
+
+<script type="text/javascript">
+$(document).ready(function () {  
+$(".collection-list").click(function(){
+     var getId = $(this).attr("rel");
+     var data = <?php echo json_encode($imgData) ?>;
+     var path = "<?php echo asset('images/') ?>";
+
+     
+     var getImg = "";
+
+
+     for (var i = 0; i < data.length; i++){
+      // look for the entry with a matching `code` value
+      if (data[i].id == getId){
+
+        getImg = data[i].image;
+         // we found it
+        // obj[i].name is the matched result
+      }
+    }
+
+     //alert(getImg); //// It will show the id of the clicked link
+ 
+     //// Here you have to get img path according to ID
+
+      if(getImg !="")
+      {
+              $("#ImgCollection").attr("src", path+'/'+getImg);
+       }
+
+});
+
+
+setTimeout(function(){
+  var elements = document.getElementsByClassName('collection-list');
+
+        $(elements[0]).click();
+
+
+    },1);
+
+ });
+
+</script>
     
 @endsection
 
