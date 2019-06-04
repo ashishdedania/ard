@@ -11,13 +11,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="First slide">
+      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image1}}" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="Second slide">
+      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image2}}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('css/project/images/collection-slider-1.jpg') }}" alt="Third slide">
+      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image3}}" alt="Third slide">
     </div>
 
   </div>
@@ -40,87 +40,88 @@
     <div class="row">
         <div class="col-lg-5">
           <div class="panel-group collection-sidemenu mt-5" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading active" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Gemstone Collection <i class="fas fa-chevron-right"></i>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse in collapse show" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body clearfix">
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>AMETHYST</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE AGATE</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>White QUARTZ</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLACK PETRIFIED WOODSTONE</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>Smoky QUARTZ</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE TIGERS EYE</a>
-                <a href="#" class="list"><i class="fas fa-chevron-right"></i>Rose QUARTZ</a>
 
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Natural Stone Collection <i class="fas fa-chevron-right"></i>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body clearfix">
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>AMETHYST</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE AGATE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>White QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLACK PETRIFIED WOODSTONE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Smoky QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE TIGERS EYE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Rose QUARTZ</a>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                    Mashrabia Collection <i class="fas fa-chevron-right"></i>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body clearfix">
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>AMETHYST</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE AGATE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>White QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLACK PETRIFIED WOODSTONE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Smoky QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE TIGERS EYE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Rose QUARTZ</a>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Mashrabia Collection <i class="fas fa-chevron-right"></i>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body clearfix">
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>AMETHYST</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE AGATE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>White QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLACK PETRIFIED WOODSTONE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Smoky QUARTZ</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>BLUE TIGERS EYE</a>
-                  <a href="#" class="list"><i class="fas fa-chevron-right"></i>Rose QUARTZ</a>
-                </div>
-              </div>
-            </div>
+            <?php 
+            $i=0;
+            foreach($collectiodatas as $collectiodata)
+            {
+
+              $activeClass = '';
+              $showClass = '';
+              $inClass='';
+              $ariaexpanded = 'false';
+              $collapsed = 'collapsed';
+
+              if($i == 0)
+              {
+                $activeClass = 'active';
+                $showClass = 'show';
+                $inClass = 'in';
+                $ariaexpanded = 'true';
+                $collapsed = '';
+
+              }
+              echo '<div class="panel panel-default">';
+                echo '<div class="panel-heading '.$activeClass.'" role="tab" id="heading'.$collectiodata->id.'">';
+                  echo '<h4 class="panel-title">';
+                    echo '<a class="'.$collapsed.'" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$collectiodata->id.'" aria-expanded="'.$ariaexpanded.'" aria-controls="collapse'.$collectiodata->id.'">
+                      '.$collectiodata->title.' <i class="fas fa-chevron-right"></i>
+                    </a>';
+                  echo '</h4>';
+                echo '</div>';
+                echo '<div id="collapse'.$collectiodata->id.'" class="panel-collapse in collapse '.$showClass.'" role="tabpanel" aria-labelledby="heading'.$collectiodata->id.'">';
+                  echo '<div class="panel-body clearfix">';
+
+                    
+
+
+                    if($collectiodata->product->count() > 0 )
+                    {
+                      $products = $collectiodata->product;
+                      
+                      foreach($products as $product)
+                      { 
+                        echo '<a href="#" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                      }
+
+                    }
+                    else
+                    {
+                      $products = $collectiodata->subcollection;
+
+                      $j=0;
+                      
+                      foreach($products as $product)
+                      { 
+                        if($j==4)
+                        {
+
+                         break;
+
+                        }
+                        echo '<a href="#" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                        $j++;
+                      }
+
+                      echo '<a href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+                    }
+
+
+                  echo '</div>';
+                echo '</div>';
+              echo '</div>';
+
+              $i++;
+              } 
+
+              ?>
+            
+
+
+
+
+            
+            
           </div>
         </div>
         <div class="col-lg-7 text-center">
@@ -132,3 +133,4 @@
 </section>
     
 @endsection
+

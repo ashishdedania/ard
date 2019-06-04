@@ -264,5 +264,16 @@ class StoneCollectionRepository extends BaseRepository {
 		throw new GeneralException(trans('error in stone collection image update'));
 	}
 
+	public function getData()
+	{
+		
+
+		return $stonecollections = StoneCollection::all();
+
+		
+
+		
+	}
+
 	
 }

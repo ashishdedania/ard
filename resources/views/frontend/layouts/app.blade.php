@@ -42,21 +42,21 @@
     <body id="page-top">
         @include('frontend.includes.header')
    
-                @include('includes.partials.messages')
+                
                 @yield('content')
             
         @include('frontend.includes.footer')
 
-
+        <div id='app'></div>
 
 
         <!-- Scripts -->
-        @yield('before-scripts')
+        <!-- @yield('before-scripts')
         {!! Html::script(mix('js/frontend.js')) !!}
         @yield('after-scripts')
-        {{ Html::script('js/jquerysession.js') }}
+        
         {{ Html::script('js/frontend/frontend.js') }}
-        {!! Html::script('js/select2/select2.js') !!}
+        {!! Html::script('js/select2/select2.js') !!} -->
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -65,12 +65,11 @@
 
 
 
-        <script type="text/javascript">
-            if("{{Route::currentRouteName()}}" !== "frontend.user.account")
-            {
-                $.session.clear();
-            }
-        </script>
+        
+
+        
+
+
         
     </body>
 </html>

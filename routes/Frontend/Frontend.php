@@ -9,7 +9,10 @@ Route::post('/get/states', 'FrontendController@getStates')->name('get.states');
 Route::post('/get/cities', 'FrontendController@getCities')->name('get.cities');
 Route::get('contact-us', 'FrontendController@contactus')->name('contact-us');
 Route::get('stone-collection', 'FrontendController@stoneCollection')->name('stone-collection');
-Route::get('stone-collection-detail', 'FrontendController@stoneCollectionDetail')->name('stone-collection-detail');
+Route::get('stone-collection-detail/{id}/sub/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collection-detail');
+
+Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
+Route::get('production', 'FrontendController@production')->name('production');
 
 /*
  * These frontend controllers require the user to be logged in
