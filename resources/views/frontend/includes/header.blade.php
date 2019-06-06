@@ -18,7 +18,7 @@
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-collection')}}">Collection</a>
           </li>
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.production') ? 'active' : '' }}">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.production')}}">Production</a>
+            <a class="nav-link js-scroll-trigger" href="{{route('frontend.production', ['id'=>1])}}">Production</a>
           </li>
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-talk') ? 'active' : '' }}">
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-talk')}}">Stone Talk</a>

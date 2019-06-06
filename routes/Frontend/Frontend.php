@@ -12,7 +12,7 @@ Route::get('stone-collection', 'FrontendController@stoneCollection')->name('ston
 Route::get('stone-collection-detail/{id}/sub/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collection-detail');
 
 Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
-Route::get('production', 'FrontendController@production')->name('production');
+Route::get('production/{id}', 'FrontendController@production')->name('production');
 
 /*
  * These frontend controllers require the user to be logged in

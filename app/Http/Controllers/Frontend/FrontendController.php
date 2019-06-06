@@ -9,6 +9,7 @@ use App\Repositories\Backend\StoneCollection\StoneCollectionRepository;
 use DB;
 use App\Models\StoneCollection\StoneCollection;
 use App\Models\SubStoneCollection\SubStoneCollection;
+use App\Models\StoneProduct\StoneProduct;
 
 /**
  * Class FrontendController.
@@ -132,8 +133,9 @@ class FrontendController extends Controller
      /**
      * @return \Illuminate\View\View
      */
-    public function production()
+    public function production($id)
     { 
-        return view('frontend.production');
+        $colection     = StoneProduct::where('id', $id)->first();
+        return view('frontend.production',['product' => $colection]);
     }
 }
