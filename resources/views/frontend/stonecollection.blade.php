@@ -82,7 +82,7 @@
                       
                       foreach($products as $product)
                       { 
-                        echo '<a href="#" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                        echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
                       }
 
                     }
@@ -106,7 +106,7 @@
                         $j++;
                       }
 
-                      echo '<a href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+                      echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
                     }
 
 
