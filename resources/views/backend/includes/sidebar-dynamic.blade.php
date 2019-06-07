@@ -74,6 +74,13 @@
                 </a>
             </li>
 
+            <li class="{{ active_class(Active::checkUriPattern('admin/indoorimages*')) }}">
+                <a href="{{ route('admin.indoorimages.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Indoor Images</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('logout')) }}">
                 <a href="{{ route('frontend.auth.logout') }}">
                     <i class="fa fa-window-close"></i>
