@@ -61,6 +61,13 @@
                 </a>
             </li>
 
+            <li class="{{ active_class(Active::checkUriPattern('admin/outdoorcollection*')) }}">
+                <a href="{{ route('admin.outdoorcollection.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Indoor/Outdoor Application</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('logout')) }}">
                 <a href="{{ route('frontend.auth.logout') }}">
                     <i class="fa fa-window-close"></i>

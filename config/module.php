@@ -59,6 +59,9 @@ return [
 	"stonecollection" => [
 	"table" => "stone_collection",
 	],
+	"outdoorcollection" => [
+	"table" => "indoor_outdoor",
+	],
 	"substonecollection" => [
 	"table" => "sub_stone_collection",
 	],
