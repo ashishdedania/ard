@@ -42,12 +42,13 @@ class IndoorImagesRepository extends BaseRepository {
 
 	public function getForDataTable() {
 		return $this->query()
+		->leftjoin('indoor_outdoor', 'indoor_outdoor.id', '=', config('module.indoorimages.table').'.collection_id')
 		            ->select([
 				config('module.indoorimages.table').'.id',
 				config('module.indoorimages.table').'.title',
 				config('module.indoorimages.table').'.description',
 				config('module.indoorimages.table').'.image1',
-				
+				'indoor_outdoor.title as category',
 				config('module.indoorimages.table').'.created_at',
 				config('module.indoorimages.table').'.created_by',
 				config('module.indoorimages.table').'.updated_at',
@@ -124,7 +125,14 @@ class IndoorImagesRepository extends BaseRepository {
 
 		$stonecollection = IndoorImages::where('id', $id)->first();
 
-		$input = $request->except(['_token']); 
+		$input = $request->except(['_token']);
+
+		$val  = $input['is_indoor'] == 1 ? $input['collection_id_1'] : $input['collection_id'];
+		unset($input['is_indoor']);
+		unset($input['collection_id_1']); 
+
+		$input['collection_id'] = $val;
+
 		$image1 = $request->file('image1');
 
 		if (!empty($image1)) {

@@ -52,8 +52,10 @@ class indoorimagesController extends Controller {
 	 * @return \App\Http\Responses\Backend\KnowledgeBase\CreateResponse
 	 */
 	public function create() {
-		$collections = DB::table('stone_collection')->pluck('title', 'id');
-		return view('backend.indoorimages.create',compact('collections'));
+		$collection1 = DB::table('indoor_outdoor')->where('is_indoor',1)->pluck('title', 'id');
+		$collections = DB::table('indoor_outdoor')->where('is_indoor',0)->pluck('title', 'id');
+		
+		return view('backend.indoorimages.create',['collections' => $collections, 'collection1'=>$collection1]);
 	}
 
 	/**
@@ -84,7 +86,7 @@ class indoorimagesController extends Controller {
 		//Create the model using repository create method
 		$this->repository->create($request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => 'Sub Stone Collection created']);
+		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => 'image created']);
 	}
 
 	/**
@@ -96,8 +98,13 @@ class indoorimagesController extends Controller {
 	 */
 	public function edit($id) {
 		$stonecollection = IndoorImages::where('id', $id)->first();
-		$collections = DB::table('stone_collection')->pluck('title', 'id');
-		return view('backend.indoorimages.edit', ['stonecollection' => $stonecollection,'collections' => $collections]);
+		
+
+$collection1 = DB::table('indoor_outdoor')->where('is_indoor',1)->pluck('title', 'id');
+		$collections = DB::table('indoor_outdoor')->where('is_indoor',0)->pluck('title', 'id');
+
+
+		return view('backend.indoorimages.edit', ['stonecollection' => $stonecollection,'collections' => $collections,'collection1' => $collection1]);
 	}
 
 	/**
@@ -124,7 +131,7 @@ class indoorimagesController extends Controller {
 		//Update the model using repository update method
 		$this->repository->update($id, $request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => 'Sub Stone Collection updated']);
+		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => 'image updated']);
 	}
 
 	/**
@@ -138,6 +145,6 @@ class indoorimagesController extends Controller {
 		//Calling the delete method on repository
 		$this->repository->delete($id);
 		//returning with successfull message
-		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => trans('Sub Stone Collection Deleted')]);
+		return new RedirectResponse(route('admin.indoorimages.index'), ['flash_success' => trans('image Deleted')]);
 	}
 }

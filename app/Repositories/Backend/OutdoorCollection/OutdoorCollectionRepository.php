@@ -172,6 +172,17 @@ class OutdoorCollectionRepository extends BaseRepository {
 	 * @return bool
 	 */
 	public function delete($id) {
+
+		$child = DB::table('indoor_images')->where('collection_id', $id)->count();
+
+		if($child > 0)
+		{
+			throw new GeneralException(trans("can not delete record it's child exist"));
+			return false ;
+
+		}
+
+
 		$stonecollection = OutdoorCollection::where('id', $id)->first();
 		$this->removeImage($stonecollection->image1);
 		$this->removeImage($stonecollection->image2);
@@ -210,6 +221,10 @@ class OutdoorCollectionRepository extends BaseRepository {
 	 * return bool
 	 */
 	public function updateimage($id, $request) {
+
+
+
+
 
 		$stonecollection = DB::table('stone_collection_image')->where('id', 1)->first();
 		

@@ -44,6 +44,25 @@ class indoorimagesTableController extends Controller {
 			->addColumn('actions', function ($knowledgebase) {
 				return $knowledgebase->action_buttons;
 			})
+			->filter(function ($query) use ($request) {
+	            if ($request->has('search')) { 
+
+	            	//dd($request->get('search'));
+	            	$search = $request->get('search');
+
+	            	if (strpos($search['value'], 'Category:') !== false) {
+	            		$str = str_replace('Category:', '', $search['value']);
+
+	            		$query->where('indoor_outdoor.title', 'like', "%{$str}%");
+					    
+					}
+
+	            	
+	                
+	            }
+
+	            
+	        })
 			->make(true);
 	}
 

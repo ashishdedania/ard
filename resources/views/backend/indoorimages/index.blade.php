@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Category</th>
                         <th>Created At</th>
                         <th>Actions</th>
                         <th></th>
@@ -27,8 +28,10 @@
                         <th>
                             
                         </th>
+                        <th>
+                               
+                            </th>
                         <th></th>
-                        
                         <th></th>
                         <th></th>
                     </tr>
@@ -50,11 +53,13 @@
     processing: true,
             serverSide: true,
             ajax: {
-            url: '{{ route("admin.indoorimages.get") }}',
-                    type: 'post'
+                url: '{{ route("admin.indoorimages.get") }}',
+                type: 'post',
+                
             },
             columns: [
             {data: 'title', name: 'indoor_images.title'},
+            {data: 'category', name: 'indoor_images.category'},
             {data: 'created_at', name: 'indoor_images.created_at'},
             {data: 'actions', name: 'actions', searchable: false, sortable: false},
             {data: 'id', name: 'indoor_images.id',visible:false},
@@ -66,7 +71,7 @@
             
             }
     });
-            Backend.DataTableSearch.init(dataTable);
+            //Backend.DataTableSearch.init(dataTable);
     });</script>
 
 

@@ -33,40 +33,44 @@
                 </a>
             </li>
 
-            <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
-                <a href="{{ route('admin.collectionimage.index') }}">
-                    <i class="fa fa-file-text"></i>
-                    <span>Stone Collection Page Image</span>
-                </a>
-            </li>
+            
 
             <li class="{{ active_class(Active::checkUriPattern('admin/stonecollection*')) }}">
                 <a href="{{ route('admin.stonecollection.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Stone Collection</span>
+                    <span>Collection</span>
                 </a>
             </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/substonecollection*')) }}">
                 <a href="{{ route('admin.substonecollection.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Sub Stone Collection</span>
+                    <span>Sub Collection</span>
                 </a>
             </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/stoneproduct*')) }}">
                 <a href="{{ route('admin.stoneproduct.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Stone Product</span>
+                    <span>Product</span>
                 </a>
             </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/outdoorcollection*')) }}">
                 <a href="{{ route('admin.outdoorcollection.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Indoor/Outdoor Application</span>
+                    <span>Indoor/Outdoor</span>
                 </a>
             </li>
+            
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/indoorimages*')) }}">
+                <a href="{{ route('admin.indoorimages.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Indoor/Outdoor Items</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('admin/indoorcollectionimage*')) }}">
                 <a href="{{ route('admin.indoorcollectionimage.index') }}">
                     <i class="fa fa-file-text"></i>
@@ -74,10 +78,17 @@
                 </a>
             </li>
 
-            <li class="{{ active_class(Active::checkUriPattern('admin/indoorimages*')) }}">
-                <a href="{{ route('admin.indoorimages.index') }}">
+            <li class="{{ active_class(Active::checkUriPattern('admin/outdoorimage*')) }}">
+                <a href="{{ route('admin.outdoorimage.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Indoor Images</span>
+                    <span>Outdoor Page Image</span>
+                </a>
+            </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
+                <a href="{{ route('admin.collectionimage.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Collection Page Image</span>
                 </a>
             </li>
 

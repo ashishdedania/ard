@@ -171,6 +171,27 @@ class StoneCollectionRepository extends BaseRepository {
 	 * @return bool
 	 */
 	public function delete($id) {
+
+		$child = DB::table('sub_stone_collection')->where('collection_id', $id)->count();
+
+		if($child > 0)
+		{
+			throw new GeneralException(trans("can not delete record it's child exist"));
+			return false ;
+
+		}
+
+
+		$child = DB::table('stone_product')->where('collection_id', $id)->count();
+
+		if($child > 0)
+		{
+			throw new GeneralException(trans("can not delete record it's child exist"));
+			return false ;
+
+		}
+
+
 		$stonecollection = StoneCollection::where('id', $id)->first();
 		$this->removeImage($stonecollection->image1);
 		$this->removeImage($stonecollection->image2);
@@ -322,6 +343,72 @@ class StoneCollectionRepository extends BaseRepository {
 		}
 
 		$response = DB::table('indoor_collection_image')->where('id', 1)->update($input);
+
+		//update records.
+		if ($response) {
+			return true;
+		}
+
+		throw new GeneralException(trans('error in stone collection image update'));
+	}
+
+
+
+	/**
+	 * For updating the respective Model in storage
+	 *
+	 * @param $id
+	 * @param  $request
+	 * @throws GeneralException
+	 * return bool
+	 */
+	public function updateimageoutdoor($id, $request) {
+
+		$stonecollection = DB::table('outdoor_collection_image')->where('id', 1)->first();
+		
+		$input = []; 
+		
+		$image1 = $request->file('image1');
+
+		if (!empty($image1)) {
+
+			$filesNames = $this->fileUpload($image1, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image1'] = $filesNames;
+			$this->removeImage($stonecollection->image1);
+
+		}
+
+		$image2 = $request->file('image2');
+
+		if (!empty($image2)) {
+
+			$filesNames = $this->fileUpload($image2, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image2'] = $filesNames;
+			$this->removeImage($stonecollection->image2);
+
+		}
+
+		$image3 = $request->file('image3');
+
+		if (!empty($image3)) {
+
+			$filesNames = $this->fileUpload($image3, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image3'] = $filesNames;
+			$this->removeImage($stonecollection->image3);
+
+		}
+
+
+		if(count($input) == 0)
+		{
+			return true;
+
+		}
+
+		$response = DB::table('outdoor_collection_image')->where('id', 1)->update($input);
 
 		//update records.
 		if ($response) {
