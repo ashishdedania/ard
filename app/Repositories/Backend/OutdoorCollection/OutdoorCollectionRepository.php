@@ -33,8 +33,8 @@ class OutdoorCollectionRepository extends BaseRepository {
 				config('module.outdoorcollection.table').'.id',
 				config('module.outdoorcollection.table').'.title',
 				config('module.outdoorcollection.table').'.description',
-				config('module.outdoorcollection.table').'.image1',
-				
+				config('module.outdoorcollection.table').'.is_indoor',
+				\DB::raw('IF(is_indoor = 1, "indoor","outdoor") as type'),
 				config('module.outdoorcollection.table').'.created_at',
 				config('module.outdoorcollection.table').'.created_by',
 				config('module.outdoorcollection.table').'.updated_at',

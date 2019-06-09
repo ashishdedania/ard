@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Type</th>
                         <th>Created At</th>
                         <th>Actions</th>
                         <th></th>
@@ -28,7 +29,7 @@
                             
                         </th>
                         <th></th>
-                        
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -55,6 +56,7 @@
             },
             columns: [
             {data: 'title', name: 'indoor_outdoor.title'},
+            {data: 'type', name: 'indoor_outdoor.type'},
             {data: 'created_at', name: 'indoor_outdoor.created_at'},
             {data: 'actions', name: 'actions', searchable: false, sortable: false},
             {data: 'id', name: 'indoor_outdoor.id',visible:false},

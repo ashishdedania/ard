@@ -70,17 +70,13 @@ class OutdoorcollectionController extends Controller {
 		$rules = [
 			'title'       => 'required',
 			'description' => 'required',
-			'image1' => 'required',
-			'image2' => 'required',
-			'image3' => 'required',
+			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required' => 'The Description field is required.',
-			'image1.required' => 'The Image-1 field is required.',
-			'image2.required' => 'The Image-2 field is required.',
-			'image3.required' => 'The Image-3 field is required.',
+			
 			
 		];
 		$this->validate($request, $rules, $message);

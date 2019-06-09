@@ -14,6 +14,10 @@ Route::get('stone-collection-detail/{id}/sub/{sub}', 'FrontendController@stoneCo
 Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
 Route::get('production/{id}', 'FrontendController@production')->name('production');
 
+Route::get('indoor/{id}', 'FrontendController@indoor')->name('indoor');
+
+Route::get('outdoor/{id}', 'FrontendController@outdoor')->name('outdoor');
+
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'
