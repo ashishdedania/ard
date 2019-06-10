@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories\Backend\StoneProduct;
+namespace App\Repositories\Backend\IndoorImages;
 
 use App\Exceptions\GeneralException;
-use App\Models\StoneProduct\StoneProduct;
+use App\Models\IndoorImages\IndoorImages;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -13,12 +13,12 @@ use File;
  * Class KnowledgebaseRepository.
  */
 
-class StoneProductRepository extends BaseRepository {
+class IndoorImagesRepository extends BaseRepository {
 
 	/**
 	 * Associated Repository Model.
 	 */
-	const MODEL = StoneProduct::class ;
+	const MODEL = IndoorImages::class ;
 
 	/**
 	 * This method is used by Table Controller
@@ -42,15 +42,16 @@ class StoneProductRepository extends BaseRepository {
 
 	public function getForDataTable() {
 		return $this->query()
+		->leftjoin('indoor_outdoor', 'indoor_outdoor.id', '=', config('module.indoorimages.table').'.collection_id')
 		            ->select([
-				config('module.stoneproduct.table').'.id',
-				config('module.stoneproduct.table').'.title',
-				config('module.stoneproduct.table').'.description',
-				config('module.stoneproduct.table').'.image1',
-				
-				config('module.stoneproduct.table').'.created_at',
-				config('module.stoneproduct.table').'.created_by',
-				config('module.stoneproduct.table').'.updated_at',
+				config('module.indoorimages.table').'.id',
+				config('module.indoorimages.table').'.title',
+				config('module.indoorimages.table').'.description',
+				config('module.indoorimages.table').'.image1',
+				'indoor_outdoor.title as category',
+				config('module.indoorimages.table').'.created_at',
+				config('module.indoorimages.table').'.created_by',
+				config('module.indoorimages.table').'.updated_at',
 				
 			]);
 	}
@@ -76,20 +77,10 @@ class StoneProductRepository extends BaseRepository {
 		$stonecollection              = self::MODEL;
 		$stonecollection              = new $stonecollection();
 		$stonecollection->title       = $input['title'];
-		
-		$stonecollection->collection_id = $input['collection_id'];
-
-
-		$stonecollection->product_carousel_area       = $input['product_carousel_area'];
-		$stonecollection->versitility_of_application       = $input['versitility_of_application'];
-		$stonecollection->technical_info_section       = $input['technical_info_section'];
-		$stonecollection->quote_selection       = $input['quote_selection'];
-
-		$stonecollection->edging_option       = $input['edging_option'];
-		$stonecollection->maintainance_section       = $input['maintainance_section'];
-		$stonecollection->section_seven       = $input['section_seven'];
-
+		$stonecollection->description = $input['description'];
+		$stonecollection->collection_id = $input['is_indoor'] == 1 ? $input['collection_id_1'] : $input['collection_id'];
 		$stonecollection->created_by  = access()->user()->id;
+		$stonecollection->sr_no = $input['sr_no'];
 		
 		if ($stonecollection->save()) {
 			$stonecollectionId = $stonecollection->id;
@@ -99,19 +90,7 @@ class StoneProductRepository extends BaseRepository {
 			if (!empty($image1)) {
 				$filesNames = $this->fileUpload($image1, $stonecollectionId);
 				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
-			}
-
-			if (!empty($image2)) {
-				$filesNames = $this->fileUpload($image2, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
-			}
-
-			if (!empty($image3)) {
-				$filesNames = $this->fileUpload($image3, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+				IndoorImages::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
 			}
 
 			
@@ -145,9 +124,16 @@ class StoneProductRepository extends BaseRepository {
 	 */
 	public function update($id, $request) {
 
-		$stonecollection = StoneProduct::where('id', $id)->first();
+		$stonecollection = IndoorImages::where('id', $id)->first();
 
-		$input = $request->except(['_token']); 
+		$input = $request->except(['_token']);
+
+		$val  = $input['is_indoor'] == 1 ? $input['collection_id_1'] : $input['collection_id'];
+		unset($input['is_indoor']);
+		unset($input['collection_id_1']); 
+
+		$input['collection_id'] = $val;
+
 		$image1 = $request->file('image1');
 
 		if (!empty($image1)) {
@@ -156,29 +142,6 @@ class StoneProductRepository extends BaseRepository {
 			//update filepath from datatabe.
 			$input['image1'] = $filesNames;
 			$this->removeImage($stonecollection->image1);
-
-		}
-
-
-		$image2 = $request->file('image2');
-
-		if (!empty($image2)) {
-
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
-
-		}
-
-		$image3 = $request->file('image3');
-
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
 
 		}
 
@@ -200,7 +163,7 @@ class StoneProductRepository extends BaseRepository {
 	 * @return bool
 	 */
 	public function delete($id) {
-		$stonecollection = StoneProduct::where('id', $id)->first();
+		$stonecollection = IndoorImages::where('id', $id)->first();
 		$this->removeImage($stonecollection->image1);
 		$this->removeImage($stonecollection->image2);
 		$this->removeImage($stonecollection->image3);
@@ -213,7 +176,7 @@ class StoneProductRepository extends BaseRepository {
 
 	public function getDetail($id)
 	{
-		return StoneProduct::where('id', $id)->first();
+		return IndoorImages::where('id', $id)->first();
 	}
 
 	

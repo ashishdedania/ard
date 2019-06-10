@@ -41,6 +41,22 @@
 
     <div class="row">
         <div class="col-lg-5">
+
+          <select class="form-control product-listing-nav-mobile" id="myselect">
+
+            <?php 
+            $i=0;
+            foreach($subcolections as $subcolection)
+            {
+              echo '<option value='.route('frontend.stone-collection-detail', ['id' => $colection->id,'sub' => $subcolection->id]).'>'.$subcolection->title.'</option>';
+            }
+            ?>
+        
+          </select>
+
+
+
+
           <div class="product-listing-nav">
             <ul>
               <?php 
@@ -70,6 +86,22 @@
 
   </div>
 </section>
+
+
+<script type="text/javascript">
+$(document).ready(function () {  
+
+
+$('#myselect').on('change', function() {
+  window.location.replace(this.value);
+});
+
+
+
+
+ });
+
+</script> 
     
 @endsection
 

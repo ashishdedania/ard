@@ -59,6 +59,12 @@ return [
 	"stonecollection" => [
 	"table" => "stone_collection",
 	],
+	"indoorimages" => [
+	"table" => "indoor_images",
+	],
+	"outdoorcollection" => [
+	"table" => "indoor_outdoor",
+	],
 	"substonecollection" => [
 	"table" => "sub_stone_collection",
 	],

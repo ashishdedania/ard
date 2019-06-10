@@ -10,6 +10,7 @@ use DB;
 use App\Models\StoneCollection\StoneCollection;
 use App\Models\SubStoneCollection\SubStoneCollection;
 use App\Models\StoneProduct\StoneProduct;
+use App\Models\OutdoorCollection\OutdoorCollection;
 
 /**
  * Class FrontendController.
@@ -23,6 +24,8 @@ class FrontendController extends Controller
     { 
       
         $result = DB::table('pages')->where('id', 12)->first();
+
+        
 
         return view('frontend.index', ['html'=>$result->description]);
     }
@@ -130,12 +133,46 @@ class FrontendController extends Controller
         return view('frontend.stoneTalk');
     }
 
-     /**
+    /**
      * @return \Illuminate\View\View
      */
     public function production($id)
     { 
         $colection     = StoneProduct::where('id', $id)->first();
         return view('frontend.production',['product' => $colection]);
+    }
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function indoor($id)
+    { 
+        
+        $images = DB::table('indoor_collection_image')->where('id', 1)->first();
+
+        $item = OutdoorCollection::where('id', $id)->where('is_indoor', 1)->first();
+
+        $indoors = OutdoorCollection::where('is_indoor', 1)->get();
+
+        
+        return view('frontend.indoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id]);
+    }
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function outdoor($id)
+    { 
+        
+        $images = DB::table('outdoor_collection_image')->where('id', 1)->first();
+
+        $item = OutdoorCollection::where('id', $id)->where('is_indoor', 0)->first();
+
+        $indoors = OutdoorCollection::where('is_indoor', 0)->get();
+
+        
+        return view('frontend.outdoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id]);
     }
 }
