@@ -20,35 +20,63 @@
     </div>
     
     <div class="form-group">
-        {{ Form::label('upload', 'Image-1', ['class' => 'col-lg-2 control-label required']) }}
+        {{ Form::label('upload', 'Image-1', ['class' => 'col-lg-2 control-label']) }}
         <div class="col-lg-3">
             {!! Form::file('image1', array('class' => 'form-control box-size')) !!}
            
         </div>
-        <div class="col-lg-3">
-            @if (isset($stonecollection))<a href='{{ URL::to('/') }}/images/{{$stonecollection->image1}}' target="_blank"> View Uploaded File </a> @endif
+        <div class="col-lg-1">
+            <input type="checkbox" name="del_image1"> Delete
         </div>
+        <div class="col-lg-1">
+            @if(isset($stonecollection)) @if($stonecollection->image1)
+            <a href='{{ URL::to('/') }}/images/{{$stonecollection->image1}}' target="_blank"> <img src='{{ URL::to('/') }}/images/{{$stonecollection->image1}}' height="42" width="42"> </a> 
+            @endif @endif
+            
+        </div>
+        
         
     </div>
     <div class="form-group">
-        {{ Form::label('upload', 'Image-2', ['class' => 'col-lg-2 control-label required']) }}
+        {{ Form::label('upload', 'Image-2', ['class' => 'col-lg-2 control-label']) }}
         <div class="col-lg-3">
             {!! Form::file('image2', array('class' => 'form-control box-size')) !!}
            
         </div>
-        <div class="col-lg-3">
-            @if (isset($stonecollection))<a href='{{ URL::to('/') }}/images/{{$stonecollection->image2}}' target="_blank"> View Uploaded File </a> @endif
+
+        <div class="col-lg-1">
+            <input type="checkbox" name="del_image2"> Delete
         </div>
+        
+        <div class="col-lg-1">
+            @if(isset($stonecollection))
+        @if($stonecollection->image2)
+            
+            <a href='{{ URL::to('/') }}/images/{{$stonecollection->image2}}' target="_blank"> <img src='{{ URL::to('/') }}/images/{{$stonecollection->image2}}' height="42" width="42"> </a> 
+            
+             @endif
+        @endif
+        </div>
+       
+        
+
         
     </div>
     <div class="form-group">
-        {{ Form::label('upload', 'Image-3', ['class' => 'col-lg-2 control-label required']) }}
+        {{ Form::label('upload', 'Image-3', ['class' => 'col-lg-2 control-label']) }}
         <div class="col-lg-3">
             {!! Form::file('image3', array('class' => 'form-control box-size')) !!}
            
         </div>
-        <div class="col-lg-3">
-            @if (isset($stonecollection))<a href='{{ URL::to('/') }}/images/{{$stonecollection->image3}}' target="_blank"> View Uploaded File </a> @endif
+        
+        <div class="col-lg-1">
+            <input type="checkbox" name="del_image3" value = 1> Delete
+        </div>
+        <div class="col-lg-1">
+            @if(isset($stonecollection)) @if($stonecollection->image3)
+            <a href='{{ URL::to('/') }}/images/{{$stonecollection->image3}}' target="_blank"> <img src='{{ URL::to('/') }}/images/{{$stonecollection->image3}}' height="42" width="42"> </a> 
+            @endif @endif
+            
         </div>
         
     </div>

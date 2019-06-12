@@ -1,8 +1,8 @@
 @extends ('backend.layouts.app')
-@section ('title', 'Outdoor Page Image')
+@section ('title', 'Outdoor Slider Image')
 @section('page-header')
 <h1>
-    Outdoor Page Image
+    Outdoor Slider Image
     <small></small>
 </h1>
 @endsection
@@ -12,7 +12,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Outdoor Page Image</h3>
+        <h3 class="box-title">Outdoor Slider Image</h3>
         <div class="box-tools pull-right">
            
         </div>

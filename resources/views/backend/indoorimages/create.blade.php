@@ -1,8 +1,8 @@
 @extends ('backend.layouts.app')
-@section ('title', 'Indoor / Ourdoor Images')
+@section ('title', 'Indoor / Ourdoor Item')
 @section('page-header')
 <h1>
-    Indoor / Ourdoor Images
+    Indoor / Ourdoor Item
     <small></small>
 </h1>
 @endsection
@@ -12,7 +12,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Indoor / Ourdoor Images Create</h3>
+        <h3 class="box-title">Indoor / Ourdoor Item Create</h3>
 
         <div class="box-tools pull-right">
             @include('backend.indoorimages.partials.stonecollection-header-buttons')

@@ -74,21 +74,21 @@
             <li class="{{ active_class(Active::checkUriPattern('admin/indoorcollectionimage*')) }}">
                 <a href="{{ route('admin.indoorcollectionimage.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Indoor Page Image</span>
+                    <span>Indoor Slider Image</span>
                 </a>
             </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/outdoorimage*')) }}">
                 <a href="{{ route('admin.outdoorimage.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Outdoor Page Image</span>
+                    <span>Outdoor Slider Image</span>
                 </a>
             </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
                 <a href="{{ route('admin.collectionimage.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Collection Page Image</span>
+                    <span>Collection Slider Image</span>
                 </a>
             </li>
 

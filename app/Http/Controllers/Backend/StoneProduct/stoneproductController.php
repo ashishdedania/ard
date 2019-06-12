@@ -66,16 +66,12 @@ class StoneProductController extends Controller {
 
 		$rules = [
 			'title'       => 'required',
-			'image1' => 'required',
-			'image2' => 'required',
-			'image3' => 'required',
+			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
-			'image1.required' => 'The Image-1 field is required.',
-			'image2.required' => 'The Image-2 field is required.',
-			'image3.required' => 'The Image-3 field is required.',
+			
 			
 		];
 		$this->validate($request, $rules, $message);

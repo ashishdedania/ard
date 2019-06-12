@@ -7,13 +7,13 @@
     <ul class="dropdown-menu" role="menu">
         <li>
             <a href="{{ route( 'admin.indoorimages.index' ) }}">
-                <i class="fa fa-list-ul"></i>All Collection
+                <i class="fa fa-list-ul"></i>All Indoor/Outdoor Item
             </a>
         </li>
         @permission( 'create-knowledgebase' )
         <li>
             <a href="{{ route( 'admin.indoorimages.create' ) }}">
-                <i class="fa fa-plus"></i> Create Collection
+                <i class="fa fa-plus"></i> Create Indoor/Outdoor Item
             </a>
         </li>
         @endauth
