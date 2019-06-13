@@ -1,12 +1,12 @@
 @extends ('backend.layouts.app')
-@section ('title', 'Indoor/Outdoor Application')
+@section ('title', 'Indoor/Outdoor')
 @section('page-header')
-<h1>Indoor/Outdoor Application</h1>
+<h1>Indoor/Outdoor</h1>
 @endsection
 @section('content')
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Indoor/Outdoor Application</h3>
+        <h3 class="box-title">Indoor/Outdoor</h3>
         <div class="box-tools pull-right">
             @include('backend.outdoorcollection.partials.stonecollection-header-buttons')
         </div>

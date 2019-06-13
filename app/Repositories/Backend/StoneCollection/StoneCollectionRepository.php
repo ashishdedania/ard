@@ -55,7 +55,7 @@ class StoneCollectionRepository extends BaseRepository {
 
 		
 
-		$input = $request->except(['_token']);
+		$input  = $request->except(['_token']);
 		$image1 = $request->file('image1');
 		$image2 = $request->file('image2');
 		$image3 = $request->file('image3');
@@ -63,7 +63,7 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection              = self::MODEL;
 		$stonecollection              = new $stonecollection();
 		$stonecollection->title       = $input['title'];
-		$stonecollection->description = $input['description'];
+		
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {
@@ -71,23 +71,59 @@ class StoneCollectionRepository extends BaseRepository {
 			
 
 
-			if (!empty($image1)) {
-				$filesNames = $this->fileUpload($image1, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneCollection::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
+			if(isset($input['del_image1'])) // if delete come then only delete
+			{
+				
+
+			}
+			else
+			{
+
+				if (!empty($image1)) {
+					$filesNames = $this->fileUpload($image1, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
+				}
 			}
 
-			if (!empty($image2)) {
-				$filesNames = $this->fileUpload($image2, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneCollection::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+
+			if(isset($input['del_image2'])) // if delete come then only delete
+			{
+				
+
+			}
+			else
+			{
+
+				if (!empty($image2)) {
+					$filesNames = $this->fileUpload($image2, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+				}
 			}
 
-			if (!empty($image3)) {
-				$filesNames = $this->fileUpload($image3, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneCollection::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+
+
+			if(isset($input['del_image3'])) // if delete come then only delete
+			{
+				
+
 			}
+			else
+			{
+
+				if (!empty($image3)) {
+					$filesNames = $this->fileUpload($image3, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+				}
+			}
+
+			
+
+			
+
+			
 
 
 		}
@@ -122,38 +158,83 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection = StoneCollection::where('id', $id)->first();
 
 		$input = $request->except(['_token']); 
+
+
 		$image1 = $request->file('image1');
 
-		if (!empty($image1)) {
 
-			$filesNames = $this->fileUpload($image1, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image1'] = $filesNames;
+		if(isset($input['del_image1'])) // if delete come then only delete
+		{
+			$input['image1'] = '';
 			$this->removeImage($stonecollection->image1);
-
+			unset($input['del_image1']);
 		}
+		else
+		{
+
+			if (!empty($image1)) {
+
+				$filesNames = $this->fileUpload($image1, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image1'] = $filesNames;
+				$this->removeImage($stonecollection->image1);
+
+			}
+		}
+
+
+
+
+
+
+		
 
 		$image2 = $request->file('image2');
 
-		if (!empty($image2)) {
 
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
+		if(isset($input['del_image2'])) // if delete come then only delete
+		{
+			$input['image2'] = '';
+			$this->removeImage($stonecollection->image2);unset($input['del_image2']);
+		}
+		else
+		{
+			if (!empty($image2)) {
+
+				$filesNames = $this->fileUpload($image2, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image2'] = $filesNames;
+				$this->removeImage($stonecollection->image2);
+
+			}
 
 		}
+
+
+		
 
 		$image3 = $request->file('image3');
 
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
-
+		if(isset($input['del_image3'])) // if delete come then only delete
+		{
+			$input['image3'] = '';
+			$this->removeImage($stonecollection->image3);unset($input['del_image3']);
 		}
+		else
+		{
+		
+			if (!empty($image3)) {
+
+				$filesNames = $this->fileUpload($image3, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image3'] = $filesNames;
+				$this->removeImage($stonecollection->image3);
+
+			}
+		}
+
+
+		
 
 		//update records.
 		if ($stonecollection->update($input)) {
@@ -233,48 +314,92 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection = DB::table('stone_collection_image')->where('id', 1)->first();
 		
-		$input = []; 
+		$input = $request->except(['_token']); 
 		
 		$image1 = $request->file('image1');
 
-		if (!empty($image1)) {
 
-			$filesNames = $this->fileUpload($image1, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image1'] = $filesNames;
-			$this->removeImage($stonecollection->image1);
-
+		if(isset($input['del_image1'])) // if delete come then only delete
+		{
+			
+			if($stonecollection->image1){ $input['image1'] = '';
+			$this->removeImage($stonecollection->image1);}
+			unset($input['del_image1']);
 		}
+		else
+		{
+			
+			if (!empty($image1)) {
+
+				$filesNames = $this->fileUpload($image1, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image1'] = $filesNames;
+				$this->removeImage($stonecollection->image1);
+
+			}
+		}
+
+
+
+
+
+
+		
 
 		$image2 = $request->file('image2');
 
-		if (!empty($image2)) {
 
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
+		if(isset($input['del_image2'])) // if delete come then only delete
+		{
+			if($stonecollection->image2){ $input['image2'] = '';
+			$this->removeImage($stonecollection->image2);}
+			unset($input['del_image2']);
+		}
+		else
+		{
+			
+			if (!empty($image2)) {
+
+				$filesNames = $this->fileUpload($image2, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image2'] = $filesNames;
+				$this->removeImage($stonecollection->image2);
+
+			}
 
 		}
+
+
+		
 
 		$image3 = $request->file('image3');
 
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
-
+		if(isset($input['del_image3'])) // if delete come then only delete
+		{
+			if($stonecollection->image3){ $input['image3'] = '';
+			$this->removeImage($stonecollection->image3);}
+			unset($input['del_image3']);
 		}
+		else
+		{
+		
+			
+			if (!empty($image3)) {
 
+				$filesNames = $this->fileUpload($image3, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image3'] = $filesNames;
+				$this->removeImage($stonecollection->image3);
+
+			}
+		}
+		unset($input['_method']);
 
 		if(count($input) == 0)
 		{
 			return true;
 
-		}
-
+		} 
 		$response = DB::table('stone_collection_image')->where('id', 1)->update($input);
 
 		//update records.
@@ -300,49 +425,95 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection = DB::table('indoor_collection_image')->where('id', 1)->first();
 		
-		$input = []; 
+		$input = $request->except(['_token']); 
 		
 		$image1 = $request->file('image1');
 
-		if (!empty($image1)) {
 
-			$filesNames = $this->fileUpload($image1, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image1'] = $filesNames;
-			$this->removeImage($stonecollection->image1);
-
+		if(isset($input['del_image1'])) // if delete come then only delete
+		{
+			
+			if($stonecollection->image1){ $input['image1'] = '';
+			$this->removeImage($stonecollection->image1);}
+			unset($input['del_image1']);
 		}
+		else
+		{
+			
+			if (!empty($image1)) {
+
+				$filesNames = $this->fileUpload($image1, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image1'] = $filesNames;
+				$this->removeImage($stonecollection->image1);
+
+			}
+		}
+
+
+
+
+
+
+		
 
 		$image2 = $request->file('image2');
 
-		if (!empty($image2)) {
 
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
+		if(isset($input['del_image2'])) // if delete come then only delete
+		{
+			if($stonecollection->image2){ $input['image2'] = '';
+			$this->removeImage($stonecollection->image2);}
+			unset($input['del_image2']);
+		}
+		else
+		{
+			
+			if (!empty($image2)) {
+
+				$filesNames = $this->fileUpload($image2, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image2'] = $filesNames;
+				$this->removeImage($stonecollection->image2);
+
+			}
 
 		}
+
+
+		
 
 		$image3 = $request->file('image3');
 
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
-
+		if(isset($input['del_image3'])) // if delete come then only delete
+		{
+			if($stonecollection->image3){ $input['image3'] = '';
+			$this->removeImage($stonecollection->image3);}
+			unset($input['del_image3']);
 		}
+		else
+		{
+		
+			
+			if (!empty($image3)) {
 
+				$filesNames = $this->fileUpload($image3, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image3'] = $filesNames;
+				$this->removeImage($stonecollection->image3);
+
+			}
+		}
+		unset($input['_method']);
 
 		if(count($input) == 0)
 		{
 			return true;
 
-		}
+		} 
+		  
 
-		$response = DB::table('indoor_collection_image')->where('id', 1)->update($input);
+		$response = DB::table('indoor_collection_image')->where('id', 1)->update($input); 
 
 		//update records.
 		if ($response) {
@@ -366,48 +537,92 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection = DB::table('outdoor_collection_image')->where('id', 1)->first();
 		
-		$input = []; 
+		$input = $request->except(['_token']); 
 		
 		$image1 = $request->file('image1');
 
-		if (!empty($image1)) {
 
-			$filesNames = $this->fileUpload($image1, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image1'] = $filesNames;
-			$this->removeImage($stonecollection->image1);
-
+		if(isset($input['del_image1'])) // if delete come then only delete
+		{
+			
+			if($stonecollection->image1){ $input['image1'] = '';
+			$this->removeImage($stonecollection->image1);}
+			unset($input['del_image1']);
 		}
+		else
+		{
+			
+			if (!empty($image1)) {
+
+				$filesNames = $this->fileUpload($image1, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image1'] = $filesNames;
+				$this->removeImage($stonecollection->image1);
+
+			}
+		}
+
+
+
+
+
+
+		
 
 		$image2 = $request->file('image2');
 
-		if (!empty($image2)) {
 
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
+		if(isset($input['del_image2'])) // if delete come then only delete
+		{
+			if($stonecollection->image2){ $input['image2'] = '';
+			$this->removeImage($stonecollection->image2);}
+			unset($input['del_image2']);
+		}
+		else
+		{
+			
+			if (!empty($image2)) {
+
+				$filesNames = $this->fileUpload($image2, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image2'] = $filesNames;
+				$this->removeImage($stonecollection->image2);
+
+			}
 
 		}
+
+
+		
 
 		$image3 = $request->file('image3');
 
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
-
+		if(isset($input['del_image3'])) // if delete come then only delete
+		{
+			if($stonecollection->image3){ $input['image3'] = '';
+			$this->removeImage($stonecollection->image3);}
+			unset($input['del_image3']);
 		}
+		else
+		{
+		
+			
+			if (!empty($image3)) {
 
+				$filesNames = $this->fileUpload($image3, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image3'] = $filesNames;
+				$this->removeImage($stonecollection->image3);
+
+			}
+		}
+		unset($input['_method']);
 
 		if(count($input) == 0)
 		{
 			return true;
 
-		}
-
+		} 
 		$response = DB::table('outdoor_collection_image')->where('id', 1)->update($input);
 
 		//update records.

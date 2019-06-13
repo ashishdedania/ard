@@ -2,7 +2,7 @@
 @section ('title', 'Stone Collection')
 @section('page-header')
 <h1>
-    Stone Collection
+    Collection
     <small></small>
 </h1>
 @endsection
@@ -12,7 +12,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Stone Collection Create</h3>
+        <h3 class="box-title">Collection Create</h3>
 
         <div class="box-tools pull-right">
             @include('backend.stonecollection.partials.stonecollection-header-buttons')

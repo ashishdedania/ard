@@ -96,23 +96,55 @@ class StoneProductRepository extends BaseRepository {
 			
 
 
-			if (!empty($image1)) {
-				$filesNames = $this->fileUpload($image1, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
+			if(isset($input['del_image1'])) // if delete come then only delete
+			{
+				
+
+			}
+			else
+			{
+
+				if (!empty($image1)) {
+					$filesNames = $this->fileUpload($image1, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
+				}
 			}
 
-			if (!empty($image2)) {
-				$filesNames = $this->fileUpload($image2, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+
+			if(isset($input['del_image2'])) // if delete come then only delete
+			{
+				
+
+			}
+			else
+			{
+
+				if (!empty($image2)) {
+					$filesNames = $this->fileUpload($image2, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+				}
 			}
 
-			if (!empty($image3)) {
-				$filesNames = $this->fileUpload($image3, $stonecollectionId);
-				//update filepath from datatabe.
-				StoneProduct::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+
+
+			if(isset($input['del_image3'])) // if delete come then only delete
+			{
+				
+
 			}
+			else
+			{
+
+				if (!empty($image3)) {
+					$filesNames = $this->fileUpload($image3, $stonecollectionId);
+					//update filepath from datatabe.
+					StoneCollection::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+				}
+			}
+
+			
 
 			
 
@@ -150,37 +182,79 @@ class StoneProductRepository extends BaseRepository {
 		$input = $request->except(['_token']); 
 		$image1 = $request->file('image1');
 
-		if (!empty($image1)) {
 
-			$filesNames = $this->fileUpload($image1, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image1'] = $filesNames;
+		if(isset($input['del_image1'])) // if delete come then only delete
+		{
+			$input['image1'] = '';
 			$this->removeImage($stonecollection->image1);
+			unset($input['del_image1']);
+		}
+		else
+		{
 
+			if (!empty($image1)) {
+
+				$filesNames = $this->fileUpload($image1, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image1'] = $filesNames;
+				$this->removeImage($stonecollection->image1);
+
+			}
 		}
 
+
+
+
+
+
+		
 
 		$image2 = $request->file('image2');
 
-		if (!empty($image2)) {
 
-			$filesNames = $this->fileUpload($image2, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image2'] = $filesNames;
-			$this->removeImage($stonecollection->image2);
+		if(isset($input['del_image2'])) // if delete come then only delete
+		{
+			$input['image2'] = '';
+			$this->removeImage($stonecollection->image2);unset($input['del_image2']);
+		}
+		else
+		{
+			if (!empty($image2)) {
+
+				$filesNames = $this->fileUpload($image2, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image2'] = $filesNames;
+				$this->removeImage($stonecollection->image2);
+
+			}
 
 		}
+
+
+		
 
 		$image3 = $request->file('image3');
 
-		if (!empty($image3)) {
-
-			$filesNames = $this->fileUpload($image3, $stonecollection->id);
-			//update filepath from datatabe.
-			$input['image3'] = $filesNames;
-			$this->removeImage($stonecollection->image3);
-
+		if(isset($input['del_image3'])) // if delete come then only delete
+		{
+			$input['image3'] = '';
+			$this->removeImage($stonecollection->image3);unset($input['del_image3']);
 		}
+		else
+		{
+		
+			if (!empty($image3)) {
+
+				$filesNames = $this->fileUpload($image3, $stonecollection->id);
+				//update filepath from datatabe.
+				$input['image3'] = $filesNames;
+				$this->removeImage($stonecollection->image3);
+
+			}
+		}
+
+
+		
 
 		
 

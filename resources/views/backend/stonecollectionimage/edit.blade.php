@@ -1,8 +1,8 @@
 @extends ('backend.layouts.app')
-@section ('title', 'Collection Page Image')
+@section ('title', 'Collection Slider Image')
 @section('page-header')
 <h1>
-    Collection Page Image
+    Collection Slider Image
     <small></small>
 </h1>
 @endsection
@@ -12,7 +12,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Collection Page Image</h3>
+        <h3 class="box-title">Collection Slider Image</h3>
         <div class="box-tools pull-right">
            
         </div>

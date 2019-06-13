@@ -1,12 +1,12 @@
 @extends ('backend.layouts.app')
-@section ('title', 'Sub Stone Collection')
+@section ('title', 'Sub Collection')
 @section('page-header')
-<h1>Sub Stone Collection</h1>
+<h1>Sub Collection</h1>
 @endsection
 @section('content')
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Sub Stone Collection</h3>
+        <h3 class="box-title">Sub Collection</h3>
         <div class="box-tools pull-right">
             @include('backend.substonecollection.partials.stonecollection-header-buttons')
         </div>

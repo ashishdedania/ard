@@ -11,6 +11,8 @@ use App\Models\StoneCollection\StoneCollection;
 use App\Models\SubStoneCollection\SubStoneCollection;
 use App\Models\StoneProduct\StoneProduct;
 use App\Models\OutdoorCollection\OutdoorCollection;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 /**
  * Class FrontendController.
@@ -41,12 +43,60 @@ class FrontendController extends Controller
             ->withpage($result);
     }
 
+
+    public function sendcontact(Request $request)
+    { $input = $request->except(['_token']);
+       
+
+       /*$name = 'Rben';
+       $number = '9909872134'; 
+       $email='a@a.com';
+       $content = 'Hello this is good';*/
+
+
+       $name = $input['name'];
+       $number = $input['number'];
+       $email=$input['email'];
+       $content = $input['message'];
+
+       $html = '<div>Contect Received </div>';
+       $html .= '<div>Name : '.$name.' </div>';
+       $html .= '<div>Contact Number : '.$number.' </div>';
+       $html .= '<div>Email : '.$email.' </div>';
+       $html .= '<div>Message : '.$content.' </div>';
+
+
+$message = ['data' => $html];    
+//$data['to'] = 'ashish.dedania@gmail.com';
+
+$data['to'] = env("CONTECT_EMAIL");
+
+
+
+$a= Mail::send(['html' => 'emails.template'], ['data' => $html], function ($message) use ($data) {
+                    $message->to($data['to']);
+                    $message->subject('Contact Detail Came!');
+                    $message->from('hello@app.com', 'Stone By Rander');
+                    
+                }); 
+
+
+return 'success';
+
+}
+
+
+
+
+
+
     /**
      * @return \Illuminate\View\View
      */
     public function contactus()
     { 
-        
+
+
         $result = DB::table('pages')->where('id', 11)->first();
         return view('frontend.contactus',['html'=>$result->description]);
     }

@@ -1,8 +1,8 @@
 @extends ('backend.layouts.app')
-@section ('title', 'StoneProduct')
+@section ('title', 'Product')
 @section('page-header')
 <h1>
-    StoneProduct
+    Product
     <small></small>
 </h1>
 @endsection
@@ -12,7 +12,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">StoneProduct Create</h3>
+        <h3 class="box-title">Product Create</h3>
 
         <div class="box-tools pull-right">
             @include('backend.stoneproduct.partials.stonecollection-header-buttons')

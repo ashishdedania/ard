@@ -103,7 +103,7 @@
 
   <div class="container">
 
-      {{$indoor->description}}
+      {{$item->description}}
 
     <div class="masonry">
       

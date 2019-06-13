@@ -69,18 +69,14 @@ class StonecollectionController extends Controller {
 
 		$rules = [
 			'title'       => 'required',
-			'description' => 'required',
-			'image1' => 'required',
-			'image2' => 'required',
-			'image3' => 'required',
+			
+			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
-			'description.required' => 'The Description field is required.',
-			'image1.required' => 'The Image-1 field is required.',
-			'image2.required' => 'The Image-2 field is required.',
-			'image3.required' => 'The Image-3 field is required.',
+			
+			
 			
 		];
 		$this->validate($request, $rules, $message);
@@ -91,7 +87,7 @@ class StonecollectionController extends Controller {
 		//Create the model using repository create method
 		$this->repository->create($request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection created']);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Collection created']);
 	}
 
 	/**
@@ -118,19 +114,19 @@ class StonecollectionController extends Controller {
 		
 		$rules = [
 			'title'       => 'required',
-			'description' => 'required',
+			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
-			'description.required' => 'The Description field is required.',
+			
 			
 		];
 		$this->validate($request, $rules, $message);
 		//Update the model using repository update method
 		$this->repository->update($id, $request);
 		//return with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Stone Collection updated']);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => 'Collection updated']);
 	}
 
 	/**
@@ -144,6 +140,6 @@ class StonecollectionController extends Controller {
 		//Calling the delete method on repository
 		$this->repository->delete($id);
 		//returning with successfull message
-		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('Stone Collection Deleted')]);
+		return new RedirectResponse(route('admin.stonecollection.index'), ['flash_success' => trans('Collection Deleted')]);
 	}
 }
