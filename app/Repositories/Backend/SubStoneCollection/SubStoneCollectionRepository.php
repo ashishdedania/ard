@@ -52,7 +52,7 @@ class SubStoneCollectionRepository extends BaseRepository {
 				config('module.substonecollection.table').'.created_by',
 				config('module.substonecollection.table').'.updated_at',
 				
-			]);
+			])->orderBy('id', 'desc');
 	}
 
 	
