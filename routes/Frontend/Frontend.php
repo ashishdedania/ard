@@ -8,6 +8,7 @@ Route::get('/', 'FrontendController@index')->name('index');
 Route::post('/get/states', 'FrontendController@getStates')->name('get.states');
 Route::post('/get/cities', 'FrontendController@getCities')->name('get.cities');
 Route::get('contact-us', 'FrontendController@contactus')->name('contact-us');
+Route::post('sendcontact', 'FrontendController@sendcontact')->name('sendcontact');
 Route::get('stone-collection', 'FrontendController@stoneCollection')->name('stone-collection');
 Route::get('stone-collection-detail/{id}/sub/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collection-detail');
 
