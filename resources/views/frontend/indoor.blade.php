@@ -11,7 +11,9 @@ if(count($images) > 0)
     @endphp
 
 
+
     <section class="collection-slider">
+
       <div id="carouselExampleIndicators" class="carousel slide home-slider-section" data-ride="carousel">
       <ol class="carousel-indicators">
 
@@ -73,7 +75,9 @@ if(count($images) > 0)
           <span class="sr-only">Next</span>
         </a>
       </div>
+
     </section>
+
 
 
     @php
@@ -83,13 +87,18 @@ if(count($images) > 0)
   if(count($images) == 1)
   {
     @endphp
-      <section class="collection-slider">
+
+      
+    <section class="collection-slider">
+
         <div id="carouselExampleIndicators" class="carousel home-slider-section">
           <div class="carousel-inner">
             <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+
       </section>
+
 
     @php
   }
@@ -98,8 +107,6 @@ if(count($images) > 0)
 }
 
 @endphp
-
-
 
 
 <section class="application-seaction">
