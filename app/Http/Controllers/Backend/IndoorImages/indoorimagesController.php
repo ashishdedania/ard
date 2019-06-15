@@ -122,14 +122,12 @@ $collection1 = DB::table('indoor_outdoor')->where('is_indoor',1)->pluck('title',
 		$rules = [
 			'title'       => 'required',
 			'description' => 'required',
-			'image1' => 'required',
 			'sr_no' => 'required',
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required' => 'The Description field is required.',
-			'image1.required' => 'The Image-1 field is required.',
 			'sr_no.required' => 'The Order No field is required.',
 			
 		];
