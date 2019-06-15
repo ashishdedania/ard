@@ -151,7 +151,7 @@ if(count($images) > 0)
             <?php
 
               $img = URL::to('/').'/css/project/images/no-image.jpg';
-              if (file_exists(public_path().'/images/'.$selected->image1)) {
+              if (!empty($selected->image1)) {
                  $img = URL::to('/').'/images/'.$selected->image1;
                }
             ?>
