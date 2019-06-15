@@ -149,7 +149,7 @@ if(count($images) > 0)
             <img src="{{ URL::to('/') }}/images/{{$selected->image1}}" alt="">
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
-              <p class="mt-3"><?php if($selected) {echo $selected->description;} ?></p>
+              <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
             </div>
           </div>
 

@@ -68,7 +68,7 @@
         </div>
     </div>
      <div class="form-group">
-        {{ Form::label('upload', 'Image-1', ['class' => 'col-lg-2 control-label']) }}
+        {{ Form::label('upload', 'Image-1', ['class' => 'col-lg-2 control-label required']) }}
         <div class="col-lg-3">
             {!! Form::file('image1', array('class' => 'form-control box-size')) !!}
            
@@ -88,7 +88,7 @@
     <div class="form-group">
         {{ Form::label('', 'Order No', ['class' => 'col-lg-2 control-label required']) }}
         <div class="col-lg-10">
-            {{ Form::number('sr_no', null, ['class' => 'form-control box-size', 'placeholder' => '1' , 'style' => 'width:100px;' ,  'min' =>"1"]) }}
+            {{ Form::number('sr_no', isset($stonecollection) ? $stonecollection->sr_no : 1, ['class' => 'form-control box-size', 'placeholder' => '1' , 'style' => 'width:100px;' ,  'min' =>"1" ]) }}
         </div>
     </div>
     
