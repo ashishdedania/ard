@@ -35,8 +35,13 @@
           }
 
         }
+
+
+
+        $collections = DB::table('stone_collection')->orderBy('id')->get();
         
         
+       
 
   ?>
 
@@ -65,9 +70,55 @@
               <a class="dropdown-item" href="{{route('frontend.outdoor', ['id'=>$outdoorid])}}">Outdoor Application</a>          
             </div>
           </li>
-          <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-collection') ? 'active' : '' }}">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-collection')}}">Collection</a>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Collection
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @php
+
+                foreach($collections as $collection)
+                {
+
+                  $product = DB::table('stone_product')->where('collection_id', $collection->id)->first(); 
+                  if($product)
+                  {
+
+                    @endphp
+
+                      <a class="dropdown-item" href="{{route('frontend.stone-product-detail', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+
+
+
+                    @php  
+                  }
+
+
+                  $subcollection = DB::table('sub_stone_collection')->where('collection_id', $collection->id)->first(); 
+                  if($subcollection)
+                  {
+                    @endphp
+                      <a class="dropdown-item" href="{{route('frontend.stone-collection-detail', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+                    @php
+                  }
+
+                  
+
+                }
+
+
+              @endphp 
+              <a class="dropdown-item" href="{{route('frontend.stone-collection')}}">View All</a>       
+            </div>
           </li>
+
+          <!-- <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-collection') ? 'active' : '' }}">
+            <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-collection')}}">Collection</a>
+          </li> -->
+          
+
+
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-product-detail') ? 'active' : '' }}">
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-product-detail', ['id'=>$collectionid,'sub'=>0])}}">Production</a>
           </li>

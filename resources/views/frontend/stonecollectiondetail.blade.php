@@ -105,7 +105,7 @@ if(count($images) > 0)
 
 <section class="collection-seaction">
   <div class="container">
-    <div class="collection-title">Collections</div>
+    <!-- <div class="collection-title">Collections</div> -->
     <div class="inner-title">
         <h2>{{$colection->title}}</h2>
     </div>
