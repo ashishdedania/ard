@@ -234,7 +234,27 @@ return 'success';
     public function production($id)
     { 
         $colection     = StoneProduct::where('id', $id)->first();
-        return view('frontend.production',['product' => $colection]);
+		$images = [];
+		if($colection)
+            
+        {
+            if(!empty($colection->image1))
+            {
+                array_push($images,$colection->image1);
+                
+            }
+            if(!empty($colection->image2))
+            {
+                 array_push($images,$colection->image2);
+            }
+            if(!empty($colection->image3))
+            {
+                 array_push($images,$colection->image3);
+            }
+            
+        }
+		
+        return view('frontend.production',['product' => $colection, 'images' => $images]);
     }
 
 

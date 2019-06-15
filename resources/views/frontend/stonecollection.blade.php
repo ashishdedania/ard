@@ -158,11 +158,20 @@ if(count($images) > 0)
                     if($collectiodata->product->count() > 0 )
                     {
                       $products = $collectiodata->product;
-                      
+                      $l=0;					  
+					  
                       foreach($products as $product)
                       { 
-                        echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+					  	if($l < 5)
+						{
+                       	 echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+						}
+						$l++;
                       }
+					  if(count($products) > 5)
+					  {
+					  echo '<a target="_blank" href="'.route('frontend.production', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+					  }
 
                     }
                     else
@@ -173,7 +182,7 @@ if(count($images) > 0)
                       
                       foreach($products as $product)
                       { 
-                        if($j==4)
+                        if($j==5)
                         {
 
                          break;
@@ -185,7 +194,10 @@ if(count($images) > 0)
                         $j++;
                       }
 
-                      echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+                      if(count($products) > 5)
+					  {
+					  echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+					  }
                     }
 
 

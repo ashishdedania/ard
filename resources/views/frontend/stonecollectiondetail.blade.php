@@ -144,7 +144,7 @@ if(count($images) > 0)
             </ul>
           </div>
         </div>
-        <div class="col-lg-7 text-center">
+        <div class="col-lg-7 text-center collection-img">
           <div class="mt-5">
             <img src="{{ URL::to('/') }}/images/{{$selected->image1}}" alt="">
             <div class="product-caption mt-4">
