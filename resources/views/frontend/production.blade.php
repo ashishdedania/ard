@@ -104,7 +104,7 @@ if(count($images) > 0)
 if(!empty($product->product_carousel_area))
 {
   echo '<section class="product-carousel">';
-  echo $product->product_carousel_area;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->product_carousel_area);
   echo '</section>';
 }
 ?>
@@ -114,7 +114,7 @@ if(!empty($product->product_carousel_area))
 if(!empty($product->versitility_of_application))
 {
   echo '<section class="">';
-  echo $product->versitility_of_application;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->versitility_of_application);
   echo '</section>';
 }
 ?>
@@ -125,7 +125,7 @@ if(!empty($product->versitility_of_application))
 if(!empty($product->technical_info_section))
 {
   echo '<section class="technical-info-section">';
-  echo $product->technical_info_section;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->technical_info_section);
   echo '</section>';
 }
 ?>
@@ -135,7 +135,7 @@ if(!empty($product->technical_info_section))
 if(!empty($product->quote_selection))
 {
   echo '<section class="quote-seaction">';
-  echo $product->quote_selection;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->quote_selection);
   echo '</section>';
 }
 
@@ -146,7 +146,7 @@ if(!empty($product->quote_selection))
 if(!empty($product->edging_option))
 {
   echo '<section class="edging-options-section">';
-  echo $product->edging_option;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->edging_option);
   echo '</section>';
 }
 ?>
@@ -155,7 +155,7 @@ if(!empty($product->edging_option))
 if(!empty($product->maintainance_section))
 {
   echo '<section class="maintenance-section">';
-  echo $product->maintainance_section;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->maintainance_section);
   echo '</section>';
 }
 ?>
@@ -165,7 +165,7 @@ if(!empty($product->maintainance_section))
 if(!empty($product->section_seven))
 {
   echo '<section class="section-seven">';
-  echo $product->section_seven;
+  echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$product->section_seven);
   echo '</section>';
 }
 

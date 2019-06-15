@@ -146,10 +146,10 @@ if(count($images) > 0)
         </div>
         <div class="col-lg-7 text-center collection-img">
           <div class="mt-5">
-            <a target="_blank" href="{{route('frontend.production', ['id' => $selected->id])}}"><img src="{{ URL::to('/') }}/images/{{$selected->image1}}" alt=""></a>
+            <a target="_blank" href="{{route('frontend.production', ['id' => $selected->id])}}"><img src="{{ URL::to('/') }}/images/{{$selected->image4}}" alt=""></a>
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
-              <p class="mt-3"><?php if($selected) {echo $selected->description;} ?></p>
+              <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
             </div>
           </div>
 
