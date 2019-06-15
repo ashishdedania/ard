@@ -28,6 +28,7 @@ class FrontendController extends Controller
         $result = DB::table('pages')->where('id', 12)->first();
 
         
+        
 
         return view('frontend.index', ['html'=>$result->description]);
     }
@@ -175,7 +176,7 @@ return 'success';
         
         $images = [];
         // get three images
-        $data = DB::table('stone_collection_image')->where('id', 1)->first(); 
+        $data = $colection; 
 
         if($data)
             
@@ -209,6 +210,78 @@ return 'success';
         // get all collection with sub product and sub collection
 
         return view('frontend.stonecollectiondetail',
+            [
+                
+                'colection' => $colection,
+                'subcolections' => $subcolections,
+                'selected' => $selected,
+                'images' => $images,
+            ]
+        );
+    }
+
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function stoneProductDetail($id,$sub)
+    { 
+        
+        
+        $colection     = StoneCollection::where('id', $id)->first();
+
+        $subcolections = $colection->product;
+
+
+
+        if($sub == 0)
+        {
+            $selected = $subcolections->first();
+        }
+        else
+        {
+            $selected = StoneProduct::where('id', $sub)->first();
+        }
+
+
+        
+        $images = [];
+        // get three images
+        $data = $colection; 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
+
+        
+
+        // get three images
+        /*$images = DB::table('stone_collection_image')->where('id', 1)->first(); 
+
+        $repo = new StoneCollectionRepository();
+        $collectiodatas =$repo->getData();*/
+
+//dd($stonecollection);
+
+        // get all collection with sub product and sub collection
+
+        return view('frontend.stoneproductdetail',
             [
                 
                 'colection' => $colection,

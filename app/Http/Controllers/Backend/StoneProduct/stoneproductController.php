@@ -66,11 +66,15 @@ class StoneProductController extends Controller {
 
 		$rules = [
 			'title'       => 'required',
+			'description' => 'required',
+			'image4' => 'required',
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
+			'description.required' => 'The Description field is required.',
+			'image4.required' => 'The Image-Main field is required.',
 			
 			
 		];
@@ -110,11 +114,13 @@ class StoneProductController extends Controller {
 		
 		$rules = [
 			'title'       => 'required',
+			'description' => 'required',
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
+			'description.required' => 'The Description field is required.',
 			
 			
 		];

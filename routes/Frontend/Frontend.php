@@ -12,6 +12,8 @@ Route::post('sendcontact', 'FrontendController@sendcontact')->name('sendcontact'
 Route::get('stone-collection', 'FrontendController@stoneCollection')->name('stone-collection');
 Route::get('stone-collection-detail/{id}/sub/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collection-detail');
 
+Route::get('stone-product-detail/{id}/sub/{sub}', 'FrontendController@stoneProductDetail')->name('stone-product-detail');
+
 Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
 Route::get('production/{id}', 'FrontendController@production')->name('production');
 

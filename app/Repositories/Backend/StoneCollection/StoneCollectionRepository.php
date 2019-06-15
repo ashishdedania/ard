@@ -59,6 +59,7 @@ class StoneCollectionRepository extends BaseRepository {
 		$image1 = $request->file('image1');
 		$image2 = $request->file('image2');
 		$image3 = $request->file('image3');
+		$image4 = $request->file('image4');
 
 		$stonecollection              = self::MODEL;
 		$stonecollection              = new $stonecollection();
@@ -68,6 +69,13 @@ class StoneCollectionRepository extends BaseRepository {
 		
 		if ($stonecollection->save()) {
 			$stonecollectionId = $stonecollection->id;
+
+
+			if (!empty($image4)) {
+				$filesNames = $this->fileUpload($image4, $stonecollectionId);
+				//update filepath from datatabe.
+				SubStoneCollection::where('id', $stonecollectionId)->update(['image4' => $filesNames]);
+			}
 			
 
 
@@ -158,6 +166,19 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection = StoneCollection::where('id', $id)->first();
 
 		$input = $request->except(['_token']); 
+
+
+
+		$image4 = $request->file('image4');
+
+		if (!empty($image4)) {
+
+			$filesNames = $this->fileUpload($image4, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image4'] = $filesNames;
+			$this->removeImage($stonecollection->image4);
+
+		}
 
 
 		$image1 = $request->file('image1');

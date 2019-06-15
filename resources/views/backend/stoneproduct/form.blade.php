@@ -82,6 +82,29 @@
     </div>
 
 
+    <div class="form-group">
+        {{ Form::label('description', 'Description', ['class' => 'col-lg-2 control-label required']) }}
+        <div class="col-lg-10">
+            {{ Form::textarea('description', null, ['class' => 'form-control box-size', 'placeholder' => 'Description']) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ Form::label('upload', 'Image-Main', ['class' => 'col-lg-2 control-label required']) }}
+        <div class="col-lg-3">
+            {!! Form::file('image4', array('class' => 'form-control box-size')) !!}
+           
+        </div>
+        
+        <div class="col-lg-1">
+            @if(isset($stonecollection)) @if($stonecollection->image4)
+            <a href='{{ URL::to('/') }}/images/{{$stonecollection->image4}}' target="_blank"> <img src='{{ URL::to('/') }}/images/{{$stonecollection->image4}}' height="42" width="42"> </a> 
+            @endif @endif
+            
+        </div>
+    </div>
+
+
 
     <div class="form-group">
         {{ Form::label('product_carousel_area', 'Product Carousel', ['class' => 'col-lg-2 control-label ']) }}

@@ -162,20 +162,20 @@ if(count($images) > 0)
 					  
                       foreach($products as $product)
                       { 
-					  	if($l < 5)
-						{
-                       	 echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
-						}
-						$l++;
-                      }
-					  if(count($products) > 5)
-					  {
-					  echo '<a target="_blank" href="'.route('frontend.production', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
-					  }
+            					  	if($l < 5)
+            						{
+                                   	 echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+            						}
+            						$l++;
+                                  }
+            					  if(count($products) > 5)
+            					  {
+            					  echo '<a target="_blank" href="'.route('frontend.stone-product-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+            					  }
 
-                    }
-                    else
-                    {
+                      }
+                      else
+                      {
                       $products = $collectiodata->subcollection;
 
                       $j=0;
