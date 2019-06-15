@@ -2,36 +2,105 @@
 
 @section('content')
 
-
 <section class="collection-slider">
-  <div id="carouselExampleIndicators" class="carousel slide home-slider-section" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image1}}" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image2}}" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image3}}" alt="Third slide">
-    </div>
+@php
+if(count($images) > 0)
+{
+  if(count($images) > 1)
+  {
+    @endphp
 
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+
+    
+      <div id="carouselExampleIndicators" class="carousel slide home-slider-section" data-ride="carousel">
+      <ol class="carousel-indicators">
+
+        @php
+        $i=0;
+        foreach($images as $image)
+        {
+
+          if($i == 0)
+          {
+            $active = 'active';
+          }
+          else
+          {
+            $active = '';
+
+          }
+
+          echo '<li data-target="#carouselExampleIndicators" data-slide-to="'.$i.'" class="'.$active.'"></li>';
+
+          $i=$i+1;
+        }
+        @endphp
+        
+      </ol>
+      <div class="carousel-inner">
+
+        @php
+        $i=0;
+        foreach($images as $image)
+        {
+
+          if($i == 0)
+          {
+            $active = 'active';
+          }
+          else
+          {
+            $active = '';
+
+          }
+
+          echo '<div class="carousel-item '.$active.'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'" alt="slide'.$i.'">';
+          echo '</div>';
+
+          $i=$i+1;
+        }
+        @endphp
+     
+
+      </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    
+
+
+    @php
+
+  }
+
+  if(count($images) == 1)
+  {
+    @endphp
+      
+        <div id="carouselExampleIndicators" class="carousel home-slider-section">
+          <div class="carousel-inner">
+            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+      
+    @php
+  }
+
+
+}
+
+@endphp
+
 </section>
+
+
 <section class="application-seaction">
   <div class="container">
 

@@ -2,35 +2,114 @@
 
 @section('content')
 
-<section class="collection-slider">
-  <div id="carouselExampleIndicators" class="carousel slide home-slider-section" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image1}}" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image2}}" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images->image3}}" alt="Third slide">
-    </div>
 
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</section>
+@php
+if(count($images) > 0)
+{
+  if(count($images) > 1)
+  {
+    @endphp
+
+
+    <section class="collection-slider">
+      <div id="carouselExampleIndicators" class="carousel slide home-slider-section" data-ride="carousel">
+      <ol class="carousel-indicators">
+
+        @php
+        $i=0;
+        foreach($images as $image)
+        {
+
+          if($i == 0)
+          {
+            $active = 'active';
+          }
+          else
+          {
+            $active = '';
+
+          }
+
+          echo '<li data-target="#carouselExampleIndicators" data-slide-to="'.$i.'" class="'.$active.'"></li>';
+
+          $i=$i+1;
+        }
+        @endphp
+        
+      </ol>
+      <div class="carousel-inner">
+
+        @php
+        $i=0;
+        foreach($images as $image)
+        {
+
+          if($i == 0)
+          {
+            $active = 'active';
+          }
+          else
+          {
+            $active = '';
+
+          }
+
+          echo '<div class="carousel-item '.$active.'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'" alt="slide'.$i.'">';
+          echo '</div>';
+
+          $i=$i+1;
+        }
+        @endphp
+     
+
+      </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+
+
+    @php
+
+  }
+
+  if(count($images) == 1)
+  {
+    @endphp
+      <section class="collection-slider">
+        <div id="carouselExampleIndicators" class="carousel home-slider-section">
+          <div class="carousel-inner">
+            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+      </section>
+
+    @php
+  }
+
+
+}
+
+@endphp
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="collection-seaction">
   <div class="container">
 
@@ -79,11 +158,20 @@
                     if($collectiodata->product->count() > 0 )
                     {
                       $products = $collectiodata->product;
-                      
+                      $l=0;					  
+					  
                       foreach($products as $product)
                       { 
-                        echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+					  	if($l < 5)
+						{
+                       	 echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+						}
+						$l++;
                       }
+					  if(count($products) > 5)
+					  {
+					  echo '<a target="_blank" href="'.route('frontend.production', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+					  }
 
                     }
                     else
@@ -94,7 +182,7 @@
                       
                       foreach($products as $product)
                       { 
-                        if($j==4)
+                        if($j==5)
                         {
 
                          break;
@@ -106,7 +194,10 @@
                         $j++;
                       }
 
-                      echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+                      if(count($products) > 5)
+					  {
+					  echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+					  }
                     }
 
 

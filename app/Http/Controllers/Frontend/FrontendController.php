@@ -108,8 +108,30 @@ return 'success';
     public function stoneCollection()
     { 
 
+        $images = [];
         // get three images
-        $images = DB::table('stone_collection_image')->where('id', 1)->first(); 
+        $data = DB::table('stone_collection_image')->where('id', 1)->first(); 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
+
+        
 
         $repo = new StoneCollectionRepository();
         $collectiodatas =$repo->getData();
@@ -151,7 +173,29 @@ return 'success';
 
 
         
-        
+        $images = [];
+        // get three images
+        $data = DB::table('stone_collection_image')->where('id', 1)->first(); 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
+
         
 
         // get three images
@@ -169,7 +213,8 @@ return 'success';
                 
                 'colection' => $colection,
                 'subcolections' => $subcolections,
-                'selected' => $selected
+                'selected' => $selected,
+                'images' => $images,
             ]
         );
     }
@@ -189,7 +234,27 @@ return 'success';
     public function production($id)
     { 
         $colection     = StoneProduct::where('id', $id)->first();
-        return view('frontend.production',['product' => $colection]);
+		$images = [];
+		if($colection)
+            
+        {
+            if(!empty($colection->image1))
+            {
+                array_push($images,$colection->image1);
+                
+            }
+            if(!empty($colection->image2))
+            {
+                 array_push($images,$colection->image2);
+            }
+            if(!empty($colection->image3))
+            {
+                 array_push($images,$colection->image3);
+            }
+            
+        }
+		
+        return view('frontend.production',['product' => $colection, 'images' => $images]);
     }
 
 
@@ -199,7 +264,33 @@ return 'success';
     public function indoor($id)
     { 
         
-        $images = DB::table('indoor_collection_image')->where('id', 1)->first();
+        
+
+
+        $images = [];
+        // get three images
+        $data = DB::table('indoor_collection_image')->where('id', 1)->first(); 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
+
+
 
         $item = OutdoorCollection::where('id', $id)->where('is_indoor', 1)->first();
 
@@ -216,7 +307,30 @@ return 'success';
     public function outdoor($id)
     { 
         
-        $images = DB::table('outdoor_collection_image')->where('id', 1)->first();
+        
+
+        $images = [];
+        // get three images
+        $data = DB::table('outdoor_collection_image')->where('id', 1)->first(); 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
 
         $item = OutdoorCollection::where('id', $id)->where('is_indoor', 0)->first();
 
