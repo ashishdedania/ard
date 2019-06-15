@@ -72,11 +72,12 @@ class StoneProductRepository extends BaseRepository {
 		$image1 = $request->file('image1');
 		$image2 = $request->file('image2');
 		$image3 = $request->file('image3');
+		$image4 = $request->file('image4');
 
 		$stonecollection              = self::MODEL;
 		$stonecollection              = new $stonecollection();
 		$stonecollection->title       = $input['title'];
-		
+		$stonecollection->description       = $input['description'];
 		$stonecollection->collection_id = $input['collection_id'];
 
 
@@ -93,6 +94,14 @@ class StoneProductRepository extends BaseRepository {
 		
 		if ($stonecollection->save()) {
 			$stonecollectionId = $stonecollection->id;
+
+
+			if (!empty($image4)) {
+				$filesNames = $this->fileUpload($image4, $stonecollectionId);
+				//update filepath from datatabe.
+				StoneProduct::where('id', $stonecollectionId)->update(['image4' => $filesNames]);
+			}
+			
 			
 
 
@@ -107,7 +116,7 @@ class StoneProductRepository extends BaseRepository {
 				if (!empty($image1)) {
 					$filesNames = $this->fileUpload($image1, $stonecollectionId);
 					//update filepath from datatabe.
-					StoneCollection::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
+					StoneProduct::where('id', $stonecollectionId)->update(['image1' => $filesNames]);
 				}
 			}
 
@@ -123,7 +132,7 @@ class StoneProductRepository extends BaseRepository {
 				if (!empty($image2)) {
 					$filesNames = $this->fileUpload($image2, $stonecollectionId);
 					//update filepath from datatabe.
-					StoneCollection::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
+					StoneProduct::where('id', $stonecollectionId)->update(['image2' => $filesNames]);
 				}
 			}
 
@@ -140,7 +149,7 @@ class StoneProductRepository extends BaseRepository {
 				if (!empty($image3)) {
 					$filesNames = $this->fileUpload($image3, $stonecollectionId);
 					//update filepath from datatabe.
-					StoneCollection::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
+					StoneProduct::where('id', $stonecollectionId)->update(['image3' => $filesNames]);
 				}
 			}
 
@@ -180,6 +189,22 @@ class StoneProductRepository extends BaseRepository {
 		$stonecollection = StoneProduct::where('id', $id)->first();
 
 		$input = $request->except(['_token']); 
+
+
+
+		$image4 = $request->file('image4');
+
+		if (!empty($image4)) {
+
+			$filesNames = $this->fileUpload($image4, $stonecollection->id);
+			//update filepath from datatabe.
+			$input['image4'] = $filesNames;
+			$this->removeImage($stonecollection->image4);
+
+		}
+
+
+
 		$image1 = $request->file('image1');
 
 
