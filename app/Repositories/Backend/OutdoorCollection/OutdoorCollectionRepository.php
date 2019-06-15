@@ -39,7 +39,7 @@ class OutdoorCollectionRepository extends BaseRepository {
 				config('module.outdoorcollection.table').'.created_by',
 				config('module.outdoorcollection.table').'.updated_at',
 				
-			]);
+			])->orderBy('id', 'desc');
 	}
 
 	

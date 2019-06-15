@@ -52,7 +52,7 @@ class StoneProductRepository extends BaseRepository {
 				config('module.stoneproduct.table').'.created_by',
 				config('module.stoneproduct.table').'.updated_at',
 				
-			]);
+			])->orderBy('id', 'desc');
 	}
 
 	

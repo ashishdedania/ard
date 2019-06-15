@@ -39,7 +39,7 @@ class StoneCollectionRepository extends BaseRepository {
 				config('module.stonecollection.table').'.created_by',
 				config('module.stonecollection.table').'.updated_at',
 				
-			]);
+			])->orderBy('id', 'desc');
 	}
 
 	

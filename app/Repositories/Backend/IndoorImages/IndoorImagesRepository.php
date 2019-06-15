@@ -53,7 +53,7 @@ class IndoorImagesRepository extends BaseRepository {
 				config('module.indoorimages.table').'.created_by',
 				config('module.indoorimages.table').'.updated_at',
 				
-			]);
+			])->orderBy('id', 'desc');
 	}
 
 	

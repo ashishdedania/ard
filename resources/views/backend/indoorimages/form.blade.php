@@ -88,7 +88,7 @@
     <div class="form-group">
         {{ Form::label('', 'Order No', ['class' => 'col-lg-2 control-label required']) }}
         <div class="col-lg-10">
-            {{ Form::number('sr_no', null, ['class' => 'form-control box-size', 'placeholder' => '1' , 'style' => 'width:100px;']) }}
+            {{ Form::number('sr_no', null, ['class' => 'form-control box-size', 'placeholder' => '1' , 'style' => 'width:100px;' ,  'min' =>"1"]) }}
         </div>
     </div>
     
