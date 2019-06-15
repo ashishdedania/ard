@@ -146,7 +146,17 @@ if(count($images) > 0)
         </div>
         <div class="col-lg-7 text-center collection-img">
           <div class="mt-5">
-            <img src="{{ URL::to('/') }}/images/{{$selected->image1}}" alt="">
+
+
+            <?php
+
+              $img = URL::to('/').'/css/project/images/no-image.jpg';
+              if (file_exists(public_path().'/images/'.$selected->image1)) {
+                 $img = URL::to('/').'/images/'.$selected->image1;
+               }
+            ?>
+
+            <img src="{{ $img}}" alt="">
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
