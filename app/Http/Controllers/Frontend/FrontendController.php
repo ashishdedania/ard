@@ -30,14 +30,14 @@ class FrontendController extends Controller
         
         
 
-        return view('frontend.index', ['html'=>$result->description]);
+        return view('frontend.index', ['html'=>str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$result->description)]);
     }
 
     /**
      * show page by $page_slug.
      */
     public function showPage($slug, PagesRepository $pages)
-    {
+    { 
         $result = $pages->findBySlug($slug);
 
         return view('frontend.pages.index')
@@ -99,7 +99,7 @@ return 'success';
 
 
         $result = DB::table('pages')->where('id', 11)->first();
-        return view('frontend.contactus',['html'=>$result->description]);
+        return view('frontend.contactus',['html'=>str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$result->description)]);
     }
 
 
