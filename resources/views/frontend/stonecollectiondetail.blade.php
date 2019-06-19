@@ -106,7 +106,7 @@ if(count($images) > 0)
 <section class="collection-seaction">
   <div class="container">
     <!-- <div class="collection-title">Collections</div> -->
-    <p>Stone Collection Description goes here..</p>
+    <p>{{str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$colection->description)}}</p>
     <div class="inner-title">
         <h2>{{$colection->title}}</h2>
     </div>

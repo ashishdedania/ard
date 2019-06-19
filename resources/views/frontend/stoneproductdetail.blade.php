@@ -107,7 +107,7 @@ if(count($images) > 0)
   <div class="container">
     <!-- <div class="collection-title">Collections</div> -->
     
-    <p>Gemstone Collection Description goes here..</p>
+    <p>{{str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$colection->description)}}</p>
     <div class="inner-title">
         <h2>{{$colection->title}}</h2>
     </div>
