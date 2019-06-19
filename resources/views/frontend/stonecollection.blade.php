@@ -219,7 +219,7 @@ if(count($images) > 0)
           </div>
         </div>
         <div class="col-lg-7 text-center">
-            <img id='ImgCollection' src="{{ asset('css/project/images/product-front-view.png') }}" alt="">
+            <img id='ImgCollection' src="{{ asset('css/project/images/product-front-view.png') }}" alt="Collections">
         </div>
         
     </div>

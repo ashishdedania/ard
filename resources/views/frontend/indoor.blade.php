@@ -198,7 +198,7 @@ if(count($images) > 0)
         @foreach($item->items as $indoorItem)
 
          <div class="col">
-          <a href="#exampleModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}"  alt=""></a>
+          <a href="#exampleModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" alt="{{$indoorItem->title}}"></a>
         </div> 
 
         @php 

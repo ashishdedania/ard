@@ -108,7 +108,7 @@ var body = $("body");
       type: 'POST',  // http method
       data: {name : name,number : number,email : email,message : message},
       success: function(html){
-        alert('Thank you for contact');
+        alert('Your request has been submitted. Our Representative will contact you shortly.');
 
         document.getElementById('mail-name').value ='';
       document.getElementById('mail-number').value='';

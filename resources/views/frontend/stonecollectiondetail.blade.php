@@ -106,6 +106,7 @@ if(count($images) > 0)
 <section class="collection-seaction">
   <div class="container">
     <!-- <div class="collection-title">Collections</div> -->
+    <p>Stone Collection Description goes here..</p>
     <div class="inner-title">
         <h2>{{$colection->title}}</h2>
     </div>
@@ -156,7 +157,7 @@ if(count($images) > 0)
                }
             ?>
 
-            <img src="{{ $img}}" alt="">
+            <img src="{{ $img}}" alt="{{ $selected->title}} - {{$colection->title}}" title="{{ $selected->title}} - {{$colection->title}}">
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>

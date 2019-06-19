@@ -60,11 +60,11 @@ class FrontendController extends Controller
        $email=$input['email'];
        $content = $input['message'];
 
-       $html = '<div>Contect Received </div>';
-       $html .= '<div>Name : '.$name.' </div>';
-       $html .= '<div>Contact Number : '.$number.' </div>';
-       $html .= '<div>Email : '.$email.' </div>';
-       $html .= '<div>Message : '.$content.' </div>';
+       $html = '<p>New contact request has been received </p>';
+       $html .= '<p>Name : '.$name.' <br>';
+       $html .= 'Contact Number : '.$number.' <br>';
+       $html .= 'Email : '.$email.' <br>';
+       $html .= 'Message : '.$content.' <br></p>';
 
 
 $message = ['data' => $html];    
@@ -76,7 +76,7 @@ $data['to'] = env("CONTECT_EMAIL");
 
 $a= Mail::send(['html' => 'emails.template'], ['data' => $html], function ($message) use ($data) {
                     $message->to($data['to']);
-                    $message->subject('Contact Detail Came!');
+                    $message->subject('Contact request has been submitted!');
                     $message->from('hello@app.com', 'Stone By Rander');
                     
                 }); 

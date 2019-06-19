@@ -106,6 +106,8 @@ if(count($images) > 0)
 <section class="collection-seaction">
   <div class="container">
     <!-- <div class="collection-title">Collections</div> -->
+    
+    <p>Gemstone Collection Description goes here..</p>
     <div class="inner-title">
         <h2>{{$colection->title}}</h2>
     </div>
@@ -120,7 +122,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<option value='.route('frontend.stone-collection-detail', ['id' => $colection->id,'sub' => $subcolection->id]).'>'.$subcolection->title.'</option>';
+              echo '<option value='.route('frontend.production', ['id' => $colection->id,'sub' => $subcolection->id]).'>'.$subcolection->title.'</option>';
             }
             ?>
         
@@ -135,7 +137,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<li><a href="'.route('frontend.stone-product-detail', ['id' => $colection->id,'sub' => $subcolection->id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
+              echo '<li><a href="'.route('frontend.production', ['id' => $subcolection->id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
             }
             ?>
 
@@ -156,7 +158,7 @@ if(count($images) > 0)
                }
             ?>
 
-            <a target="_blank" href="{{route('frontend.production', ['id' => $selected->id])}}"><img src="{{$img}}" alt=""></a>
+            <a target="_blank" href="{{route('frontend.production', ['id' => $selected->id])}}"><img src="{{$img}}" alt="{{$selected->title}} - {{$colection->title}}" title="{{$selected->title}} - {{$colection->title}}"></a>
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>

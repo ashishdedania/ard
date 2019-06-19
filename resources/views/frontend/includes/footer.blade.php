@@ -1,5 +1,5 @@
 <footer>
   <div class="container text-center">
-      © 2018 Stones by Rander. All Rights Reserved
+      &copy; <?php echo date("Y")?> Stones by Rander. All Rights Reserved
   </div>
 </footer>

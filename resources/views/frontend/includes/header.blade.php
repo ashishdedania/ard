@@ -117,11 +117,6 @@
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-collection')}}">Collection</a>
           </li> -->
           
-
-
-          <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-product-detail') ? 'active' : '' }}">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-product-detail', ['id'=>$collectionid,'sub'=>0])}}">Production</a>
-          </li>
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-talk') ? 'active' : '' }}">
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-talk')}}">Stone Talk</a>
           </li>
