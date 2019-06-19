@@ -39,7 +39,7 @@
 		'csrfToken' => csrf_token(),
 	       ]);?>
         </script>
-
+        @include('frontend.includes.header-setting')
     </head>
     <body id="page-top">
         @include('frontend.includes.header')
@@ -61,15 +61,10 @@
         {!! Html::script('js/select2/select2.js') !!} -->
 
 
-        
-
-
-
-        
 
         
 
 
-        
+        @include('frontend.includes.body-setting')
     </body>
 </html>

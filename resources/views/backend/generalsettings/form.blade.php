@@ -1,12 +1,6 @@
 <div class="box-body">
     
-    <div class="form-group">
-        {{ Form::label('setting_0', 'General Mega Description', ['class' => 'col-lg-2 control-label required']) }}
-        <div class="col-lg-10">
-            {{ Form::textarea('setting_0', null, ['class' => 'form-control box-size', 'placeholder' => 'Description']) }}
-        </div>
-    </div>
-
+    
 
     <div class="form-group">
         {{ Form::label('setting_1', 'Third Party code (Header Part)', ['class' => 'col-lg-2 control-label required']) }}
