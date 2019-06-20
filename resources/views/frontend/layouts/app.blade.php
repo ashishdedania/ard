@@ -5,8 +5,9 @@
 <html lang="{{ config('app.locale') }}">
     <head>
         <meta charset="utf-8">
+        @include('frontend.includes.meta-setting')
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
+        
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Stones by Rander</title>
@@ -39,7 +40,7 @@
 		'csrfToken' => csrf_token(),
 	       ]);?>
         </script>
-
+        @include('frontend.includes.header-setting')
     </head>
     <body id="page-top">
         @include('frontend.includes.header')
@@ -61,15 +62,10 @@
         {!! Html::script('js/select2/select2.js') !!} -->
 
 
-        
-
-
-
-        
 
         
 
 
-        
+        @include('frontend.includes.body-setting')
     </body>
 </html>

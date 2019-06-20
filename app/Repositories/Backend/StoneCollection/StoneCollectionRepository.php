@@ -64,6 +64,11 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection              = self::MODEL;
 		$stonecollection              = new $stonecollection();
 		$stonecollection->title       = $input['title'];
+		$stonecollection->description       = $input['description'];
+
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
 		
 		$stonecollection->created_by  = access()->user()->id;
 		
@@ -652,6 +657,34 @@ class StoneCollectionRepository extends BaseRepository {
 		}
 
 		throw new GeneralException(trans('error in stone collection image update'));
+	}
+
+
+
+	/**
+	 * For updating the respective Model in storage
+	 *
+	 * @param $id
+	 * @param  $request
+	 * @throws GeneralException
+	 * return bool
+	 */
+	public function updategeneralsetting($id, $request) {
+
+		$stonecollection = DB::table('general_setting')->where('id', 1)->first();
+		
+		$input = $request->except(['_token']); unset($input['_method']);
+		
+		
+ 
+		$response = DB::table('general_setting')->where('id', 1)->update($input);
+
+		//update records.
+		if ($response) {
+			return true;
+		}
+
+		throw new GeneralException(trans('error in general settings update'));
 	}
 
 	public function getData()

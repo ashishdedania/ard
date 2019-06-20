@@ -65,6 +65,10 @@ class OutdoorCollectionRepository extends BaseRepository {
 		$stonecollection->title       = $input['title'];
 		$stonecollection->description = $input['description'];
 		$stonecollection->is_indoor   = $input['is_indoor'];
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
+
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {

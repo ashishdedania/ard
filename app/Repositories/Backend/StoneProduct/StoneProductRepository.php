@@ -90,6 +90,10 @@ class StoneProductRepository extends BaseRepository {
 		$stonecollection->maintainance_section       = $input['maintainance_section'];
 		$stonecollection->section_seven       = $input['section_seven'];
 
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
+
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {

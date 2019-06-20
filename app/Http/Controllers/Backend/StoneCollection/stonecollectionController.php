@@ -69,13 +69,13 @@ class StonecollectionController extends Controller {
 
 		$rules = [
 			'title'       => 'required',
-			
+			'description'       => 'required',
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
-			
+			'description.required'       => 'The Description filed is required.',
 			
 			
 		];
@@ -114,11 +114,13 @@ class StonecollectionController extends Controller {
 		
 		$rules = [
 			'title'       => 'required',
+			'description'       => 'required',
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
+			'description.required'       => 'The Description filed is required.',
 			
 			
 		];

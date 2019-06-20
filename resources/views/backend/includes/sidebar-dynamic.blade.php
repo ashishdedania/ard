@@ -91,6 +91,12 @@
                     <span>Collection Slider Image</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/generalsettings*')) }}">
+                <a href="{{ route('admin.generalsettings.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>General Settings</span>
+                </a>
+            </li>
 
             <li class="{{ active_class(Active::checkUriPattern('logout')) }}">
                 <a href="{{ route('frontend.auth.logout') }}">
