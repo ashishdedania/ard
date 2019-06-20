@@ -38,6 +38,23 @@
                     </div><!--col-lg-3-->
                 </div><!--form control-->
 
+
+                <div class="form-group">
+                    {{ Form::label('Meta Title', 'Meta Title', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::textarea('meta_title', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Title']) }}
+                    </div><!--col-lg-3-->
+                </div><!--form control-->
+
+                <div class="form-group">
+                    {{ Form::label('Meta Description', 'Meta Description', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::textarea('meta_description', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Description']) }}
+                    </div><!--col-lg-3-->
+                </div>
+
                 
                 <div class="edit-form-btn">
                     {{ link_to_route('admin.pages.index', trans('buttons.general.cancel'), [], ['class' => 'btn btn-danger btn-md']) }}

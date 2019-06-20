@@ -65,6 +65,10 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection              = new $stonecollection();
 		$stonecollection->title       = $input['title'];
 		$stonecollection->description       = $input['description'];
+
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
 		
 		$stonecollection->created_by  = access()->user()->id;
 		
