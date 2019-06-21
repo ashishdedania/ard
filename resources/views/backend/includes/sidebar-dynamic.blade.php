@@ -41,6 +41,13 @@
                     <span>Collection</span>
                 </a>
             </li>
+            
+             <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
+                <a href="{{ route('admin.collectionimage.index') }}">
+                    <i class="fa fa-file-text"></i>
+                    <span>Collection Slider Image</span>
+                </a>
+            </li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/substonecollection*')) }}">
                 <a href="{{ route('admin.substonecollection.index') }}">
@@ -52,7 +59,7 @@
             <li class="{{ active_class(Active::checkUriPattern('admin/stoneproduct*')) }}">
                 <a href="{{ route('admin.stoneproduct.index') }}">
                     <i class="fa fa-file-text"></i>
-                    <span>Product</span>
+                    <span>Products</span>
                 </a>
             </li>
 
@@ -85,12 +92,7 @@
                 </a>
             </li>
 
-            <li class="{{ active_class(Active::checkUriPattern('admin/collectionimage*')) }}">
-                <a href="{{ route('admin.collectionimage.index') }}">
-                    <i class="fa fa-file-text"></i>
-                    <span>Collection Slider Image</span>
-                </a>
-            </li>
+           
             <li class="{{ active_class(Active::checkUriPattern('admin/generalsettings*')) }}">
                 <a href="{{ route('admin.generalsettings.index') }}">
                     <i class="fa fa-file-text"></i>

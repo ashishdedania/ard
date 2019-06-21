@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
 
 @section('content')
-Welcome Amin !!
+<h1>Welcome Admin!</h1>
 @endsection

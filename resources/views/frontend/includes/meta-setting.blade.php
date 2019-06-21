@@ -10,7 +10,7 @@
           // home page
 
           $page = DB::table('pages')->where('id', 12)->first();
-          $metatitle = $page->meta_title;
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
         }
@@ -21,7 +21,7 @@
         {
           // abu us page
           $page = DB::table('pages')->where('id', 7)->first();
-          $metatitle = $page->meta_title;
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
         }
@@ -34,7 +34,7 @@
           $id = \Route::current()->parameter('id');
 
           $page = DB::table('indoor_outdoor')->where('id', $id)->first();
-          $metatitle = $page->meta_title;
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
 
@@ -48,7 +48,7 @@
           $id = \Route::current()->parameter('id');
 
           $page = DB::table('stone_collection')->where('id', $id)->first();
-          $metatitle = $page->meta_title;
+          $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
         }
@@ -59,7 +59,7 @@
         {
           // contact us page
           $page = DB::table('pages')->where('id', 11)->first();
-          $metatitle = $page->meta_title;
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
         }
 
@@ -70,17 +70,15 @@
           $id = \Route::current()->parameter('id');
 
           $page = DB::table('stone_product')->where('id', $id)->first();
-          $metatitle = $page->meta_title;
+          $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
 
         }
-
-
      
-
-       echo '<meta name="description" content="'.$metadesc.'">';
-       echo '<meta name="keywords" content="'.$metatitle.'">'; 
+echo '<title>'.$metatitle.'</title>'; 
+echo '<meta name="description" content="'.addslashes($metadesc).'" />';
+       
   
   ?>
 

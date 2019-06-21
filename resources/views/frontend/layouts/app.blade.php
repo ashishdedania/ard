@@ -4,13 +4,15 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>
+    
+    	 @yield('meta')
         <meta charset="utf-8">
         @include('frontend.includes.meta-setting')
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Stones by Rander</title>
+        
 
 
         
@@ -24,7 +26,7 @@
         <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
      
 
-        @yield('meta')
+       
 
         <!-- Styles -->
         @yield('before-styles')
