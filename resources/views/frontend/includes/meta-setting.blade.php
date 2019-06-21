@@ -41,13 +41,47 @@
         }
 
 
-        if(\Request::route()->getName() == 'frontend.stone-product-detail' || \Request::route()->getName() == 'frontend.stone-collection-detail')
+        if(\Request::route()->getName() == 'frontend.stone-collection-detail')
         {
           // sub collection, product collection page
 
-          $id = \Route::current()->parameter('id');
+          $id = \Route::current()->parameter('sub');
 
-          $page = DB::table('stone_collection')->where('id', $id)->first();
+          if($id == 0)
+          {
+            $page = DB::table('sub_stone_collection')->first();
+          }
+          else
+          {
+            $page = DB::table('sub_stone_collection')->where('id', $id)->first();
+          }
+
+          
+          $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+        }
+
+
+        
+        if(\Request::route()->getName() == 'frontend.stone-product-detail')
+        {
+          // sub collection, product collection page
+
+          
+
+          $id = \Route::current()->parameter('sub');
+
+          if($id == 0)
+          {
+            $page = DB::table('stone_product')->first();
+          }
+          else
+          {
+            $page = DB::table('stone_product')->where('id', $id)->first();
+          }
+
+          
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
@@ -71,6 +105,18 @@
 
           $page = DB::table('stone_product')->where('id', $id)->first();
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+
+        }
+
+        if(\Request::route()->getName() == 'frontend.stone-collection')
+        {
+          
+          
+
+          $page = DB::table('stone_collection_image')->first();
+          $metatitle = $page->meta_title;
           $metadesc = $page->meta_description;
 
 
