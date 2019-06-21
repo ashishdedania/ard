@@ -78,6 +78,8 @@ class SubStoneCollectionRepository extends BaseRepository {
 		$stonecollection->title       = $input['title'];
 		$stonecollection->description = $input['description'];
 		$stonecollection->collection_id = $input['collection_id'];
+		$stonecollection->meta_title = $input['meta_title'];
+		$stonecollection->meta_description = $input['meta_description'];
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {
