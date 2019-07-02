@@ -45,6 +45,87 @@ class FrontendController extends Controller
     }
 
 
+
+    public function getajax(Request $request)
+    {
+        $input = $request->except(['_token']);
+        
+        $item = OutdoorCollection::where('id', $input['id'])->first();
+
+
+        $description = $item->description;
+        $masonry = '<div class="row">';
+
+       
+          
+        if(isset($item->items)) { 
+
+            $i=1; 
+
+          
+            foreach($item->items as $indoorItem)
+            {
+
+             $masonry = $masonry . '<div class="col">';
+             $masonry = $masonry . '<a href="#exampleModal'.$indoorItem->id.'" data-toggle="modal"><img src="'.\URL::to('/').'/images/'.$indoorItem->image1.'" alt="'.$indoorItem->title.'"></a>
+            </div>'; 
+
+            
+              if($i % 3 == 0)
+              { 
+                $masonry = $masonry . '</div> <div class="row">';
+         
+              }
+              $i = $i +1; 
+            }
+        }
+
+        $masonry = $masonry . '</div>';
+
+        $model = '';
+
+
+        foreach($item->items as $indoorItem)
+        {
+
+  $model = $model . '<div class="modal fade" id="exampleModal'.$indoorItem->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModal'.$indoorItem->id.'Label" aria-hidden="true">
+  <div class="modal-dialog collection-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <img src="'. \URL::to('/') .'/images/close.png" alt="">
+      </button>
+      <div class="modal-body">
+
+          <div class="left-img">
+          <img src="'. \URL::to('/') .'/images/'.$indoorItem->image1.'" class="w-100" alt="">
+          </div>
+          <div class="info-block">
+            <h2>'.$indoorItem->title.'</h2>
+            <p>'.$indoorItem->description.'
+</p>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>';
+
+        }
+
+
+
+        echo json_encode([
+            'description' =>$description,
+            'model' => $model,
+            'masonry' => $masonry    
+
+        ]);
+
+
+    }
+
+
     public function sendcontact(Request $request)
     { $input = $request->except(['_token']);
        
@@ -65,6 +146,9 @@ class FrontendController extends Controller
        $html .= 'Contact Number : '.$number.' <br>';
        $html .= 'Email : '.$email.' <br>';
        $html .= 'Message : '.$content.' <br></p>';
+
+
+
 
 
 $message = ['data' => $html];    
@@ -334,11 +418,17 @@ return 'success';
     /**
      * @return \Illuminate\View\View
      */
-    public function indoor($id)
+    public function indoor()
     { 
         
         
-
+        
+        $indoor = DB::table('indoor_outdoor')->where('is_indoor', 1)->orderBy('id')->first();
+        
+        if($indoor)
+        {
+            $id = $indoor->id;
+        }
 
         $images = [];
         // get three images
@@ -377,8 +467,15 @@ return 'success';
     /**
      * @return \Illuminate\View\View
      */
-    public function outdoor($id)
+    public function outdoor()
     { 
+
+        $outdoor = DB::table('indoor_outdoor')->where('is_indoor', 0)->orderBy('id')->first(); 
+        
+        if($outdoor)
+        {
+            $id = $outdoor->id;
+        }
         
         
 

@@ -17,9 +17,11 @@ Route::get('stone-product-detail/{id}/sub/{sub}', 'FrontendController@stoneProdu
 Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
 Route::get('production/{id}', 'FrontendController@production')->name('production');
 
-Route::get('indoor/{id}', 'FrontendController@indoor')->name('indoor');
+Route::get('indoor-applications', 'FrontendController@indoor')->name('indoor-applications');
 
-Route::get('outdoor/{id}', 'FrontendController@outdoor')->name('outdoor');
+Route::get('outdoor-applications', 'FrontendController@outdoor')->name('outdoor-applications');
+
+Route::get('getajax', 'FrontendController@getajax')->name('getajax');
 
 /*
  * These frontend controllers require the user to be logged in

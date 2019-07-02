@@ -36,8 +36,6 @@
 
         }
 
-
-
         $collections = DB::table('stone_collection')->orderBy('id')->get();
         
         
@@ -66,8 +64,8 @@
               Applications
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{route('frontend.indoor', ['id'=>$indoorid])}}">Indoor Applications</a>
-              <a class="dropdown-item" href="{{route('frontend.outdoor', ['id'=>$outdoorid])}}">Outdoor Applications</a>          
+              <a class="dropdown-item" href="{{route('frontend.indoor-applications')}}">Indoor Application</a>
+              <a class="dropdown-item" href="{{route('frontend.outdoor-applications')}}">Outdoor Application</a>          
             </div>
           </li>
 

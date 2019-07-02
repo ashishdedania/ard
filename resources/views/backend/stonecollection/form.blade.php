@@ -74,6 +74,23 @@
     </div>
 
 
+    <div class="form-group">
+        {{ Form::label('Image Alt Text', 'Image Alt Text', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('image_alt_text', null,['class' => 'form-control box-size', 'placeholder' => 'Image Alt Text']) }}
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Image Title Text', 'Image Title Text', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('image_title_text', null,['class' => 'form-control box-size', 'placeholder' => 'Image Title Text']) }}
+        </div><!--col-lg-3-->
+    </div>
+
+
     
     
 </div>
