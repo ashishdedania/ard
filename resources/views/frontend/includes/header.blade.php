@@ -63,17 +63,17 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Application
+              Applications
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{route('frontend.indoor', ['id'=>$indoorid])}}">Indoor Application</a>
-              <a class="dropdown-item" href="{{route('frontend.outdoor', ['id'=>$outdoorid])}}">Outdoor Application</a>          
+              <a class="dropdown-item" href="{{route('frontend.indoor', ['id'=>$indoorid])}}">Indoor Applications</a>
+              <a class="dropdown-item" href="{{route('frontend.outdoor', ['id'=>$outdoorid])}}">Outdoor Applications</a>          
             </div>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Collection
+              Collections
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @php
