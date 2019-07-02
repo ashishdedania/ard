@@ -94,6 +94,11 @@ class StoneProductRepository extends BaseRepository {
 		$stonecollection->meta_title   = $input['meta_title'];
 		$stonecollection->meta_description   = $input['meta_description'];
 
+
+		$stonecollection->image_alt_text   = $input['image_alt_text'];
+		$stonecollection->image_title_text   = $input['image_title_text'];
+
+
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {
