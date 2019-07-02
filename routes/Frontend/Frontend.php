@@ -21,6 +21,8 @@ Route::get('indoor/{id}', 'FrontendController@indoor')->name('indoor');
 
 Route::get('outdoor/{id}', 'FrontendController@outdoor')->name('outdoor');
 
+Route::get('getajax', 'FrontendController@getajax')->name('getajax');
+
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'

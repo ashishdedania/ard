@@ -111,18 +111,11 @@ if(count($images) > 0)
         @foreach($indoors as $indoor)
 
         @php
-            $selected = '';
-            $url = route('frontend.outdoor', ['id'=>$indoor->id]);
-
-            if($id == $indoor->id)
-            {
-              $selected = 'selected';
-
-            }
+            
 
           @endphp
 
-        <option value="{{$url}}" {{$selected}}>{{$indoor->title}}</option>
+        <option value="{{$indoor->id}}">{{$indoor->title}}</option>
 
         @endforeach
 
@@ -139,21 +132,21 @@ if(count($images) > 0)
         <option>Knobs and Handles</option> -->
       </select>
 
-      <ul class="category-type-menu mt-5 mb-5">
+      <ul class="category-type-menu mt-5 mb-5" id="my-ul">
 
         @foreach($indoors as $indoor)
           @php
-            $class = '';
+            $class = 'my-class';
             $url = route('frontend.outdoor', ['id'=>$indoor->id]);
 
             if($id == $indoor->id)
             {
-              $class = 'active';
+              $class = 'my-class active';
 
             }
 
           @endphp
-          <li class={{$class}}><a href={{$url}}>{{$indoor->title}}</a></li>
+          <li class={{$class}} data-id={{$indoor->id}}><a href='javascript:void(0);'>{{$indoor->title}}</a></li>
         @endforeach
 
         <!-- <li><a href="#">Stone staircases</a></li>
@@ -175,9 +168,9 @@ if(count($images) > 0)
 
   <div class="container">
 
-      {{$indoor->description}}
+      <p id="data-description">{{$item->description}} </p>
 
-    <div class="masonry">
+    <div class="masonry" id="data-masonry">
       
         <div class="row">
 
@@ -225,7 +218,7 @@ if(count($images) > 0)
 
  
 
-
+<div id="data-ty">
 @foreach($item->items as $indoorItem)
 
   <div class="modal fade" id="exampleModal{{$indoorItem->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal{{$indoorItem->id}}Label" aria-hidden="true">
@@ -252,7 +245,7 @@ if(count($images) > 0)
 </div>
 
  @endforeach
-
+</div>
 
 
 
@@ -261,10 +254,74 @@ $(document).ready(function () {
 
 
 $('#myselect').on('change', function() {
-  window.location.replace(this.value);
+
+
+  var id = this.value;
+     
+     var body = $("body");
+     var urlis = "{{route('frontend.getajax')}}"; body.addClass("loading");
+
+     $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    }
+                });
+
+     $.ajax({
+      url: urlis,
+      type: 'GET',  // http method
+      data: {id : id},
+      success: function(html){
+
+        var data = JSON.parse(html);
+        document.getElementById('data-description').innerHTML = data.description;
+        document.getElementById('data-masonry').innerHTML = data.masonry;
+        document.getElementById('data-ty').innerHTML = data.model;
+
+        
+     body.removeClass("loading");
+      }
+    });
+  
 });
 
 
+
+
+
+$("#my-ul li").click(function(){
+     var id = $(this).data("id");
+     
+     var body = $("body");
+     var urlis = "{{route('frontend.getajax')}}"; body.addClass("loading");
+
+     $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    }
+                });
+
+     $.ajax({
+      url: urlis,
+      type: 'GET',  // http method
+      data: {id : id},
+      success: function(html){
+
+        var data = JSON.parse(html);
+        document.getElementById('data-description').innerHTML = data.description;
+        document.getElementById('data-masonry').innerHTML = data.masonry;
+        document.getElementById('data-ty').innerHTML = data.model;
+
+        
+     body.removeClass("loading");
+
+     $('li').removeClass('active');
+     $(this).addClass('active');
+
+      }
+    });
+
+    });
 
 
  });
