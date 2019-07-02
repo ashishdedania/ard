@@ -155,9 +155,12 @@ if(count($images) > 0)
               if (!empty($selected->image1)) {
                  $img = URL::to('/').'/images/'.$selected->image1;
                }
+			   
+			   $imgAlt = $selected->image_alt_text;
+			   $imgTitle = $selected->image_title_text;
             ?>
 
-            <img src="{{ $img}}" alt="{{ $selected->title}} - {{$colection->title}}" title="{{ $selected->title}} - {{$colection->title}}">
+            <img src="{{ $img}}" alt="{{ $imgAlt?$imgAlt:$selected->title}}" title="{{ $imgTitle?$imgTitle:$selected->title}}">
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>

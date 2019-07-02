@@ -137,7 +137,7 @@ if(count($images) > 0)
 
         @foreach($indoors as $indoor)
           @php
-            $class = 'my-class';
+            $class = "my-class";
             
             
             if($id == $indoor->id)
@@ -149,7 +149,7 @@ if(count($images) > 0)
             
 
           @endphp
-          <li class={{$class}} data-id={{$indoor->id}}><a href='javascript:void(0);'>{{$indoor->title}}</a></li>
+          <li class="{{$class}}" data-id={{$indoor->id}}><a href='javascript:void(0);'>{{$indoor->title}}</a></li>
         @endforeach
 
         <!-- <li><a href="#">Stone staircases</a></li>
@@ -191,7 +191,7 @@ if(count($images) > 0)
         @foreach($item->items as $indoorItem)
 
          <div class="col">
-          <a href="#exampleModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" alt="{{$indoorItem->title}}"></a>
+          <a href="#indoorModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" alt="{{$indoorItem->title}}"></a>
         </div> 
 
         @php 
@@ -226,7 +226,7 @@ if(count($images) > 0)
 
 @foreach($item->items as $indoorItem)
 
-  <div class="modal fade" id="exampleModal{{$indoorItem->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal{{$indoorItem->id}}Label" aria-hidden="true">
+  <div class="modal fade" id="indoorModal{{$indoorItem->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal{{$indoorItem->id}}Label" aria-hidden="true">
   <div class="modal-dialog collection-dialog" role="document">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -320,11 +320,13 @@ $("#my-ul li").click(function(){
         
      body.removeClass("loading");
 
-     $('li').removeClass('active');
-     $(this).addClass('active');
+    
 
       }
     });
+	
+	 $("#my-ul li").removeClass('active');
+     $(this).addClass('active');
      
 });
 
