@@ -1,7 +1,6 @@
 ﻿@extends('frontend.layouts.app')
 
 @section('content')
-
 <style>
         .modal {
     display:    none;
@@ -12,7 +11,7 @@
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                url('{{ URL::to('/') }}/images/loading-circle.gif') 
                 50% 50% 
                 no-repeat;
 }
@@ -29,41 +28,27 @@ body.loading .modal {
     display: block;
 }
     </style>
-
 <section class="about-seaction">
-  <div class="container">
-        
-
-
-
-        {!! $html !!}  
-
-
-        
-
-
-        <div class="row contactus-form">
-          <div class="col-md-6">
-            <input type="text" class="form-control mb-3" placeholder="Name" id='mail-name'>
-            <input type="text" class="form-control mb-3" placeholder="Contact Number" id='mail-number'>
-            <input type="text" class="form-control mb-3" placeholder="Email Id" id='mail-email'>
-          </div>
-          <div class="col-md-6">
-            <textarea class="form-control" placeholder="Message" id='mail-message'></textarea>
-          </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-12">
-              <button class="btn send-btn btn-secondary float-right" id='send-btn'>SEND</button>
-            </div>
-        </div>
-
-  </div><div class="modal"></div>
+<div class="container"> {!! $html !!}
+  <div class="row contactus-form">
+    <div class="col-md-6">
+      <input type="text" class="form-control mb-3" placeholder="Name" id='mail-name'>
+      <input type="text" class="form-control mb-3" placeholder="Contact Number" id='mail-number'>
+      <input type="text" class="form-control mb-3" placeholder="Email Id" id='mail-email'>
+    </div>
+    <div class="col-md-6">
+      <textarea class="form-control" placeholder="Let Us Know How We Can Help" id='mail-message'></textarea>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <button class="btn send-btn btn-secondary float-right" id='send-btn'>SEND</button>
+    </div>
+  </div>
+</div>
+<div class="modal"></div>
 <section>
-
-
-
-  <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function () {  
 $("#send-btn").click(function(){
      var name = document.getElementById('mail-name').value;
@@ -125,5 +110,4 @@ var body = $("body");
 
 
 </script>
-    
-@endsection
+@endsection 
