@@ -418,11 +418,17 @@ return 'success';
     /**
      * @return \Illuminate\View\View
      */
-    public function indoor($id)
+    public function indoor()
     { 
         
         
-
+        
+        $indoor = DB::table('indoor_outdoor')->where('is_indoor', 1)->orderBy('id')->first();
+        
+        if($indoor)
+        {
+            $id = $indoor->id;
+        }
 
         $images = [];
         // get three images
@@ -461,8 +467,15 @@ return 'success';
     /**
      * @return \Illuminate\View\View
      */
-    public function outdoor($id)
+    public function outdoor()
     { 
+
+        $outdoor = DB::table('indoor_outdoor')->where('is_indoor', 0)->orderBy('id')->first(); 
+        
+        if($outdoor)
+        {
+            $id = $outdoor->id;
+        }
         
         
 

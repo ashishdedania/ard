@@ -138,7 +138,7 @@ if(count($images) > 0)
         @foreach($indoors as $indoor)
           @php
             $class = 'my-class';
-            $url = route('frontend.indoor', ['id'=>$indoor->id]);
+            
             
             if($id == $indoor->id)
             {
