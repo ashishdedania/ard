@@ -85,7 +85,7 @@
 
                     @endphp
 
-                      <a class="dropdown-item" href="{{route('frontend.stone-product-detail', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.gemstone-collections-all', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
 
 
 
@@ -97,7 +97,7 @@
                   if($subcollection)
                   {
                     @endphp
-                      <a class="dropdown-item" href="{{route('frontend.stone-collection-detail', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.stone-collections', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
                     @php
                   }
 
@@ -107,13 +107,11 @@
 
 
               @endphp 
-              <a class="dropdown-item" href="{{route('frontend.stone-collection')}}">View All</a>       
+              <a class="dropdown-item" href="{{route('frontend.collections')}}">View All</a>       
             </div>
           </li>
 
-          <!-- <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-collection') ? 'active' : '' }}">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-collection')}}">Collection</a>
-          </li> -->
+          
           
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.stone-talk') ? 'active' : '' }}">
             <a class="nav-link js-scroll-trigger" href="{{route('frontend.stone-talk')}}">Stone Talk</a>

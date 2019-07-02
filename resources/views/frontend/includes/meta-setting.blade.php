@@ -41,7 +41,7 @@
         }
 
 
-        if(\Request::route()->getName() == 'frontend.stone-collection-detail')
+        if(\Request::route()->getName() == 'frontend.stone-collections')
         {
           // sub collection, product collection page
 
@@ -64,7 +64,7 @@
 
 
         
-        if(\Request::route()->getName() == 'frontend.stone-product-detail')
+        if(\Request::route()->getName() == 'frontend.gemstone-collections-all')
         {
           // sub collection, product collection page
 
@@ -98,7 +98,7 @@
         }
 
 
-        if(\Request::route()->getName() == 'frontend.production')
+        if(\Request::route()->getName() == 'frontend.gemstone-collections')
         {
           
           $id = \Route::current()->parameter('id');
@@ -110,7 +110,7 @@
 
         }
 
-        if(\Request::route()->getName() == 'frontend.stone-collection')
+        if(\Request::route()->getName() == 'frontend.collections')
         {
           
           

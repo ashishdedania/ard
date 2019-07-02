@@ -164,13 +164,13 @@ if(count($images) > 0)
                       { 
             					  	if($l < 5)
             						{
-                                   	 echo '<a target="_blank" href="'.route('frontend.production', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                                   	 echo '<a target="_blank" href="'.route('frontend.gemstone-collections', ['id' => $product->id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
             						}
             						$l++;
                                   }
             					  if(count($products) > 5)
             					  {
-            					  echo '<a target="_blank" href="'.route('frontend.stone-product-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+            					  echo '<a target="_blank" href="'.route('frontend.gemstone-collections-all', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
             					  }
 
                       }
@@ -196,7 +196,7 @@ if(count($images) > 0)
 
                       if(count($products) > 5)
 					  {
-					  echo '<a target="_blank" href="'.route('frontend.stone-collection-detail', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+					  echo '<a target="_blank" href="'.route('frontend.stone-collections', ['id' => $collectiodata->id,'sub' => 0]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
 					  }
                     }
 
