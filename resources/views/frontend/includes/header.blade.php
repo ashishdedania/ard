@@ -2,24 +2,12 @@
 
   <?php
 
-        $indoorid  = 0;
-        $outdoorid = 0;
         $productid = 0;
 
-        $indoor = DB::table('indoor_outdoor')->where('is_indoor', 1)->orderBy('id')->first();
         
-        if($indoor)
-        {
-            $indoorid = $indoor->id;
-        }
 
 
-        $outdoor = DB::table('indoor_outdoor')->where('is_indoor', 0)->orderBy('id')->first(); 
         
-        if($outdoor)
-        {
-            $outdoorid = $outdoor->id;
-        }
 
 
         $collections = DB::table('stone_collection')->orderBy('id')->get(); 
@@ -36,8 +24,6 @@
 
         }
 
-        $collections = DB::table('stone_collection')->orderBy('id')->get();
-        
         
        
 
@@ -85,7 +71,7 @@
 
                     @endphp
 
-                      <a class="dropdown-item" href="{{route('frontend.gemstone-collections-all', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.gemstone-collections-all', ['id'=>$collection->slug_id,'sub'=>'all'])}}">{{$collection->title}}</a>
 
 
 
@@ -97,7 +83,7 @@
                   if($subcollection)
                   {
                     @endphp
-                      <a class="dropdown-item" href="{{route('frontend.stone-collections', ['id'=>$collection->id,'sub'=>'0'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.stone-collections', ['id'=>$collection->slug_id,'sub'=>'all'])}}">{{$collection->title}}</a>
                     @php
                   }
 

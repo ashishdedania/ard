@@ -57,6 +57,16 @@ class SubStoneCollectionRepository extends BaseRepository {
 
 	
 
+	
+	function clean($string) {
+		$string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+		$string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+		$string = strtolower($string); // Convert to lowercase
+ 
+		return $string;
+	}
+
+
 	/**
 	 * For Creating the respective model in storage
 	 *
@@ -83,6 +93,11 @@ class SubStoneCollectionRepository extends BaseRepository {
 
 		$stonecollection->image_alt_text   = $input['image_alt_text'];
 		$stonecollection->image_title_text   = $input['image_title_text'];
+
+
+		$stonecollection->slug_id   = $this->clean($input['slug_id']);
+		$stonecollection->canonical_link   = $input['canonical_link'];
+		
 		
 		$stonecollection->created_by  = access()->user()->id;
 		
@@ -131,6 +146,7 @@ class SubStoneCollectionRepository extends BaseRepository {
 		$stonecollection = SubStoneCollection::where('id', $id)->first();
 
 		$input = $request->except(['_token']); 
+		$input['slug_id'] = $this->clean($input['slug_id']);
 		$image1 = $request->file('image1');
 
 		if (!empty($image1)) {

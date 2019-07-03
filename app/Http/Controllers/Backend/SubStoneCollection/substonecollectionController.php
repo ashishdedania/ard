@@ -68,12 +68,14 @@ class SubStonecollectionController extends Controller {
 			'title'       => 'required',
 			'description' => 'required',
 			'image1' => 'required',
+			'slug_id' => 'required'
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required' => 'The Description field is required.',
 			'image1.required' => 'The Image-1 field is required.',
+			'slug_id.required' => 'The SEO Id field is required.',
 			
 		];
 		$this->validate($request, $rules, $message);
@@ -113,11 +115,13 @@ class SubStonecollectionController extends Controller {
 		$rules = [
 			'title'       => 'required',
 			'description' => 'required',
+			'slug_id' => 'required'
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required' => 'The Description field is required.',
+			'slug_id.required' => 'The SEO Id field is required.',
 			
 		];
 		$this->validate($request, $rules, $message);

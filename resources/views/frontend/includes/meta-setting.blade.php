@@ -103,7 +103,7 @@
           
           $id = \Route::current()->parameter('id');
 
-          $page = DB::table('stone_product')->where('id', $id)->first();
+          $page = DB::table('stone_product')->where('slug_id', $id)->first();
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 

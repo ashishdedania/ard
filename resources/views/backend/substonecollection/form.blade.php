@@ -75,6 +75,24 @@
         </div><!--col-lg-3-->
     </div>
 
+    <div class="form-group">
+        {{ Form::label('SEO Id', 'SEO Id', ['class' => 'col-lg-2 control-label required']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('slug_id', null,['class' => 'form-control box-size', 'placeholder' => 'SEO Id']) }}
+            <font color="red"><b>NOTE: SEO Id only contain alphabate numer and dash, SEO Id will be unique</b></font>
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Canonical Link', 'Canonical Link', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('canonical_link', null,['class' => 'form-control box-size', 'placeholder' => 'Canonical Link']) }}
+        </div><!--col-lg-3-->
+    </div>
+
+
     
 </div>
 

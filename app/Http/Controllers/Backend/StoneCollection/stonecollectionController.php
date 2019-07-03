@@ -70,12 +70,14 @@ class StonecollectionController extends Controller {
 		$rules = [
 			'title'       => 'required',
 			'description'       => 'required',
+			'slug_id' => 'required'
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required'       => 'The Description filed is required.',
+			'slug_id.required' => 'The SEO Id field is required.',
 			
 			
 		];
@@ -115,12 +117,14 @@ class StonecollectionController extends Controller {
 		$rules = [
 			'title'       => 'required',
 			'description'       => 'required',
+			'slug_id' => 'required'
 			
 			
 		];
 		$message = [
 			'title.required'       => 'The Title filed is required.',
 			'description.required'       => 'The Description filed is required.',
+			'slug_id.required' => 'The SEO Id field is required.',
 			
 			
 		];

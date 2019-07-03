@@ -99,6 +99,11 @@ class StoneProductRepository extends BaseRepository {
 		$stonecollection->image_title_text   = $input['image_title_text'];
 
 
+		$stonecollection->slug_id   = $this->clean($input['slug_id']);
+		$stonecollection->canonical_link   = $input['canonical_link'];
+		
+
+
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {
@@ -185,6 +190,15 @@ class StoneProductRepository extends BaseRepository {
     }
 
 
+    function clean($string) {
+		$string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+		$string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+		$string = strtolower($string); // Convert to lowercase
+ 
+		return $string;
+	}
+
+
 	/**
 	 * For updating the respective Model in storage
 	 *
@@ -199,7 +213,7 @@ class StoneProductRepository extends BaseRepository {
 
 		$input = $request->except(['_token']); 
 
-
+		$input['slug_id'] = $this->clean($input['slug_id']);
 
 		$image4 = $request->file('image4');
 

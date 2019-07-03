@@ -81,6 +81,12 @@ class IndoorImagesRepository extends BaseRepository {
 		$stonecollection->collection_id = $input['is_indoor'] == 1 ? $input['collection_id_1'] : $input['collection_id'];
 		$stonecollection->created_by  = access()->user()->id;
 		$stonecollection->sr_no = $input['sr_no'];
+
+
+
+$stonecollection->image_alt_text   = $input['image_alt_text'];
+$stonecollection->image_title_text   = $input['image_title_text'];
+
 		
 		if ($stonecollection->save()) {
 			$stonecollectionId = $stonecollection->id;

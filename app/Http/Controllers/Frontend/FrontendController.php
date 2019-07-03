@@ -241,19 +241,19 @@ return 'success';
     { 
         
         
-        $colection     = StoneCollection::where('id', $id)->first();
+        $colection     = StoneCollection::where('slug_id', $id)->first();
 
         $subcolections = $colection->subcollection;
 
 
 
-        if($sub == 0)
+        if($sub == 'all')
         {
             $selected = $subcolections->first();
         }
         else
         {
-            $selected = SubStoneCollection::where('id', $sub)->first();
+            $selected = SubStoneCollection::where('slug_id', $sub)->first();
         }
 
 
@@ -313,19 +313,19 @@ return 'success';
     { 
         
         
-        $colection     = StoneCollection::where('id', $id)->first();
+        $colection     = StoneCollection::where('slug_id', $id)->first();
 
         $subcolections = $colection->product;
 
 
 
-        if($sub == 0)
+        if($sub == 'all')
         {
             $selected = $subcolections->first();
         }
         else
         {
-            $selected = StoneProduct::where('id', $sub)->first();
+            $selected = StoneProduct::where('slug_id', $sub)->first();
         }
 
 
@@ -390,7 +390,7 @@ return 'success';
      */
     public function production($id)
     { 
-        $colection     = StoneProduct::where('id', $id)->first();
+        $colection     = StoneProduct::where('slug_id', $id)->first();
 		$images = [];
 		if($colection)
             
