@@ -71,7 +71,7 @@
 
                     @endphp
 
-                      <a class="dropdown-item" href="{{route('frontend.gemstone-collections-all', ['id'=>$collection->slug_id,'sub'=>'all'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.get-collections', ['id'=>$collection->slug_id])}}">{{$collection->title}}</a>
 
 
 
@@ -83,7 +83,7 @@
                   if($subcollection)
                   {
                     @endphp
-                      <a class="dropdown-item" href="{{route('frontend.stone-collections', ['id'=>$collection->slug_id,'sub'=>'all'])}}">{{$collection->title}}</a>
+                      <a class="dropdown-item" href="{{route('frontend.get-collections', ['id'=>$collection->slug_id])}}">{{$collection->title}}</a>
                     @php
                   }
 

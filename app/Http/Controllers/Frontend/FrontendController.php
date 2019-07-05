@@ -290,11 +290,11 @@ return 'success';
 
         if($is_product_collection)
         {
-          return view('frontend.stoneproductdetail',
+          return view('frontend.stoneproductdetail2',
               [
                   
                   'colection' => $colection,
-                  'subcolections' => $subcolections,
+                  'subcolections' => $products,
                   'selected' => $selected,
                   'images' => $images,
               ]
@@ -306,7 +306,7 @@ return 'success';
 
             // get all collection with sub product and sub collection
 
-            return view('frontend.stonecollectiondetail',
+            return view('frontend.stonecollectiondetail2',
                 [
                     
                     'colection' => $colection,
@@ -317,6 +317,104 @@ return 'success';
             );
 
         }
+    }
+
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function getChildCollection($id,$sub)
+    { 
+        
+        
+        $colection     = StoneCollection::where('slug_id', $id)->first();
+        $products      = $colection->product;
+        $subcolections = $colection->subcollection;
+        $is_product_collection = false;
+
+
+
+        if($products->count() > 0)
+        {
+          $colection     = StoneProduct::where('slug_id', $sub)->first();
+        $images = [];
+       if($colection)
+            
+        {
+            if(!empty($colection->image1))
+            {
+                array_push($images,$colection->image1);
+                
+            }
+            if(!empty($colection->image2))
+            {
+                 array_push($images,$colection->image2);
+            }
+            if(!empty($colection->image3))
+            {
+                 array_push($images,$colection->image3);
+            }
+            
+        }
+          $is_product_collection = true;
+          return view('frontend.production',['product' => $colection, 'images' => $images]);
+
+        }
+
+          
+        else
+        {
+          $selected = SubStoneCollection::where('slug_id', $sub)->first();
+  
+
+
+
+        
+          $images = [];
+          // get three images
+          $data = $colection; 
+
+          if($data)
+              
+          {
+              if(!empty($data->image1))
+              {
+                  array_push($images,$data->image1);
+                  
+              }
+              if(!empty($data->image2))
+              {
+                   array_push($images,$data->image2);
+              }
+              if(!empty($data->image3))
+              {
+                   array_push($images,$data->image3);
+              }
+              
+          }
+
+
+
+            return view('frontend.stonecollectiondetail2',
+              [
+                  
+                  'colection' => $colection,
+                  'subcolections' => $subcolections,
+                  'selected' => $selected,
+                  'images' => $images,
+              ]
+          );
+        }
+
+
+        
+
+      
+
+        // get all collection with sub product and sub collection
+
+        
     }
 
 
@@ -464,14 +562,15 @@ return 'success';
         return view('frontend.stoneTalk');
     }
 
+
     /**
      * @return \Illuminate\View\View
      */
     public function production($id)
     { 
         $colection     = StoneProduct::where('slug_id', $id)->first();
-		$images = [];
-		if($colection)
+		    $images = [];
+		   if($colection)
             
         {
             if(!empty($colection->image1))

@@ -121,7 +121,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<option value='.route('frontend.stone-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'>'.$subcolection->title.'</option>';
+              echo '<option value='.route('frontend.get-child-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'>'.$subcolection->title.'</option>';
             }
             ?>
         
@@ -136,7 +136,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<li><a href="'.route('frontend.stone-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
+              echo '<li><a href="'.route('frontend.get-child-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
             }
             ?>
 
@@ -160,10 +160,10 @@ if(count($images) > 0)
 			   $imgTitle = $selected->image_title_text;
             ?>
 
-            <img src="{{ $img}}" alt="{{ $imgAlt?$imgAlt:$selected->title}}" title="{{ $imgTitle?$imgTitle:$selected->title}}">
+            <img id='ImgCollection' src="{{ $img}}" alt="{{ $imgAlt?$imgAlt:$selected->title}}" title="{{ $imgTitle?$imgTitle:$selected->title}}">
             <div class="product-caption mt-4">
-              <h6><?php if($selected) {echo $selected->title;} ?></h6>
-              <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
+              <h6 id='ImgTitle'><?php if($selected) {echo $selected->title;} ?></h6>
+              <p id='ImgDesc' class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
             </div>
           </div>
 

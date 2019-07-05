@@ -63,6 +63,43 @@
         }
 
 
+
+        if(\Request::route()->getName() == 'frontend.get-child-collections')
+        {
+          
+         
+          $sub = \Route::current()->parameter('sub');
+
+          $page = DB::table('stone_product')->where('slug_id', $sub)->first();
+          
+
+
+
+        if($page)
+        {
+          
+          $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+        }
+        else
+        {
+          $page = DB::table('sub_stone_collection')->where('slug_id', $sub)->first();
+          $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+
+        }
+
+
+
+
+          
+
+
+        }
+
+
         
         if(\Request::route()->getName() == 'frontend.gemstone-collections-all')
         {
@@ -98,12 +135,25 @@
         }
 
 
-        if(\Request::route()->getName() == 'frontend.gemstone-collections')
+        /*if(\Request::route()->getName() == 'frontend.gemstone-collections')
         {
           
           $id = \Route::current()->parameter('id');
 
           $page = DB::table('stone_product')->where('slug_id', $id)->first();
+          //$metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
+          //$metadesc = $page->meta_description;
+
+
+        }*/
+
+
+        if(\Request::route()->getName() == 'frontend.get-collections')
+        {
+          
+          $id = \Route::current()->parameter('id');
+
+          $page = DB::table('stone_collection')->where('slug_id', $id)->first();
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 

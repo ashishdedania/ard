@@ -122,7 +122,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<option value='.route('frontend.gemstone-collections', ['id' => $colection->slug_id]).'>'.$subcolection->title.'</option>';
+              echo '<option value='.route('frontend.get-child-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'>'.$subcolection->title.'</option>';
             }
             ?>
         
@@ -137,7 +137,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<li><a href="'.route('frontend.gemstone-collections', ['id' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
+              echo '<li><a href="'.route('frontend.get-child-collections', ['id' => $colection->slug_id, 'sub' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
             }
             ?>
 
@@ -158,7 +158,7 @@ if(count($images) > 0)
                }
             ?>
 
-            <a target="_blank" href="{{route('frontend.gemstone-collections', ['id' => $selected->id])}}"><img src="{{$img}}" alt="{{$selected->title}} - {{$colection->title}}" title="{{$selected->title}} - {{$colection->title}}"></a>
+            <a target="_blank" href="{{route('frontend.gemstone-collections', ['id' => $selected->slug_id])}}"><img src="{{$img}}" alt="{{$selected->title}} - {{$colection->title}}" title="{{$selected->title}} - {{$colection->title}}"></a>
             <div class="product-caption mt-4">
               <h6><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3"><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>

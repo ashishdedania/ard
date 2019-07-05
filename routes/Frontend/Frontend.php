@@ -13,6 +13,9 @@ Route::get('collections', 'FrontendController@stoneCollection')->name('collectio
 
 Route::get('collections', 'FrontendController@stoneCollection')->name('collections');
 Route::get('collections/{id}', 'FrontendController@getCollection')->name('get-collections');
+Route::get('collections/{id}/{sub}', 'FrontendController@getChildCollection')->name('get-child-collections');
+
+
 
 
 

@@ -21,9 +21,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/all.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/style.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/responsive.css') }}" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
+        
      
 
        
@@ -45,6 +43,7 @@
         @include('frontend.includes.header-setting')
     </head>
     <body id="page-top">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         @include('frontend.includes.header')
    
                 
@@ -54,20 +53,10 @@
 
         <div id='app'></div>
 
-
-        <!-- Scripts -->
-        <!-- @yield('before-scripts')
-        {!! Html::script(mix('js/frontend.js')) !!}
-        @yield('after-scripts')
-        
-        {{ Html::script('js/frontend/frontend.js') }}
-        {!! Html::script('js/select2/select2.js') !!} -->
-
-
-
-        
-
-
         @include('frontend.includes.body-setting')
+        
+        
+        <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
     </body>
 </html>
