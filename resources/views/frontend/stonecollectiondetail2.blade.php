@@ -121,7 +121,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<option value='.route('frontend.stone-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'>'.$subcolection->title.'</option>';
+              echo '<option value='.route('frontend.get-child-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'>'.$subcolection->title.'</option>';
             }
             ?>
         
@@ -136,7 +136,7 @@ if(count($images) > 0)
             $i=0;
             foreach($subcolections as $subcolection)
             {
-              echo '<li><a href="'.route('frontend.stone-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
+              echo '<li><a href="'.route('frontend.get-child-collections', ['id' => $colection->slug_id,'sub' => $subcolection->slug_id]).'"><i class="fas fa-chevron-right"></i>'.$subcolection->title.'</a></li>';
             }
             ?>
 

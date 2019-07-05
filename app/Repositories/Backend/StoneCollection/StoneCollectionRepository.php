@@ -467,6 +467,11 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection = DB::table('indoor_collection_image')->where('id', 1)->first();
 		
 		$input = $request->except(['_token']); 
+
+
+		$stonecollection->image_alt_text   = $input['image_alt_text'];
+		$stonecollection->image_title_text   = $input['image_title_text'];
+
 		
 		$image1 = $request->file('image1');
 
@@ -579,6 +584,11 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection = DB::table('outdoor_collection_image')->where('id', 1)->first();
 		
 		$input = $request->except(['_token']); 
+
+
+		$stonecollection->image_alt_text   = $input['image_alt_text'];
+		$stonecollection->image_title_text   = $input['image_title_text'];
+
 		
 		$image1 = $request->file('image1');
 

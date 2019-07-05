@@ -28,7 +28,7 @@
 
 
 
-        if(\Request::route()->getName() == 'frontend.indoor' || \Request::route()->getName() == 'frontend.outdoor')
+        /*if(\Request::route()->getName() == 'frontend.indoor' || \Request::route()->getName() == 'frontend.outdoor')
         {
           
           $id = \Route::current()->parameter('id');
@@ -38,10 +38,41 @@
           $metadesc = $page->meta_description;
 
 
+        }*/
+
+
+
+        if(\Request::route()->getName() == 'frontend.indoor-applications')
+        {
+          
+          
+
+          $page = DB::table('indoor_collection_image')->where('id', 1)->first();
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+
         }
 
 
-        if(\Request::route()->getName() == 'frontend.stone-collections')
+        if(\Request::route()->getName() == 'frontend.outdoor-applications')
+        {
+          
+          
+
+          $page = DB::table('outdoor_collection_image')->where('id', 1)->first();
+          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
+          $metadesc = $page->meta_description;
+
+
+        }
+
+
+
+
+
+
+        /*if(\Request::route()->getName() == 'frontend.stone-collections')
         {
           // sub collection, product collection page
 
@@ -60,7 +91,7 @@
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
-        }
+        }*/
 
 
 
@@ -101,7 +132,7 @@
 
 
         
-        if(\Request::route()->getName() == 'frontend.gemstone-collections-all')
+        /*if(\Request::route()->getName() == 'frontend.gemstone-collections-all')
         {
           // sub collection, product collection page
 
@@ -122,7 +153,7 @@
           $metatitle = $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 
-        }
+        }*/
 
 
 
