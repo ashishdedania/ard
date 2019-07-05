@@ -10,12 +10,25 @@ Route::post('/get/cities', 'FrontendController@getCities')->name('get.cities');
 Route::get('contact-us', 'FrontendController@contactus')->name('contact-us');
 Route::post('sendcontact', 'FrontendController@sendcontact')->name('sendcontact');
 Route::get('collections', 'FrontendController@stoneCollection')->name('collections');
-Route::get('stone-collections/{id}/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collections');
 
+Route::get('collections', 'FrontendController@stoneCollection')->name('collections');
+Route::get('collections/{id}', 'FrontendController@getCollection')->name('get-collections');
+
+
+
+
+Route::get('stone-collections/{id}/{sub}', 'FrontendController@stoneCollectionDetail')->name('stone-collections');
 Route::get('gemstone-collections-all/{id}/{sub}', 'FrontendController@stoneProductDetail')->name('gemstone-collections-all');
+Route::get('gemstone-collections/{id}', 'FrontendController@production')->name('gemstone-collections');
+
 
 Route::get('stone-talk', 'FrontendController@stoneTalk')->name('stone-talk');
-Route::get('gemstone-collections/{id}', 'FrontendController@production')->name('gemstone-collections');
+
+
+
+
+
+
 
 Route::get('indoor-applications', 'FrontendController@indoor')->name('indoor-applications');
 

@@ -234,6 +234,93 @@ return 'success';
     }
 
 
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function getCollection($id)
+    { 
+        
+        
+        $colection     = StoneCollection::where('slug_id', $id)->first();
+        $products      = $colection->product;
+        $subcolections = $colection->subcollection;
+        $is_product_collection = false;
+
+
+        if($products->count() > 0)
+        {
+          // it is product collection gemstone
+          $selected = $products->first();
+          $is_product_collection = true;
+
+        }
+        else
+        {
+          $selected = $subcolections->first();
+        }
+
+        
+
+        
+        $images = [];
+        // get three images
+        $data = $colection; 
+
+        if($data)
+            
+        {
+            if(!empty($data->image1))
+            {
+                array_push($images,$data->image1);
+                
+            }
+            if(!empty($data->image2))
+            {
+                 array_push($images,$data->image2);
+            }
+            if(!empty($data->image3))
+            {
+                 array_push($images,$data->image3);
+            }
+            
+        }
+
+
+
+        if($is_product_collection)
+        {
+          return view('frontend.stoneproductdetail',
+              [
+                  
+                  'colection' => $colection,
+                  'subcolections' => $subcolections,
+                  'selected' => $selected,
+                  'images' => $images,
+              ]
+          );
+
+        }
+        else
+        {
+
+            // get all collection with sub product and sub collection
+
+            return view('frontend.stonecollectiondetail',
+                [
+                    
+                    'colection' => $colection,
+                    'subcolections' => $subcolections,
+                    'selected' => $selected,
+                    'images' => $images,
+                ]
+            );
+
+        }
+    }
+
+
+
     /**
      * @return \Illuminate\View\View
      */
@@ -281,15 +368,7 @@ return 'success';
             
         }
 
-        
-
-        // get three images
-        /*$images = DB::table('stone_collection_image')->where('id', 1)->first(); 
-
-        $repo = new StoneCollectionRepository();
-        $collectiodatas =$repo->getData();*/
-
-//dd($stonecollection);
+      
 
         // get all collection with sub product and sub collection
 
