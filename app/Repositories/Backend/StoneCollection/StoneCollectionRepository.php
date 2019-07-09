@@ -479,6 +479,14 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection->image_alt_text   = $input['image_alt_text'];
 		$stonecollection->image_title_text   = $input['image_title_text'];
 
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
+
+
+		$stonecollection->head_tags   = $input['head_tags'];
+		$stonecollection->body_tags   = $input['body_tags'];
+
 		
 		$image1 = $request->file('image1');
 
@@ -595,6 +603,16 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection->image_alt_text   = $input['image_alt_text'];
 		$stonecollection->image_title_text   = $input['image_title_text'];
+
+
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
+
+
+		$stonecollection->head_tags   = $input['head_tags'];
+		$stonecollection->body_tags   = $input['body_tags'];
+
 
 		
 		$image1 = $request->file('image1');

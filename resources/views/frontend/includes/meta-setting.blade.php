@@ -48,7 +48,7 @@
           
 
           $page = DB::table('indoor_collection_image')->where('id', 1)->first();
-          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
+          $metatitle =  $page->meta_title;
           $metadesc = $page->meta_description;
 
 
@@ -61,7 +61,7 @@
           
 
           $page = DB::table('outdoor_collection_image')->where('id', 1)->first();
-          $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
+          $metatitle =  $page->meta_title;
           $metadesc = $page->meta_description;
 
 
