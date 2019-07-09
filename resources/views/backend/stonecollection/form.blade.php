@@ -109,6 +109,41 @@
     </div>
 
 
+    <div class="form-group">
+        {{ Form::label('Meta Title', 'Meta Title', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('meta_title', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Title']) }}
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Meta Description', 'Meta Description', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('meta_description', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Description']) }}
+        </div><!--col-lg-3-->
+    </div>
+
+
+
+    <div class="form-group">
+        {{ Form::label('Head Tags', 'Head Tags', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('head_tags', null,['class' => 'form-control box-size', 'placeholder' => 'Head Tags']) }}
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Body Tags', 'Body Tags', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('body_tags', null,['class' => 'form-control box-size', 'placeholder' => 'Body Tags']) }}
+        </div><!--col-lg-3-->
+    </div>
+
+
     
     
 </div>

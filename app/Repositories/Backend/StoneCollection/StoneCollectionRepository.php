@@ -73,6 +73,13 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection->slug_id   = $this->clean($input['slug_id']);
 		$stonecollection->canonical_link   = $input['canonical_link'];
+
+		$stonecollection->meta_title   = $input['meta_title'];
+		$stonecollection->meta_description   = $input['meta_description'];
+
+
+		$stonecollection->head_tags   = $input['head_tags'];
+		$stonecollection->body_tags   = $input['body_tags'];
 		
 		$stonecollection->created_by  = access()->user()->id;
 		
@@ -179,7 +186,7 @@ class StoneCollectionRepository extends BaseRepository {
 	 * @throws GeneralException
 	 * return bool
 	 */
-	public function update($id, $request) { dd('ard');
+	public function update($id, $request) { 
 
 		$stonecollection = StoneCollection::where('id', $id)->first();
 
