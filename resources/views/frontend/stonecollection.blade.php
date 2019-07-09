@@ -164,13 +164,13 @@ if(count($images) > 0)
                       { 
             					  	if($l < 5)
             						{
-                                   	 echo '<a target="_blank" href="'.route('frontend.gemstone-collections', ['id' => $product->slug_id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
+                                   	 echo '<a target="_blank" href="'.route('frontend.get-child-collections', ['id' => $collectiodata->slug_id,'sub' => $product->slug_id]).'" class="list"><i class="fas fa-chevron-right"></i>'.$product->title.'</a>';
             						}
             						$l++;
                                   }
             					  if(count($products) > 5)
             					  {
-            					  echo '<a target="_blank" href="'.route('frontend.gemstone-collections-all', ['id' => $collectiodata->slug_id,'sub' => 'all']).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
+            					  echo '<a target="_blank" href="'.route('frontend.get-collections', ['id' => $collectiodata->slug_id]).'" class="list"><i class="fas fa-chevron-right"></i>More..</a>';
             					  }
 
                       }
