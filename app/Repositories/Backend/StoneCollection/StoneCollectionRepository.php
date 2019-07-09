@@ -487,6 +487,9 @@ class StoneCollectionRepository extends BaseRepository {
 		$stonecollection->head_tags   = $input['head_tags'];
 		$stonecollection->body_tags   = $input['body_tags'];
 
+
+		$stonecollection->canonical_link   = $input['canonical_link'];
+
 		
 		$image1 = $request->file('image1');
 
@@ -612,6 +615,8 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$stonecollection->head_tags   = $input['head_tags'];
 		$stonecollection->body_tags   = $input['body_tags'];
+
+		$stonecollection->canonical_link   = $input['canonical_link'];
 
 
 		

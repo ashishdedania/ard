@@ -72,6 +72,14 @@
                     </div><!--col-lg-3-->
                 </div>
 
+                <div class="form-group">
+        {{ Form::label('Canonical Link', 'Canonical Link', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('canonical_link', null,['class' => 'form-control box-size', 'placeholder' => 'Canonical Link']) }}
+        </div><!--col-lg-3-->
+    </div>
+
                 
                 <div class="edit-form-btn">
                     {{ link_to_route('admin.pages.index', trans('buttons.general.cancel'), [], ['class' => 'btn btn-danger btn-md']) }}

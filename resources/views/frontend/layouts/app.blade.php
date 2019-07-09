@@ -43,6 +43,7 @@
         </script>
         @include('frontend.includes.header-setting')
         @include('frontend.includes.head-tag')
+        @include('frontend.includes.canonical-link')
         
     </head>
     <body id="page-top">
