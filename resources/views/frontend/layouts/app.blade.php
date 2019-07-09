@@ -8,6 +8,7 @@
     	 @yield('meta')
         <meta charset="utf-8">
         @include('frontend.includes.meta-setting')
+        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
         <meta name="author" content="">
@@ -41,6 +42,8 @@
 	       ]);?>
         </script>
         @include('frontend.includes.header-setting')
+        @include('frontend.includes.head-tag')
+        
     </head>
     <body id="page-top">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -58,5 +61,7 @@
         
         <script type="text/javascript" src="{{ URL::asset('js/project/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/project/js/main.js') }}"></script>
+        @include('frontend.includes.body-tag')
+       
     </body>
 </html>

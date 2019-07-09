@@ -95,6 +95,11 @@ class SubStoneCollectionRepository extends BaseRepository {
 		$stonecollection->image_title_text   = $input['image_title_text'];
 
 
+		$stonecollection->head_tags   = $input['head_tags'];
+		$stonecollection->body_tags   = $input['body_tags'];
+
+
+
 		$stonecollection->slug_id   = $this->clean($input['slug_id']);
 		$stonecollection->canonical_link   = $input['canonical_link'];
 		

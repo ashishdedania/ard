@@ -75,6 +75,11 @@ class OutdoorCollectionRepository extends BaseRepository {
 		$stonecollection->image_title_text   = $input['image_title_text'];
 
 
+
+		$stonecollection->head_tags   = $input['head_tags'];
+		$stonecollection->body_tags   = $input['body_tags'];
+
+
 		$stonecollection->created_by  = access()->user()->id;
 		
 		if ($stonecollection->save()) {

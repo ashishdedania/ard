@@ -179,7 +179,7 @@ class StoneCollectionRepository extends BaseRepository {
 	 * @throws GeneralException
 	 * return bool
 	 */
-	public function update($id, $request) {
+	public function update($id, $request) { dd('ard');
 
 		$stonecollection = StoneCollection::where('id', $id)->first();
 
