@@ -42,8 +42,8 @@
           <li class="nav-item {{ (\Request::route()->getName() == 'frontend.index') ? 'active' : '' }}">
             <a class="nav-link js-scroll-trigger" href="{{URL::to('/')}}">Home</a>
           </li>
-          <li class="nav-item {{ (\Request::route()->getName() == 'frontend.pages.show') ? 'active' : '' }}">
-            <a class="nav-link js-scroll-trigger" href="{{route('frontend.pages.show', ['slug' => 'about-us'])}}">About Us </a>
+          <li class="nav-item {{ (\Request::route()->getName() == 'frontend.about-us') ? 'active' : '' }}">
+            <a class="nav-link js-scroll-trigger" href="{{route('frontend.about-us')}}">About Us </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
