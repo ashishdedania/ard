@@ -1,5 +1,3 @@
-<!-- Navigation -->
-
   <?php
           $metatitle = '';
           $metadesc = '';

@@ -1,9 +1,6 @@
-<!-- Navigation -->
 
   <?php
           $link = '';
-          
-
 
         if(\Request::route()->getName() == 'frontend.index')
         {
@@ -26,32 +23,20 @@
 
         }
 
-
-
         
         if(\Request::route()->getName() == 'frontend.indoor-applications')
         {
           
-          
-
           $page = DB::table('indoor_collection_image')->where('id', 1)->first();
           $link =  $page->canonical_link;
-          
-
 
         }
 
 
         if(\Request::route()->getName() == 'frontend.outdoor-applications')
         {
-          
-          
-
           $page = DB::table('outdoor_collection_image')->where('id', 1)->first();
           $link =  $page->canonical_link;
-          
-
-
         }
 
 
@@ -129,9 +114,12 @@
 
         }
 
-        echo '<link rel="canonical" href="'.$link.'" />';
+if($link != "")
+{
+$clink = str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$link);
+echo '<link rel="canonical" href="'.$clink.'" />';
+}
 
-        
      
   ?>
 

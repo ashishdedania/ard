@@ -14,24 +14,14 @@
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-
-
-        
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/bootstrap.css') }}" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/all.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/style.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/project/css/responsive.css') }}" />
-        
-     
-
-       
 
         <!-- Styles -->
         @yield('before-styles')
-
-        <!-- Check if the language is set to RTL, so apply the RTL layouts -->
-        <!-- Otherwise apply the normal LTR layouts -->
        
         @yield('after-styles')
 
