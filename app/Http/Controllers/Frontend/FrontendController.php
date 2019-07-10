@@ -190,6 +190,18 @@ return 'success';
     /**
      * @return \Illuminate\View\View
      */
+    public function aboutus()
+    { 
+
+
+        $result = DB::table('pages')->where('id', 7)->first();
+        return view('frontend.aboutus',['html'=>str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$result->description)]);
+    }
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function stoneCollection()
     { 
 
