@@ -579,12 +579,8 @@ class StoneCollectionRepository extends BaseRepository {
 
 		$response = DB::table('indoor_collection_image')->where('id', 1)->update($input); 
 
-		//update records.
-		if ($response) {
-			return true;
-		}
-
-		throw new GeneralException(trans('error in stone collection image update'));
+		return true;
+		//throw new GeneralException(trans('error in stone collection image update'));
 	}
 
 
@@ -707,11 +703,9 @@ class StoneCollectionRepository extends BaseRepository {
 		$response = DB::table('outdoor_collection_image')->where('id', 1)->update($input);
 
 		//update records.
-		if ($response) {
-			return true;
-		}
+		return true;
 
-		throw new GeneralException(trans('error in stone collection image update'));
+		//throw new GeneralException(trans('error in stone collection image update'));
 	}
 
 
