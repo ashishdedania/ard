@@ -6,6 +6,9 @@
 @php
 if(count($images) > 0)
 {
+	$imgAlt = $colection->image_alt_text;
+	$imgTitle = $colection->image_title_text;
+    
   if(count($images) > 1)
   {
     @endphp
@@ -55,7 +58,7 @@ if(count($images) > 0)
           }
 
           echo '<div class="carousel-item '.$active.'">';
-          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'" alt="slide'.$i.'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'"  alt="'. $imgAlt.' - '.($i + 1).'"  title="'. $imgAlt.' - '.($i + 1).'">';
           echo '</div>';
 
           $i=$i+1;
@@ -86,7 +89,7 @@ if(count($images) > 0)
       <section class="collection-slider">
         <div id="carouselExampleIndicators" class="carousel home-slider-section">
           <div class="carousel-inner">
-            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
+            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}"  alt="{{ $imgAlt?$imgAlt:$selected->title}}" title="{{ $imgTitle?$imgTitle:$selected->title}}"> </div>     
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
       </section>

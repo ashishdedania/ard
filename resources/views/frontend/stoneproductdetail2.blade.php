@@ -6,6 +6,9 @@
 @php
 if(count($images) > 0)
 {
+	$imgAlt = $colection->image_alt_text;
+	$imgTitle = $colection->image_title_text;
+    
   if(count($images) > 1)
   {
     @endphp
@@ -55,7 +58,7 @@ if(count($images) > 0)
           }
 
           echo '<div class="carousel-item '.$active.'">';
-          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'" alt="slide'.$i.'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'"  alt="'. $imgAlt.' - '.($i + 1).'"  title="'. $imgAlt.' - '.($i + 1).'">';
           echo '</div>';
 
           $i=$i+1;
@@ -86,7 +89,7 @@ if(count($images) > 0)
       <section class="collection-slider">
         <div id="carouselExampleIndicators" class="carousel home-slider-section">
           <div class="carousel-inner">
-            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
+            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="{{ $imgAlt?$imgAlt:$selected->title}}" title="{{ $imgTitle?$imgTitle:$selected->title}}"></div>     
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
       </section>
@@ -133,7 +136,7 @@ if(count($images) > 0)
                $desc = str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$subcolection->description);
                $rt = route('frontend.get-child-collections', ['id'=>$colection->slug_id,'sub' => $subcolection->slug_id]);
 
-              $imgData[] = ['id'=>$subcolection->id,'image'=>$myimg,'title'=>$subcolection->title,'desc'=>$desc,'src'=>$rt];
+              $imgData[] = ['id'=>$subcolection->id,'image'=>$myimg,'title'=>$subcolection->title,'desc'=>$desc,'src'=>$rt, 'altText'=>$subcolection->image_alt_text, 'titleText'=>$subcolection->image_title_text];
             }
             ?>
         
@@ -180,7 +183,7 @@ if(count($images) > 0)
                }
             ?>
 
-            <a id="Imghref" target="_blank" href="{{route('frontend.get-child-collections', ['id'=>$colection->slug_id,'sub' => $selected->slug_id])}}"><img id='ImgCollection' src="{{$img}}" alt="{{$selected->title}} - {{$colection->title}}" title="{{$selected->title}} - {{$colection->title}}"></a>
+            <a id="Imghref" target="_blank" href="{{route('frontend.get-child-collections', ['id'=>$colection->slug_id,'sub' => $selected->slug_id])}}"><img id='ImgCollection' src="{{$img}}" alt="{{$selected->image_alt_text}}" title="{{$selected->image_title_text}}"></a>
             <div class="product-caption mt-4">
               <h6 id='ImgTitle'><?php if($selected) {echo $selected->title;} ?></h6>
               <p class="mt-3" id='ImgDesc'><?php if($selected) {echo str_replace('#WEBSITE_URL#',env('WEBSITE_URL'),$selected->description);} ?></p>
@@ -216,6 +219,8 @@ $(".collection-list").click(function(){
         getTitle = data[i].title;
         getDesc = data[i].desc;
         getHref = data[i].src
+		getAlt = data[i].altText?data[i].altText:getTitle;
+		getTitleText = data[i].titleText?data[i].titleText:getTitle; // Image Title Tag text
          
       }
     }
@@ -224,6 +229,8 @@ $(".collection-list").click(function(){
       if(getImg !="")
       {
               $("#ImgCollection").attr("src", path+'/'+getImg);
+			  $("#ImgCollection").attr("alt", getAlt);
+			  $("#ImgCollection").attr("title", getTitleText);
               $("#ImgTitle").html(getTitle);
               $("#ImgDesc").html(getDesc);
               $("#Imghref").attr("href", getHref);

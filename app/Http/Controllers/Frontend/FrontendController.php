@@ -67,7 +67,7 @@ class FrontendController extends Controller
             {
 
              $masonry = $masonry . '<div class="col">';
-             $masonry = $masonry . '<a href="#exampleModal'.$indoorItem->id.'" data-toggle="modal"><img src="'.\URL::to('/').'/images/'.$indoorItem->image1.'" alt="'.$indoorItem->title.'"></a>
+             $masonry = $masonry . '<a href="#exampleModal'.$indoorItem->id.'" data-toggle="modal"><img src="'.\URL::to('/').'/images/'.$indoorItem->image1.'" title="'.$indoorItem->title.'"  alt="'.$indoorItem->alt.'"></a>
             </div>'; 
 
             
@@ -279,6 +279,9 @@ return 'success';
         // get three images
         $data = $colection; 
 
+
+		//echo "<pre>";
+		//print_r($data); exit; 
         if($data)
             
         {
@@ -648,9 +651,11 @@ return 'success';
         $item = OutdoorCollection::where('id', $id)->where('is_indoor', 1)->first();
 
         $indoors = OutdoorCollection::where('is_indoor', 1)->get();
-
+			
+			/*echo "<pre>";
+			print_r($indoor); exit;*/
         
-        return view('frontend.indoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id]);
+        return view('frontend.indoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id, 'data' => $data]);
     }
 
 
@@ -697,6 +702,6 @@ return 'success';
         $indoors = OutdoorCollection::where('is_indoor', 0)->get();
 
         
-        return view('frontend.outdoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id]);
+        return view('frontend.outdoor',['indoors' => $indoors, 'item'=>$item, 'images'=>$images, 'id'=>$id, 'data' => $data]);
     }
 }

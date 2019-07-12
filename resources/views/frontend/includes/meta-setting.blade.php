@@ -15,10 +15,12 @@
 
 
 
-        if(\Request::route()->getName() == 'frontend.pages.show')
-        {
+        //if(\Request::route()->getName() == 'frontend.pages.show')
+        if(\Request::route()->getName() == 'frontend.about-us')
+		{
           // abu us page
           $page = DB::table('pages')->where('id', 7)->first();
+		  
           $metatitle =  $page->meta_title!=""?$page->meta_title:$page->title;
           $metadesc = $page->meta_description;
 

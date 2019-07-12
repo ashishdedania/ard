@@ -2,6 +2,9 @@
   <?php
           $link = '';
 
+
+
+	//	echo " Resource Name: ".\Request::route()->getName(); exit;
         if(\Request::route()->getName() == 'frontend.index')
         {
           // home page
@@ -14,7 +17,7 @@
 
 
 
-        if(\Request::route()->getName() == 'frontend.pages.show')
+        if(\Request::route()->getName() == 'frontend.about-us')
         {
           // abu us page
           $page = DB::table('pages')->where('id', 7)->first();

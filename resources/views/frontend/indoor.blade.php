@@ -6,6 +6,8 @@
 @php
 if(count($images) > 0)
 {
+	$imgAlt = $data->image_alt_text;
+	$imgTitle = $data->image_title_text;
   if(count($images) > 1)
   {
     @endphp
@@ -57,7 +59,7 @@ if(count($images) > 0)
           }
 
           echo '<div class="carousel-item '.$active.'">';
-          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'" alt="slide'.$i.'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'"  alt="'. $imgAlt.' - '.($i + 1).'"  title="'. $imgAlt.' - '.($i + 1).'">';
           echo '</div>';
 
           $i=$i+1;
@@ -93,7 +95,7 @@ if(count($images) > 0)
 
         <div id="carouselExampleIndicators" class="carousel home-slider-section">
           <div class="carousel-inner">
-            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="First slide"> </div>     
+            <div class="carousel-item active"> <img class="d-block w-100" src="{{ URL::to('/') }}/images/{{$images[0]}}" alt="{{ $imgAlt}}" title="{{ $imgTitle}}"> </div>     
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
 
@@ -187,11 +189,13 @@ if(count($images) > 0)
          $i=1; 
 
         @endphp
+         
           
         @foreach($item->items as $indoorItem)
-
+			@php $imgAlt = $indoorItem->image_title_text?$indoorItem->image_title_text:$indoorItem->title; @endphp
+            @php $imgTitle = $indoorItem->image_title_text?$indoorItem->image_title_text:$indoorItem->title; @endphp
          <div class="col">
-          <a href="#indoorModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" alt="{{$indoorItem->title}}"></a>
+          <a href="#indoorModal{{$indoorItem->id}}" data-toggle="modal"><img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" alt="{{$imgAlt}}" title="{{$imgTitle}}"></a>
         </div> 
 
         @php 
@@ -225,7 +229,8 @@ if(count($images) > 0)
 <div id="data-ty">
 
 @foreach($item->items as $indoorItem)
-
+	@php $imgAlt = $indoorItem->image_title_text?$indoorItem->image_title_text:$indoorItem->title; @endphp
+    @php $imgTitle = $indoorItem->image_title_text?$indoorItem->image_title_text:$indoorItem->title; @endphp
   <div class="modal fade" id="indoorModal{{$indoorItem->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal{{$indoorItem->id}}Label" aria-hidden="true">
   <div class="modal-dialog collection-dialog" role="document">
     <div class="modal-content">
@@ -235,7 +240,7 @@ if(count($images) > 0)
       <div class="modal-body">
 
           <div class="left-img">
-          <img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" class="w-100" alt="">
+          <img src="{{ URL::to('/') }}/images/{{$indoorItem->image1}}" class="w-100"  alt="{{$imgAlt}}" title="{{$imgTitle}}">
           </div>
           <div class="info-block">
             <h2>{{$indoorItem->title}}</h2>
