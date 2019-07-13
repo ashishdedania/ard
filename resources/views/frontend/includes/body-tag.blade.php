@@ -17,7 +17,7 @@
 
 
 
-        if(\Request::route()->getName() == 'frontend.pages.show')
+        if(\Request::route()->getName() == 'frontend.about-us')
         {
           // abu us page
           $page = DB::table('pages')->where('id', 7)->first();

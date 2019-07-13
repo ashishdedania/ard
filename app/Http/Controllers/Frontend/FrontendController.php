@@ -67,8 +67,7 @@ class FrontendController extends Controller
             {
 
              $masonry = $masonry . '<div class="col">';
-             $masonry = $masonry . '<a href="#exampleModal'.$indoorItem->id.'" data-toggle="modal"><img src="'.\URL::to('/').'/images/'.$indoorItem->image1.'" title="'.$indoorItem->title.'"  alt="'.$indoorItem->alt.'"></a>
-            </div>'; 
+             $masonry = $masonry . '<a href="#exampleModal'.$indoorItem->id.'" data-toggle="modal"><img src="'.\URL::to('/').'/images/'.$indoorItem->image1.'" title="'.$indoorItem->title.'"  alt="'.$indoorItem->alt.'"></a></div>'; 
 
             
               if($i % 3 == 0)
@@ -232,7 +231,8 @@ return 'success';
 
         $repo = new StoneCollectionRepository();
         $collectiodatas =$repo->getData();
-
+		
+		
 //dd($stonecollection);
 
         // get all collection with sub product and sub collection
@@ -240,7 +240,8 @@ return 'success';
         return view('frontend.stonecollection',
             [
                 'images' => $images,
-                'collectiodatas' => $collectiodatas
+                'collectiodatas' => $collectiodatas,
+				'data' => $data
             ]
         );
     }

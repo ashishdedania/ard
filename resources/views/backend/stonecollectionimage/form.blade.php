@@ -79,6 +79,39 @@
                     </div><!--col-lg-3-->
                 </div>
 
+    
+    <div class="form-group">
+        {{ Form::label('Image Alt Text', 'Image Alt Text', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('image_alt_text', null,['class' => 'form-control box-size', 'placeholder' => 'Image Alt Text']) }}
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Image Title Text', 'Image Title Text', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('image_title_text', null,['class' => 'form-control box-size', 'placeholder' => 'Image Title Text']) }}
+        </div><!--col-lg-3-->
+    </div>
+    
+     <div class="form-group">
+        {{ Form::label('Meta Title', 'Meta Title', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('meta_title', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Title']) }}
+        </div><!--col-lg-3-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('Meta Description', 'Meta Description', ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            {{ Form::textarea('meta_description', null,['class' => 'form-control box-size', 'placeholder' => 'Meta Description']) }}
+        </div><!--col-lg-3-->
+    </div>
+    
     <div class="form-group">
         {{ Form::label('Head Tags', 'Head Tags', ['class' => 'col-lg-2 control-label']) }}
 

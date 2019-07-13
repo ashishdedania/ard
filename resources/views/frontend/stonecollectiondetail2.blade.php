@@ -44,6 +44,7 @@ if(count($images) > 0)
 
         @php
         $i=0;
+        $counter = ["","-one","-two","-three","-four"];
         foreach($images as $image)
         {
 
@@ -58,7 +59,7 @@ if(count($images) > 0)
           }
 
           echo '<div class="carousel-item '.$active.'">';
-          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'"  alt="'. $imgAlt.' - '.($i + 1).'"  title="'. $imgAlt.' - '.($i + 1).'">';
+          echo '<img class="d-block w-100" src="'.URL::to('/').'/images/'.$image.'"  alt="'. $imgAlt.$counter[$i].'"  title="'. $imgTitle.'">';
           echo '</div>';
 
           $i=$i+1;
