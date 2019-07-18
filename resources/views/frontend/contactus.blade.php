@@ -33,7 +33,7 @@ body.loading .modal {
   <div class="row contactus-form">
     <div class="col-md-6">
       <input type="text" class="form-control mb-3" placeholder="Name" id='mail-name'>
-      <input type="text" class="form-control mb-3" placeholder="Contact Number" id='mail-number'>
+      <input type="text" class="form-control mb-3" placeholder="Contact Number" id='mail-number' maxlength="10" onkeypress="return isNumber(event)">
       <input type="text" class="form-control mb-3" placeholder="Email Id" id='mail-email'>
     </div>
     <div class="col-md-6">
@@ -49,6 +49,25 @@ body.loading .modal {
 <div class="modal"></div>
 <section>
 <script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
+function ValidateEmail(mail) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+   // alert("You have entered an invalid email address!")
+    return (false)
+}
+
 $(document).ready(function () {  
 $("#send-btn").click(function(){
      var name = document.getElementById('mail-name').value;
@@ -62,21 +81,23 @@ var body = $("body");
       return false;
      }
 
-     if(number.trim() == '')
+     if(number.trim() == '' || number.length < 10)
      {
-      alert('Please enter Contact Number');
+      alert('Please provide valide Contact Number!');
       return false;
      }
 
-     if(email.trim() == '')
+     if(email.trim() == '' || !(ValidateEmail(email)))
      {
-      alert('Please enter Email Id');
+      alert('Please provide Email Address!');
       return false;
      }
 
      if(message.trim() == '')
      {
-      alert('Please enter Message');
+      alert('Please provide valid Message!');
+	  message.value="";
+	  message.focus();
       return false;
      }
      

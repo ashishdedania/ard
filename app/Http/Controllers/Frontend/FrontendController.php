@@ -129,12 +129,6 @@ class FrontendController extends Controller
     { $input = $request->except(['_token']);
        
 
-       /*$name = 'Rben';
-       $number = '9909872134'; 
-       $email='a@a.com';
-       $content = 'Hello this is good';*/
-
-
        $name = $input['name'];
        $number = $input['number'];
        $email=$input['email'];
@@ -146,21 +140,19 @@ class FrontendController extends Controller
        $html .= 'Email : '.$email.' <br>';
        $html .= 'Message : '.$content.' <br></p>';
 
-
-
-
-
 $message = ['data' => $html];    
 //$data['to'] = 'ashish.dedania@gmail.com';
 
-$data['to'] = env("CONTECT_EMAIL");
+$data['to'] = env("CONTECT_EMAIL"); 
+$data['from'] = env("MAIL_FROM"); 
+
 
 
 
 $a= Mail::send(['html' => 'emails.template'], ['data' => $html], function ($message) use ($data) {
                     $message->to($data['to']);
                     $message->subject('Contact request has been submitted!');
-                    $message->from('hello@app.com', 'Stone By Rander');
+                    $message->from('no-reply@stonesbyrander.com', 'Stones By Rander');
                     
                 }); 
 
@@ -168,10 +160,6 @@ $a= Mail::send(['html' => 'emails.template'], ['data' => $html], function ($mess
 return 'success';
 
 }
-
-
-
-
 
 
     /**
@@ -383,9 +371,6 @@ return 'success';
         {
           $selected = SubStoneCollection::where('slug_id', $sub)->first();
   
-
-
-
         
           $images = [];
           // get three images
